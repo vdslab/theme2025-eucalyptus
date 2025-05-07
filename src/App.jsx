@@ -1,8 +1,13 @@
+import React, { useState } from "react";
+import AppLayout from "./components/layout/AppLayout";
+import MainPage from "./pages/MainPage";
+
 function App() {
+  const [activeSlide, setActiveSlide] = useState(0);
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <AppLayout>
+      <MainPage activeSlide={activeSlide} setActiveSlide={setActiveSlide} />
+    </AppLayout>
   );
 }
 

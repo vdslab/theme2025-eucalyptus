@@ -1,0 +1,27 @@
+/* AppLayout のスタイル */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  background-color: #f0ebf1;
+}
+
+.main-content-inner {
+  padding: 1.5rem 1rem;
+}
+
+/* ヘッダーのスタイル */
+.header {
+  background-color: rgb(250, 242, 232);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 1rem;
+}
+
+.site-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
