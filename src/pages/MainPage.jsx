@@ -93,7 +93,6 @@ const MainPage = () => {
                 ) : (
                   <div>データ読み込み中...</div>
                 )}
-                <div className="cluster-title">テーマ {index}</div>
               </div>
             </div>
           ))}
@@ -127,6 +126,7 @@ const MainPage = () => {
             />
           ))}
         </div>
+        <div className="cluster-title">テーマ {activeSlide + 1}</div>
       </div>
     </div>
   );

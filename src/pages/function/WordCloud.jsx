@@ -3,7 +3,7 @@ import * as d3 from "d3";
 import { useRef, useEffect } from "react";
 import cloud from "d3-cloud";
 
-const WordCloud = ({ width, height, data, fontFamily, clusterId }) => {
+const WordCloud = ({ width, height, data, fontFamily }) => {
   const ref = useRef();
 
   // 単一の色を使用
