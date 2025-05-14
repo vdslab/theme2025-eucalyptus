@@ -1,7 +1,7 @@
 import React from "react";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
-import cloud from "d3-cloud";
+import * as d3Cloud from "d3-cloud";
 
 const WordCloud = ({ width, height, data, fontFamily }) => {
   const ref = useRef();
@@ -34,24 +34,27 @@ const WordCloud = ({ width, height, data, fontFamily }) => {
           .text((d) => d.text);
       };
 
-      const layout = cloud()
+      const layout = d3Cloud
+        .default()
         .size([width, height])
         .words(data)
         .padding(3)
         .rotate(0)
         .font(fontFamily)
         .fontSize((d) => Math.min(Math.max(d.value * 1.2, 10), 40)) // フォントサイズに上限を設定
-        .spiral("archimedean")
+        .spiral("archimedean") // 組み込みのarchimedeanSpiralを使用
         .on("end", draw);
 
       layout.start();
     }
-  }, [data, width, height, fontFamily]);
+  }, [width, height, data, fontFamily]);
 
   return (
-    <svg ref={ref} width={width} height={height}>
-      <g transform={`translate(${width / 2}, ${height / 2})`}></g>
-    </svg>
+    <div>
+      <svg ref={ref} width={width} height={height}>
+        <g transform={`translate(${width / 2}, ${height / 2})`}></g>
+      </svg>
+    </div>
   );
 };
 

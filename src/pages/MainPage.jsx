@@ -85,8 +85,8 @@ const MainPage = () => {
                 {/* この中でワードクラウドを表示 */}
                 {clusterData[index] && clusterData[index].length > 0 ? (
                   <WordCloud
-                    width={440}
-                    height={440}
+                    width={window.innerWidth * 0.7}
+                    height={window.innerHeight * 0.6}
                     data={clusterData[index]}
                     fontFamily="Impact"
                   />
