@@ -7,6 +7,9 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 df = pd.read_json("/Users/kiminagon/eucalyptus/theme2025-eucalyptus/public/data/flowers_clustered.json")
 
 # --- 前処理: テキストデータを数値化する ---
+# NoneやNaNを空リストに置き換える
+df['blooming_period'] = df['blooming_period'].fillna('').str.split(', ')
+df['language'] = df['language'].fillna('').str.split(' ')
 
 # 咲く時期の分割（6月, 7月 → ['6月', '7月']）
 df['blooming_period'] = df['blooming_period'].str.split(', ')
