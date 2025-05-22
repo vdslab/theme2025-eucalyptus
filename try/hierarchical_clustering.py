@@ -6,18 +6,19 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 # JSONファイルの読み込み
 df = pd.read_json("/Users/kiminagon/eucalyptus/theme2025-eucalyptus/public/data/flowers_clustered.json")
 
-# --- 前処理: テキストデータを数値化する ---
-# NoneやNaNを空リストに置き換える
-df['blooming_period'] = df['blooming_period'].fillna('').str.split(', ')
-df['language'] = df['language'].fillna('').str.split(' ')
+# --- 前処理 ---
+# 欠損値対応：None や NaN を空文字にしてからリストに変換
+df['blooming_period'] = df['blooming_period'].fillna('').apply(
+    lambda x: str(x).split(', ') if x else []
+)
+df['language'] = df['language'].fillna('').apply(
+    lambda x: str(x).split(' ') if x else []
+)
+df['color'] = df['color'].fillna('不明').apply(
+    lambda x: [x] if isinstance(x, str) else []
+)
 
-# 咲く時期の分割（6月, 7月 → ['6月', '7月']）
-df['blooming_period'] = df['blooming_period'].str.split(', ')
-
-# 花言葉（language）も空白で分割（複数あるので）
-df['language'] = df['language'].str.split(' ')
-
-# One-hot encoding（MultiLabelBinarizer）を使う
+# One-hot encoding（MultiLabelBinarizer）
 mlb_period = MultiLabelBinarizer()
 mlb_language = MultiLabelBinarizer()
 mlb_color = MultiLabelBinarizer()
@@ -28,13 +29,13 @@ period_encoded = pd.DataFrame(mlb_period.fit_transform(df['blooming_period']),
 language_encoded = pd.DataFrame(mlb_language.fit_transform(df['language']),
                                 columns=mlb_language.classes_)
 
-color_encoded = pd.DataFrame(mlb_color.fit_transform(df[['color']].values),
+color_encoded = pd.DataFrame(mlb_color.fit_transform(df['color']),
                              columns=mlb_color.classes_)
 
 # 特徴量を結合
 features = pd.concat([period_encoded, language_encoded, color_encoded], axis=1)
 
-# --- 標準化（必要なら） ---
+# --- 標準化 ---
 scaler = StandardScaler()
 scaled_features = scaler.fit_transform(features)
 
