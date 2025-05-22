@@ -4,7 +4,7 @@ from sklearn.preprocessing import MultiLabelBinarizer, StandardScaler
 from scipy.cluster.hierarchy import dendrogram, linkage
 
 # JSONファイルの読み込み
-df = pd.read_json("/Users/kiminagon/theme2025-eucalyptus/public/data/flowers_clustered.json")
+df = pd.read_json("/Users/kiminagon/eucalyptus/theme2025-eucalyptus/public/data/flowers_clustered.json")
 
 # --- 前処理: テキストデータを数値化する ---
 
