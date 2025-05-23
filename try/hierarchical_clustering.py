@@ -47,7 +47,7 @@ features = pd.concat([period_encoded, language_encoded, color_encoded], axis=1)
 
 
 plt.figure(figsize=(12, 7))
-dendrogram(linked, labels=df['name'].values, leaf_rotation=90, leaf_font_size=6)
+dendrogram(linked_full, labels=df['name'].values, leaf_rotation=90, leaf_font_size=6)
 plt.title('花の色ごとの階層クラスタリング')
 plt.xlabel('花の名前')
 plt.ylabel('距離')
