@@ -1,10 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
+import japanize_matplotlib
 from sklearn.preprocessing import MultiLabelBinarizer, StandardScaler
 from scipy.cluster.hierarchy import dendrogram, linkage
-
-plt.rcParams['font.family'] = 'Noto Sans CJK JP'
 
 df = pd.read_json("/Users/kiminagon/eucalyptus/theme2025-eucalyptus/public/data/flowers_clustered.json")
 
