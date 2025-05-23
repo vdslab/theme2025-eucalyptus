@@ -35,7 +35,7 @@ scaled_features = scaler.fit_transform(features)
 
 linked = linkage(scaled_features, method='ward')
 
-plt.figure(figsize=(12, 7))
+plt.figure(figsize=(50, 25))
 dendrogram(linked, labels=df['name'].values, leaf_rotation=90, leaf_font_size=6)
 plt.title('花の階層クラスタリング')
 plt.xlabel('花の名前')
