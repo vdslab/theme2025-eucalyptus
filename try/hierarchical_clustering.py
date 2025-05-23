@@ -3,11 +3,8 @@ import matplotlib.pyplot as plt
 from sklearn.preprocessing import MultiLabelBinarizer, StandardScaler
 from scipy.cluster.hierarchy import dendrogram, linkage
 
-# JSONファイルの読み込み
 df = pd.read_json("/Users/kiminagon/eucalyptus/theme2025-eucalyptus/public/data/flowers_clustered.json")
 
-# --- 前処理 ---
-# 欠損値対応：None や NaN を空文字にしてからリストに変換
 df['blooming_period'] = df['blooming_period'].fillna('').apply(
     lambda x: str(x).split(', ') if x else []
 )
@@ -18,7 +15,6 @@ df['color'] = df['color'].fillna('不明').apply(
     lambda x: [x] if isinstance(x, str) else []
 )
 
-# One-hot encoding（MultiLabelBinarizer）
 mlb_period = MultiLabelBinarizer()
 mlb_language = MultiLabelBinarizer()
 mlb_color = MultiLabelBinarizer()
@@ -32,17 +28,13 @@ language_encoded = pd.DataFrame(mlb_language.fit_transform(df['language']),
 color_encoded = pd.DataFrame(mlb_color.fit_transform(df['color']),
                              columns=mlb_color.classes_)
 
-# 特徴量を結合
 features = pd.concat([period_encoded, language_encoded, color_encoded], axis=1)
 
-# --- 標準化 ---
 scaler = StandardScaler()
 scaled_features = scaler.fit_transform(features)
 
-# --- 階層クラスタリング（Ward法） ---
 linked = linkage(scaled_features, method='ward')
 
-# --- デンドログラム表示 ---
 plt.figure(figsize=(12, 7))
 dendrogram(linked, labels=df['name'].values, leaf_rotation=90)
 plt.title('花の階層クラスタリング')
