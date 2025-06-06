@@ -6,7 +6,7 @@ const MainPage = () => {
   // 現在のスライドインデックス
   const [activeSlide, setActiveSlide] = useState(0);
   // スライドの総数:テーマの数で調整
-  const totalSlides = 6;
+  const totalSlides = 5;
 
   // 前のスライドに移動
   const goToPrevSlide = () => {
@@ -53,7 +53,7 @@ const MainPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/data/pinkNomi_parent_child_data.json");
+        const res = await fetch("/data/parent_child_data.json");
         const data = await res.json();
 
         setAllFlowersData(data);
@@ -87,6 +87,15 @@ const MainPage = () => {
             } else if (index === 1) {
               flowerColor = "1"; // 白い花
               slideTitle = "白い花の花言葉";
+            } else if (index === 2) {
+              flowerColor = "2"; // 黄色・オレンジの花言葉
+              slideTitle = "黄色・オレンジの花言葉";
+            } else if (index === 3) {
+              flowerColor = "3"; // 赤い花の花言葉
+              slideTitle = "赤い花の花言葉";
+            } else if (index === 4) {
+              flowerColor = "4"; // 青・青紫系の花言葉
+              slideTitle = "青・青紫系の花言葉";
             } else {
               flowerColor = "0"; // デフォルト
               slideTitle = `テーマ ${index + 1}`;
@@ -102,7 +111,7 @@ const MainPage = () => {
                       width={window.innerWidth * 0.7}
                       height={window.innerHeight * 0.6}
                       data={currentWordCloudData}
-                      fontFamily="Impact"
+                      fontFamily="Noto Sans JP"
                     />
                   ) : (
                     <div
@@ -153,7 +162,10 @@ const MainPage = () => {
         <div className="cluster-title">
           {activeSlide === 0 && "ピンク系の花言葉"}
           {activeSlide === 1 && "白い花の花言葉"}
-          {activeSlide >= 2 && `テーマ ${activeSlide + 1}`}
+          {activeSlide === 2 && "黄色・オレンジの花言葉"}
+          {activeSlide === 3 && "赤い花の花言葉"}
+          {activeSlide === 4 && "青・青紫系の花言葉"}
+          {/* {activeSlide >= 4 && `テーマ ${activeSlide + 1}`} */}
         </div>
       </div>
     </div>
