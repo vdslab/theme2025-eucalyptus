@@ -23,7 +23,7 @@ const WordCloud = ({ width, height, data, fontFamily }) => {
           .style("font-size", (d) => `${d.size}px`)
           .style("font-family", fontFamily)
           .style("fill", (d) => {
-            const opacity = 0.5 + (d.value / 100) * 0.5;
+            const opacity = 0.5 + (d.value / 100) * 0.8;
             return d3.color(mainColor).copy({ opacity });
           })
           .attr("text-anchor", "middle")

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/carousel.css";
-import WordCloud from "./function/wordCloud";
+import WordCloud from "./function/WordCloud";
 
 // todo: 一番最初の位置から、左を選択した時のスライドの移動をスムーズにする必要がある？
 
@@ -9,7 +9,7 @@ const MainPage = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   // スライドの総数:テーマの数で調整
-  const totalSlides = 6;
+  const totalSlides = 1;
 
   // 前のスライドに移動
   const goToPrevSlide = () => {
@@ -31,7 +31,7 @@ const MainPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await fetch("/data/flowers_clustered.json");
+      const res = await fetch("/data/flowers_white_extracted_words.json");
       const data = await res.json();
       setFlowerData(data);
 
@@ -41,32 +41,38 @@ const MainPage = () => {
         clusters[i] = [];
       }
 
+      // すべての花のextracted_wordsを使用する
+      let wordCount = {}; // 単語の出現回数を記録するオブジェクト
+
+      // まず、すべての単語の出現回数をカウント
       data.forEach((flower) => {
-        const cluster = flower.custer;
-        if (cluster >= 0 && cluster < totalSlides) {
-          // 花言葉をスペースで分割して単語に分ける
-          const words = flower.language.split(/[\s、。]/);
-          words.forEach((word) => {
+        if (flower.extracted_words && Array.isArray(flower.extracted_words)) {
+          flower.extracted_words.forEach((word) => {
             if (word && word.length > 0) {
-              // 既に同じ単語があるか確認
-              const existingWord = clusters[cluster].find(
-                (item) => item.text === word
-              );
-              if (existingWord) {
-                existingWord.value += 3; // 既存の単語の場合、値を増やす
+              if (wordCount[word]) {
+                wordCount[word] += 8;
               } else {
-                clusters[cluster].push({
-                  text: word,
-                  value: 10, // 新しい単語の初期値
-                });
+                wordCount[word] = 2;
               }
             }
           });
         }
       });
 
+      // 単語の出現回数をもとにワードクラウド用のデータを作成
+      const wordCloudData = Object.keys(wordCount).map((word) => ({
+        text: word,
+        value: 10 + wordCount[word] * 3, // 基本値10に出現回数×3を加算
+      }));
+
+      // ワードクラウドデータをクラスター0に設定
+      clusters[0] = wordCloudData;
+
+      // デバッグ情報
+      console.log("単語の総数:", wordCloudData.length);
+      console.log("ワードクラウドデータ:", wordCloudData);
+
       setClusterData(clusters);
-      console.log("クラスターデータ:", clusters);
     };
     fetchData();
   }, []);
@@ -86,9 +92,9 @@ const MainPage = () => {
                 {clusterData[index] && clusterData[index].length > 0 ? (
                   <WordCloud
                     width={window.innerWidth * 0.7}
-                    height={window.innerHeight * 0.6}
+                    height={window.innerHeight * 0.5}
                     data={clusterData[index]}
-                    fontFamily="Impact"
+                    fontFamily="Noto Sans JP"
                   />
                 ) : (
                   <div>データ読み込み中...</div>
