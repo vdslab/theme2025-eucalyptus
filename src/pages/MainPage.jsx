@@ -6,7 +6,7 @@ const MainPage = () => {
   // 現在のスライドインデックス
   const [activeSlide, setActiveSlide] = useState(0);
   // スライドの総数:テーマの数で調整
-  const totalSlides = 5;
+  const totalSlides = 6;
 
   // 前のスライドに移動
   const goToPrevSlide = () => {

@@ -45,8 +45,10 @@ const WordCloud = ({ width, height, data, fontFamily }) => {
         .padding(8)
         .rotate(0)
         .font(fontFamily)
-        .fontSize((d) => Math.min(Math.max(d.value * 10, 20), 40)) // フォントサイズに上限を設定
+        .fontSize((d) => Math.min(Math.max(d.value * 5, 20), 40)) // フォントサイズに上限を設定
         .spiral("archimedean") // 組み込みのarchimedeanSpiralを使用
+        .random(d3.randomLcg(42))
+
         .on("end", draw);
 
       layout.start();
