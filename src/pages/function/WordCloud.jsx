@@ -22,11 +22,15 @@ const WordCloud = ({ width, height, data, fontFamily }) => {
           .append("text")
           .style("font-size", (d) => `${d.size}px`)
           .style("font-family", fontFamily)
+          // .style("fill", (d) => {
+          //   const opacity = 0.5 + (d.value / 100) * 0.5;
+          //   return d3.color(mainColor).copy({ opacity });
+          // })
           .style("fill", (d) => {
-            const opacity = 0.5 + (d.value / 100) * 0.5;
-            return d3.color(mainColor).copy({ opacity });
+            return d3.color(mainColor).copy({ opacity: 0.8 });
           })
           .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "central")
           .attr(
             "transform",
             (d) => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`
@@ -38,11 +42,13 @@ const WordCloud = ({ width, height, data, fontFamily }) => {
         .default()
         .size([width, height])
         .words(data)
-        .padding(3)
+        .padding(8)
         .rotate(0)
         .font(fontFamily)
-        .fontSize((d) => Math.min(Math.max(d.value * 1.2, 10), 40)) // フォントサイズに上限を設定
+        .fontSize((d) => Math.min(Math.max(d.value * 5, 20), 40)) // フォントサイズに上限を設定
         .spiral("archimedean") // 組み込みのarchimedeanSpiralを使用
+        .random(d3.randomLcg(42))
+
         .on("end", draw);
 
       layout.start();
