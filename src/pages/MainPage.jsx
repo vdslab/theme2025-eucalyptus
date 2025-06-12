@@ -6,7 +6,7 @@ const MainPage = () => {
   // 現在のスライドインデックス
   const [activeSlide, setActiveSlide] = useState(0);
   // スライドの総数:テーマの数で調整
-  const totalSlides = 6;
+  const totalSlides = 5;
 
   // 前のスライドに移動
   const goToPrevSlide = () => {
@@ -23,8 +23,21 @@ const MainPage = () => {
     setActiveSlide(index);
   };
 
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
   const [allFlowersData, setAllFlowersData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  const title = [
+    "ピンク系の花の花言葉",
+    "白系の花の花言葉",
+    "黄・オレンジ系の花の花言葉",
+    "赤系の花の花言葉",
+    "青・青紫系の花言葉",
+  ];
 
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
@@ -66,6 +79,21 @@ const MainPage = () => {
     };
 
     fetchData();
+
+    const reSizeWindow = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+    window.addEventListener("resize", reSizeWindow);
+
+    reSizeWindow();
+
+    //コンポーネントのアンマウント時(コンポーネントがwebページを離れたとき)に実行する関数
+    return () => {
+      window.removeEventListener("resize", reSizeWindow);
+    };
   }, []);
 
   return (
@@ -78,28 +106,9 @@ const MainPage = () => {
         >
           {[...Array(totalSlides)].map((_, index) => {
             // スライドごとに花色を決定
-            let flowerColor;
-            let slideTitle;
+            //0から順に"ピンク系","白系","黄・オレンジ系","赤系","青・青紫系",
 
-            if (index === 0) {
-              flowerColor = "0"; // ピンク系の花
-              slideTitle = "ピンク系の花言葉";
-            } else if (index === 1) {
-              flowerColor = "1"; // 白い花
-              slideTitle = "白い花の花言葉";
-            } else if (index === 2) {
-              flowerColor = "2"; // 黄色・オレンジの花言葉
-              slideTitle = "黄色・オレンジの花言葉";
-            } else if (index === 3) {
-              flowerColor = "3"; // 赤い花の花言葉
-              slideTitle = "赤い花の花言葉";
-            } else if (index === 4) {
-              flowerColor = "4"; // 青・青紫系の花言葉
-              slideTitle = "青・青紫系の花言葉";
-            } else {
-              flowerColor = "0"; // デフォルト
-              slideTitle = `テーマ ${index + 1}`;
-            }
+            let flowerColor = `${index}`;
 
             const currentWordCloudData = generateWordCloudData(flowerColor);
 
@@ -108,8 +117,8 @@ const MainPage = () => {
                 <div className="slide-content">
                   {!loading && currentWordCloudData.length > 0 ? (
                     <WordCloud
-                      width={window.innerWidth * 0.7}
-                      height={window.innerHeight * 0.6}
+                      width={windowSize.width * 0.7}
+                      height={windowSize.height * 0.6}
                       data={currentWordCloudData}
                       fontFamily="Noto Sans JP"
                     />
@@ -159,13 +168,11 @@ const MainPage = () => {
           ))}
         </div>
 
+        {/* ページのタイトル */}
         <div className="cluster-title">
-          {activeSlide === 0 && "ピンク系の花言葉"}
-          {activeSlide === 1 && "白い花の花言葉"}
-          {activeSlide === 2 && "黄色・オレンジの花言葉"}
-          {activeSlide === 3 && "赤い花の花言葉"}
-          {activeSlide === 4 && "青・青紫系の花言葉"}
-          {/* {activeSlide >= 4 && `テーマ ${activeSlide + 1}`} */}
+          {[...Array(totalSlides)].map((_, index) => (
+            <div key={index}>{activeSlide === index && title[index]}</div>
+          ))}
         </div>
       </div>
     </div>
