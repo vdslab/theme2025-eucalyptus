@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
 
@@ -38,6 +38,21 @@ const MainPage = () => {
     "赤系の花の花言葉",
     "青・青紫系の花言葉",
   ];
+
+  const slideColors = ["#DC8CC3", "#A6A6B4", "#E2AB62", "#DC5F79", "#7B8EE1"];
+  const slideColorsHover = [
+    "#EB7BC2",
+    "#6A6A73",
+    "#E2A542",
+    "#DC5766",
+    "#7A71E1",
+  ];
+
+  const handleWordSelect = (wordData) => {
+    console.log("選択された単語データ:", wordData);
+    setSelectedWordData(wordData);
+    setCurrentPage("sub");
+  };
 
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
@@ -117,10 +132,15 @@ const MainPage = () => {
                 <div className="slide-content">
                   {!loading && currentWordCloudData.length > 0 ? (
                     <WordCloud
-                      width={windowSize.width * 0.7}
-                      height={windowSize.height * 0.6}
+                      width={windowSize.width * 0.5}
+                      height={windowSize.height * 0.8}
                       data={currentWordCloudData}
                       fontFamily="Noto Sans JP"
+                      slideIndex={index}
+                      slideColor={slideColors[index]}
+                      slideColorHover={slideColorsHover[index]}
+                      // onWordClick={handleWordSelect}
+                      // currentSlideColor={index.toString()}
                     />
                   ) : (
                     <div
