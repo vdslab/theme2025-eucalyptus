@@ -10,7 +10,7 @@ const AppLayout = ({ children }) => {
 
       {/* メインコンテンツエリア */}
       <main className="main-content">
-        <div className="container main-content-inner">{children}</div>
+        <div className="container">{children}</div>
       </main>
     </div>
   );
