@@ -31,6 +31,14 @@ const MainPage = () => {
   const [allFlowersData, setAllFlowersData] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const [selectedMonth, setSelectedMonth] = useState("すべて");
+
+  const monthOptions = [
+    "すべて", "1月", "2月", "3月", "4月", "5月", "6月",
+    "7月", "8月", "9月", "10月", "11月", "12月"
+  ];
+
+
   const title = [
     "ピンク系の花の花言葉",
     "白系の花の花言葉",
@@ -42,20 +50,23 @@ const MainPage = () => {
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
     if (!allFlowersData.flowers) return [];
-
+  
     const frequencyMap = new Map();
-
-    // 指定した花色の花のみフィルタリング
+    const selectedMonthNum = selectedMonth === "すべて" ? null : parseInt(selectedMonth.replace("月", ""));
+  
     Object.values(allFlowersData.flowers).forEach((flower) => {
-      if (flower.花色 === flowerColor && flower.花言葉) {
-        // 花言葉オブジェクトのキー（親要素）を取得
+      const matchColor = flower.花色 === flowerColor;
+      const matchMonth =
+        selectedMonthNum == null || (flower.開花時期 && flower.開花時期.includes(selectedMonthNum));
+  
+      if (matchColor && matchMonth && flower.花言葉) {
         Object.keys(flower.花言葉).forEach((parentElement) => {
           const currentCount = frequencyMap.get(parentElement) || 0;
           frequencyMap.set(parentElement, currentCount + 2);
         });
       }
     });
-
+  
     // WordCloud用の配列に変換
     return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
       text: text,
@@ -99,6 +110,14 @@ const MainPage = () => {
   return (
     <div>
       <div className="carousel-container">
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <label>開花時期で絞り込み: </label>
+          <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)}>
+            {monthOptions.map((m) => (
+              <option key={m} value={m}>{m}</option>
+              ))}
+          </select>
+        </div>
         {/* カルーセルトラック - 横スクロールするコンテナ */}
         <div
           className="carousel-track"
