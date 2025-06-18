@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
+import { flatGroup, text } from "d3";
 
 const MainPage = () => {
   // 現在のスライドインデックス
@@ -39,36 +40,11 @@ const MainPage = () => {
     "青・青紫系の花言葉",
   ];
 
-  // 花色別にワードクラウドデータを生成する関数
-  const generateWordCloudData = (flowerColor) => {
-    if (!allFlowersData.flowers) return [];
-
-    const frequencyMap = new Map();
-
-    // 指定した花色の花のみフィルタリング
-    Object.values(allFlowersData.flowers).forEach((flower) => {
-      if (flower.花色 === flowerColor && flower.花言葉) {
-        // 花言葉オブジェクトのキー（親要素）を取得
-        Object.keys(flower.花言葉).forEach((parentElement) => {
-          const currentCount = frequencyMap.get(parentElement) || 0;
-          frequencyMap.set(parentElement, currentCount + 2);
-        });
-      }
-    });
-
-    // WordCloud用の配列に変換
-    return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
-      text: text,
-      value: frequency,
-    }));
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await fetch("/data/parent_child_data.json");
         const data = await res.json();
-
         setAllFlowersData(data);
         setLoading(false);
         console.log("花データ読み込み完了:", data);
@@ -96,6 +72,30 @@ const MainPage = () => {
     };
   }, []);
 
+  // 花色別にワードクラウドデータを生成する関数
+  const generateWordCloudData = (flowerColor) => {
+    if (!allFlowersData.flowers) return [];
+
+    const frequencyMap = new Map();
+
+    // 指定した花色の花のみフィルタリング
+    Object.values(allFlowersData.flowers).forEach((flower) => {
+      if (flower.花色 === flowerColor && flower.花言葉) {
+        // 花言葉オブジェクトのキー（親要素）を取得
+        Object.keys(flower.花言葉).forEach((parentElement) => {
+          const currentCount = frequencyMap.get(parentElement) || 0;
+          frequencyMap.set(parentElement, currentCount + 2);
+        });
+      }
+    });
+
+    // WordCloud用の配列に変換
+    return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
+      text: text,
+      value: frequency,
+    }));
+  };
+
   return (
     <div>
       <div className="carousel-container">
@@ -110,7 +110,9 @@ const MainPage = () => {
 
             let flowerColor = `${index}`;
 
-            const currentWordCloudData = generateWordCloudData(flowerColor);
+            const currentWordCloudData = useMemo(() => {
+              return generateWordCloudData(flowerColor);
+            }, [flowerColor, allFlowersData]);
 
             return (
               <div className="carousel-slide" key={index}>
