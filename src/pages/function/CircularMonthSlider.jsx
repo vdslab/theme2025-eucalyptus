@@ -2,50 +2,84 @@ import React, { useRef, useEffect } from "react";
 
 const CircularMonthSlider = ({ start, end, onChange }) => {
   const canvasRef = useRef(null);
+
+  const size = 300;
+  const center = size / 2;
   const radius = 100;
-  const center = 150;
   const handleRadius = 10;
+  const maxHitDistance = 25; // ハンドルを掴める範囲を拡大
   const totalMonths = 12;
 
-  let dragging = null;
+  const draggingRef = useRef(null);
 
-  useEffect(() => {
-    draw();
-  }, [start, end]);
+  const angleFromMonth = (month) =>
+    (month / totalMonths) * 2 * Math.PI - Math.PI / 2;
+
+  const monthFromAngle = (angle) =>
+    Math.round(((angle + Math.PI / 2 + 2 * Math.PI) % (2 * Math.PI)) / (2 * Math.PI) * totalMonths) % totalMonths;
+
+  const getAngleFromCoord = (x, y) => {
+    const dx = x - center;
+    const dy = y - center;
+    return Math.atan2(dy, dx);
+  };
+
+  const getCanvasCoords = (clientX, clientY) => {
+    const rect = canvasRef.current.getBoundingClientRect();
+    return {
+      x: clientX - rect.left,
+      y: clientY - rect.top,
+    };
+  };
+
+  const getHandlePosition = (angle) => ({
+    x: center + radius * Math.cos(angle),
+    y: center + radius * Math.sin(angle),
+  });
+
+  const getDistance = (x1, y1, x2, y2) =>
+    Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+
+  const drawHandle = (ctx, angle, color) => {
+    const { x, y } = getHandlePosition(angle);
+    ctx.beginPath();
+    ctx.arc(x, y, handleRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = color;
+    ctx.fill();
+  };
 
   const draw = () => {
     const ctx = canvasRef.current.getContext("2d");
-    ctx.clearRect(0, 0, 300, 300);
+    ctx.clearRect(0, 0, size, size);
 
-    // 円周のベース
+    const startAngle = angleFromMonth(start);
+    const endAngle = angleFromMonth(end);
+
+    // 円ベース
     ctx.beginPath();
     ctx.arc(center, center, radius, 0, 2 * Math.PI);
     ctx.strokeStyle = "#ccc";
     ctx.lineWidth = 4;
     ctx.stroke();
 
-    // 選択範囲の弧を描画
-    const startAngle = ((start / totalMonths) * 2 * Math.PI) - Math.PI / 2;
-    const endAngle = ((end / totalMonths) * 2 * Math.PI) - Math.PI / 2;
-
+    // 選択範囲
     ctx.beginPath();
     ctx.strokeStyle = "#ff7f50";
     ctx.lineWidth = 8;
-
-    if (start <= end) {
+    if (startAngle <= endAngle) {
       ctx.arc(center, center, radius, startAngle, endAngle);
     } else {
       ctx.arc(center, center, radius, startAngle, endAngle + 2 * Math.PI);
     }
     ctx.stroke();
 
-    // ハンドル（開始月と終了月）
-    drawHandle(ctx, start, "#ff4444");
-    drawHandle(ctx, end, "#4444ff");
+    // ハンドル
+    drawHandle(ctx, startAngle, "#ff4444");
+    drawHandle(ctx, endAngle, "#4444ff");
 
-    // 月名
+    // 月表示
     for (let i = 0; i < totalMonths; i++) {
-      const angle = ((i / totalMonths) * 2 * Math.PI) - Math.PI / 2;
+      const angle = angleFromMonth(i);
       const x = center + (radius + 20) * Math.cos(angle);
       const y = center + (radius + 20) * Math.sin(angle);
       ctx.fillStyle = "black";
@@ -55,60 +89,53 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
     }
   };
 
-  const drawHandle = (ctx, monthIndex, color) => {
-    const angle = ((monthIndex / totalMonths) * 2 * Math.PI) - Math.PI / 2;
-    const x = center + radius * Math.cos(angle);
-    const y = center + radius * Math.sin(angle);
-    ctx.beginPath();
-    ctx.arc(x, y, handleRadius, 0, 2 * Math.PI);
-    ctx.fillStyle = color;
-    ctx.fill();
-  };
+  useEffect(() => {
+    draw();
+  }, [start, end]);
 
-  const getMonthFromCoord = (x, y) => {
-    const dx = x - center;
-    const dy = y - center;
-    let angle = Math.atan2(dy, dx) + Math.PI / 2;
-    if (angle < 0) angle += 2 * Math.PI;
-    return Math.round((angle / (2 * Math.PI)) * totalMonths) % 12;
-  };
-
-  const handleMouseDown = (e) => {
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const month = getMonthFromCoord(x, y);
-
-    // 距離が近いハンドルをドラッグ対象に
-    const distToStart = Math.abs(month - start) % 12;
-    const distToEnd = Math.abs(month - end) % 12;
-    dragging = distToStart <= distToEnd ? "start" : "end";
-  };
-
-  const handleMouseMove = (e) => {
-    if (dragging === null) return;
-    const rect = canvasRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const month = getMonthFromCoord(x, y);
-
-    if (dragging === "start") {
-      onChange(month, end);
-    } else if (dragging === "end") {
-      onChange(start, month);
+  const handleInputAt = (x, y) => {
+    const angle = getAngleFromCoord(x, y);
+    const newMonth = monthFromAngle(angle);
+    if (draggingRef.current === "start") {
+      onChange(newMonth, end);
+    } else if (draggingRef.current === "end") {
+      onChange(start, newMonth);
     }
   };
 
+  const handleMouseDown = (e) => {
+    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
+
+    const startAngle = angleFromMonth(start);
+    const endAngle = angleFromMonth(end);
+    const { x: sx, y: sy } = getHandlePosition(startAngle);
+    const { x: ex, y: ey } = getHandlePosition(endAngle);
+
+    const distToStart = getDistance(x, y, sx, sy);
+    const distToEnd = getDistance(x, y, ex, ey);
+
+    if (distToStart < maxHitDistance || distToEnd < maxHitDistance) {
+      draggingRef.current = distToStart <= distToEnd ? "start" : "end";
+      handleInputAt(x, y);
+    }
+  };
+
+  const handleMouseMove = (e) => {
+    if (!draggingRef.current) return;
+    const { x, y } = getCanvasCoords(e.clientX, e.clientY);
+    handleInputAt(x, y);
+  };
+
   const handleMouseUp = () => {
-    dragging = null;
+    draggingRef.current = null;
   };
 
   return (
     <canvas
       ref={canvasRef}
-      width={300}
-      height={300}
-      style={{ touchAction: "none", cursor: "pointer" }}
+      width={size}
+      height={size}
+      style={{ touchAction: "none", cursor: "grab" }}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
@@ -118,4 +145,3 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
 };
 
 export default CircularMonthSlider;
-
