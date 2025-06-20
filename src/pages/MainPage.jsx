@@ -21,6 +21,7 @@ const MainPage = () => {
 
   // 指定したスライドに移動
   const goToSlide = (index) => {
+    S;
     setActiveSlide(index);
   };
 
@@ -49,11 +50,11 @@ const MainPage = () => {
     "#7A71E1",
   ];
 
-  const handleWordSelect = (wordData) => {
-    console.log("選択された単語データ:", wordData);
-    setSelectedWordData(wordData);
-    setCurrentPage("sub");
-  };
+  // const handleWordSelect = (wordData) => {
+  //   console.log("選択された単語データ:", wordData);
+  //   setSelectedWordData(wordData);
+  //   setCurrentPage("sub");
+  // };
 
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
@@ -78,6 +79,16 @@ const MainPage = () => {
       value: frequency,
     }));
   };
+
+  // ワードクラウドデータを事前に計算する
+  //　今後、開花時期で絞ったりする場合は、依存関係を増やす必要あり？
+  const allWordCloudData = useMemo(() => {
+    if (!allFlowersData.flowers) return [];
+    return Array.from({ length: totalSlides }, (_, index) => {
+      const flowerColor = `${index}`;
+      return generateWordCloudData(flowerColor);
+    });
+  }, [allFlowersData]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,12 +133,7 @@ const MainPage = () => {
           {[...Array(totalSlides)].map((_, index) => {
             // スライドごとに花色を決定
             //0から順に"ピンク系","白系","黄・オレンジ系","赤系","青・青紫系",
-
-            let flowerColor = `${index}`;
-
-            const currentWordCloudData = useMemo(() => {
-              return generateWordCloudData(flowerColor);
-            }, [flowerColor, allFlowersData]);
+            const currentWordCloudData = allWordCloudData[index] || [];
 
             return (
               <div className="carousel-slide" key={index}>
