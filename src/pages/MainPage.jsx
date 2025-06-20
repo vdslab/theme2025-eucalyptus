@@ -96,19 +96,20 @@ const MainPage = () => {
   ];
 
    // 花色別にワードクラウドデータを生成する関数
-  const generateWordCloudData = (flowerColor) => {
+   const generateWordCloudData = (flowerColor) => {
     if (!allFlowersData.flowers) return [];
+  
     const frequencyMap = new Map();
-
+  
     Object.values(allFlowersData.flowers).forEach((flower) => {
       const matchColor = flower.花色 === flowerColor;
-
-      const matchMonth = flower.開花時期?.some((m) => {
+  
+      const matchMonth = Array.isArray(flower.開花時期) && flower.開花時期.some((m) => {
         const { start, end } = monthRange;
         if (start <= end) return m - 1 >= start && m - 1 <= end;
         return m - 1 >= start || m - 1 <= end;
       });
-
+  
       if (matchColor && matchMonth && flower.花言葉) {
         Object.keys(flower.花言葉).forEach((parentElement) => {
           const currentCount = frequencyMap.get(parentElement) || 0;
@@ -116,6 +117,13 @@ const MainPage = () => {
         });
       }
     });
+  
+    return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
+      text,
+      value: frequency,
+    }));
+  };
+  
 
     // WordCloud用の配列に変換
     return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
