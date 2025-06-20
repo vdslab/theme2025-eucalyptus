@@ -117,13 +117,6 @@ const MainPage = () => {
         });
       }
     });
-  
-    return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
-      text,
-      value: frequency,
-    }));
-  };
-  
 
     // WordCloud用の配列に変換
     return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
