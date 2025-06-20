@@ -1,61 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
+import CircularMonthSlider from "./function/CircularMonthSlider";
 
 const months = [
   "1月", "2月", "3月", "4月", "5月", "6月",
   "7月", "8月", "9月", "10月", "11月", "12月"
 ];
-
-// 円形スライダーコンポーネント
-const CircularMonthSlider = ({ start, end, onChange }) => {
-  // 各月を円周上に配置する角度を計算
-  const angleForIndex = (index) => (index / 12) * 360;
-
-  // 現在の範囲に含まれているかどうか判定
-  const isInRange = (index) => {
-    if (start <= end) return index >= start && index <= end;
-    return index >= start || index <= end;
-  };
-
-  // 月クリック時に開始または終了を更新
-  const handleClick = (index) => {
-    const distToStart = Math.abs(start - index);
-    const distToEnd = Math.abs(end - index);
-    if (distToStart < distToEnd) {
-      onChange(index, end);
-    } else {
-      onChange(start, index);
-    }
-  };
-
-  // SVG を使って円形UIを描画
-  return (
-    <svg width={300} height={300} viewBox="0 0 300 300">
-      <circle cx="150" cy="150" r="100" fill="#eee" />
-      {months.map((month, i) => {
-        const angle = angleForIndex(i) - 90;
-        const rad = (angle * Math.PI) / 180;
-        const x = 150 + 100 * Math.cos(rad);
-        const y = 150 + 100 * Math.sin(rad);
-        return (
-          <text
-            key={i}
-            x={x}
-            y={y}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fill={isInRange(i) ? "red" : "black"}
-            style={{ cursor: "pointer", userSelect: "none" }}
-            onClick={() => handleClick(i)}
-          >
-            {month}
-          </text>
-        );
-      })}
-    </svg>
-  );
-};
 
 const MainPage = () => {
   // 現在のスライドインデックス
