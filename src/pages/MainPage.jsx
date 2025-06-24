@@ -1,7 +1,22 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
-import { flatGroup, text } from "d3";
+import CircularMonthSlider from "./function/CircularMonthSlider";
+
+const months = [
+  "1月",
+  "2月",
+  "3月",
+  "4月",
+  "5月",
+  "6月",
+  "7月",
+  "8月",
+  "9月",
+  "10月",
+  "11月",
+  "12月",
+];
 
 const MainPage = () => {
   // 現在のスライドインデックス
@@ -9,21 +24,18 @@ const MainPage = () => {
   // スライドの総数:テーマの数で調整
   const totalSlides = 5;
 
-  // 前のスライドに移動
+  // 前のスライドへ移動
   const goToPrevSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
-  // 次のスライドに移動
+  // 次のスライドへ移動
   const goToNextSlide = () => {
     setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
-  // 指定したスライドに移動
-  const goToSlide = (index) => {
-    S;
-    setActiveSlide(index);
-  };
+  // 指定したスライドへ移動
+  const goToSlide = (index) => setActiveSlide(index);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -32,6 +44,9 @@ const MainPage = () => {
 
   const [allFlowersData, setAllFlowersData] = useState({});
   const [loading, setLoading] = useState(true);
+
+  // 選択された月の範囲（12月〜3月など）
+  const [monthRange, setMonthRange] = useState({ start: 11, end: 2 });
 
   const title = [
     "ピンク系の花の花言葉",
@@ -62,10 +77,18 @@ const MainPage = () => {
 
     const frequencyMap = new Map();
 
-    // 指定した花色の花のみフィルタリング
     Object.values(allFlowersData.flowers).forEach((flower) => {
-      if (flower.花色 === flowerColor && flower.花言葉) {
-        // 花言葉オブジェクトのキー（親要素）を取得
+      const matchColor = flower.花色 === flowerColor;
+
+      const matchMonth =
+        Array.isArray(flower.開花時期) &&
+        flower.開花時期.some((m) => {
+          const { start, end } = monthRange;
+          if (start <= end) return m - 1 >= start && m - 1 <= end;
+          return m - 1 >= start || m - 1 <= end;
+        });
+
+      if (matchColor && matchMonth && flower.花言葉) {
         Object.keys(flower.花言葉).forEach((parentElement) => {
           const currentCount = frequencyMap.get(parentElement) || 0;
           frequencyMap.set(parentElement, currentCount + 2);
@@ -75,7 +98,7 @@ const MainPage = () => {
 
     // WordCloud用の配列に変換
     return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
-      text: text,
+      text,
       value: frequency,
     }));
   };
@@ -97,7 +120,6 @@ const MainPage = () => {
         const data = await res.json();
         setAllFlowersData(data);
         setLoading(false);
-        console.log("花データ読み込み完了:", data);
       } catch (error) {
         console.error("データの読み込みエラー:", error);
         setLoading(false);
@@ -113,18 +135,22 @@ const MainPage = () => {
       });
     };
     window.addEventListener("resize", reSizeWindow);
-
-    reSizeWindow();
-
     //コンポーネントのアンマウント時(コンポーネントがwebページを離れたとき)に実行する関数
-    return () => {
-      window.removeEventListener("resize", reSizeWindow);
-    };
+    return () => window.removeEventListener("resize", reSizeWindow);
   }, []);
 
   return (
     <div>
       <div className="carousel-container">
+        <div style={{ textAlign: "center", margin: "20px" }}>
+          <label>開花時期で絞り込み: </label>
+          <CircularMonthSlider
+            start={monthRange.start}
+            end={monthRange.end}
+            onChange={(start, end) => setMonthRange({ start, end })}
+          />
+        </div>
+
         {/* カルーセルトラック - 横スクロールするコンテナ */}
         <div
           className="carousel-track"
