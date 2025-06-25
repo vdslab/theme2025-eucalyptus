@@ -36,7 +36,7 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
         totalMonths
     ) % totalMonths;
 
-  //
+  //第何象限にいるかを出す
   const getAngleFromCoord = (x, y) => {
     const dx = x / dpr - center;
     const dy = y / dpr - center;
@@ -328,29 +328,8 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
     draggingRef.current = null;
   };
 
-  const getCurrentSeason = () => {
-    // 通年チェック
-    if (start === 0 && end === 11) {
-      return "通年";
-    }
-
-    // 単月チェック
-    if (start === end) {
-      return `${start + 1}月のみ`;
-    }
-
-    // 各季節をチェック
-    if (start === 2 && end === 4) return "春";
-    if (start === 5 && end === 7) return "夏";
-    if (start === 8 && end === 10) return "秋";
-    if (start === 11 && end === 1) return "冬";
-
-    return "カスタム";
-  };
-
   return (
     <div className="flex flex-col items-center gap-4 p-8">
-      <h2 className="text-xl font-bold">季節選択対応 円形月スライダー</h2>
       <canvas
         ref={canvasRef}
         style={{
@@ -364,30 +343,8 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
       />
-      <div className="text-center">
-        <div className="text-sm text-gray-600 mb-2">
-          選択期間: {start + 1}月 〜 {end + 1}月 ({getCurrentSeason()})
-        </div>
-      </div>
     </div>
   );
 };
 
-// デモ用のラッパーコンポーネント
-const App = () => {
-  const [startMonth, setStartMonth] = useState(0); // 1月のみ
-  const [endMonth, setEndMonth] = useState(11); // 1月のみ
-
-  return (
-    <CircularMonthSlider
-      start={startMonth}
-      end={endMonth}
-      onChange={(newStart, newEnd) => {
-        setStartMonth(newStart);
-        setEndMonth(newEnd);
-      }}
-    />
-  );
-};
-
-export default App;
+export default CircularMonthSlider;

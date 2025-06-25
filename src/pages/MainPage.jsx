@@ -1,27 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
-import CircularMonthSlider from "./function/CircularMonthSlider";
 
-const months = [
-  "1月",
-  "2月",
-  "3月",
-  "4月",
-  "5月",
-  "6月",
-  "7月",
-  "8月",
-  "9月",
-  "10月",
-  "11月",
-  "12月",
-];
-
-const MainPage = () => {
-  // 現在のスライドインデックス
-  const [activeSlide, setActiveSlide] = useState(0);
-  // スライドの総数:テーマの数で調整
+const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
   const totalSlides = 5;
 
   // 前のスライドへ移動
@@ -45,9 +26,6 @@ const MainPage = () => {
   const [allFlowersData, setAllFlowersData] = useState({});
   const [loading, setLoading] = useState(true);
 
-  // 選択された月の範囲（12月〜3月など）
-  const [monthRange, setMonthRange] = useState({ start: 11, end: 2 });
-
   const title = [
     "ピンク系の花の花言葉",
     "白系の花の花言葉",
@@ -64,12 +42,6 @@ const MainPage = () => {
     "#DC5766",
     "#7A71E1",
   ];
-
-  // const handleWordSelect = (wordData) => {
-  //   console.log("選択された単語データ:", wordData);
-  //   setSelectedWordData(wordData);
-  //   setCurrentPage("sub");
-  // };
 
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
@@ -104,14 +76,14 @@ const MainPage = () => {
   };
 
   // ワードクラウドデータを事前に計算する
-  //　今後、開花時期で絞ったりする場合は、依存関係を増やす必要あり
+  //　開花時期が指定されたら再計算
   const allWordCloudData = useMemo(() => {
     if (!allFlowersData.flowers) return [];
     return Array.from({ length: totalSlides }, (_, index) => {
       const flowerColor = `${index}`;
       return generateWordCloudData(flowerColor);
     });
-  }, [allFlowersData]);
+  }, [allFlowersData, monthRange]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -142,15 +114,6 @@ const MainPage = () => {
   return (
     <div>
       <div className="carousel-container">
-        <div style={{ textAlign: "center", margin: "20px" }}>
-          <label>開花時期で絞り込み: </label>
-          <CircularMonthSlider
-            start={monthRange.start}
-            end={monthRange.end}
-            onChange={(start, end) => setMonthRange({ start, end })}
-          />
-        </div>
-
         {/* カルーセルトラック - 横スクロールするコンテナ */}
         <div
           className="carousel-track"
