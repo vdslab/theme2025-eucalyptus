@@ -104,7 +104,7 @@ const MainPage = () => {
   };
 
   // ワードクラウドデータを事前に計算する
-  //　今後、開花時期で絞ったりする場合は、依存関係を増やす必要あり？
+  //　今後、開花時期で絞ったりする場合は、依存関係を増やす必要あり
   const allWordCloudData = useMemo(() => {
     if (!allFlowersData.flowers) return [];
     return Array.from({ length: totalSlides }, (_, index) => {
