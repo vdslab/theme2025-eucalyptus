@@ -1,4 +1,4 @@
-/* AppLayout のスタイル */
+/* AppLayout */
 .app-container {
   display: flex;
   flex-direction: column;
@@ -12,14 +12,37 @@
   height: 100%;
 }
 
-/* ヘッダーのスタイル */
+/* ヘッダー */
 .header {
   background-color: rgb(250, 242, 232);
   border-bottom: 1px solid #e5e7eb;
-  padding: 0 1rem;
+  padding: 0 2rem;
 }
 
 .site-title {
   font-size: 1.25rem;
   font-weight: bold;
+}
+
+.header .container {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.month-select-button {
+  padding: 8px 16px;
+  background-color: #fbf8fc;
+  border: 1px solid #c3c4f1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #475569;
+  transition: all 0.2s;
+}
+
+.month-select-button:hover {
+  background-color: #f5f1f9;
+  border-color: #c3c4f1;
 }

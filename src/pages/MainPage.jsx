@@ -1,29 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
-import { flatGroup, text } from "d3";
 
-const MainPage = () => {
-  // 現在のスライドインデックス
-  const [activeSlide, setActiveSlide] = useState(0);
-  // スライドの総数:テーマの数で調整
+const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
   const totalSlides = 5;
 
-  // 前のスライドに移動
+  // 前のスライドへ移動
   const goToPrevSlide = () => {
     setActiveSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
   };
 
-  // 次のスライドに移動
+  // 次のスライドへ移動
   const goToNextSlide = () => {
     setActiveSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
   };
 
-  // 指定したスライドに移動
-  const goToSlide = (index) => {
-    S;
-    setActiveSlide(index);
-  };
+  // 指定したスライドへ移動
+  const goToSlide = (index) => setActiveSlide(index);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -50,22 +43,24 @@ const MainPage = () => {
     "#7A71E1",
   ];
 
-  // const handleWordSelect = (wordData) => {
-  //   console.log("選択された単語データ:", wordData);
-  //   setSelectedWordData(wordData);
-  //   setCurrentPage("sub");
-  // };
-
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
     if (!allFlowersData.flowers) return [];
 
     const frequencyMap = new Map();
 
-    // 指定した花色の花のみフィルタリング
     Object.values(allFlowersData.flowers).forEach((flower) => {
-      if (flower.花色 === flowerColor && flower.花言葉) {
-        // 花言葉オブジェクトのキー（親要素）を取得
+      const matchColor = flower.花色 === flowerColor;
+
+      const matchMonth =
+        Array.isArray(flower.開花時期) &&
+        flower.開花時期.some((m) => {
+          const { start, end } = monthRange;
+          if (start <= end) return m - 1 >= start && m - 1 <= end;
+          return m - 1 >= start || m - 1 <= end;
+        });
+
+      if (matchColor && matchMonth && flower.花言葉) {
         Object.keys(flower.花言葉).forEach((parentElement) => {
           const currentCount = frequencyMap.get(parentElement) || 0;
           frequencyMap.set(parentElement, currentCount + 2);
@@ -75,20 +70,20 @@ const MainPage = () => {
 
     // WordCloud用の配列に変換
     return Array.from(frequencyMap.entries()).map(([text, frequency]) => ({
-      text: text,
+      text,
       value: frequency,
     }));
   };
 
   // ワードクラウドデータを事前に計算する
-  //　今後、開花時期で絞ったりする場合は、依存関係を増やす必要あり？
+  //　開花時期が指定されたら再計算
   const allWordCloudData = useMemo(() => {
     if (!allFlowersData.flowers) return [];
     return Array.from({ length: totalSlides }, (_, index) => {
       const flowerColor = `${index}`;
       return generateWordCloudData(flowerColor);
     });
-  }, [allFlowersData]);
+  }, [allFlowersData, monthRange]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -97,7 +92,6 @@ const MainPage = () => {
         const data = await res.json();
         setAllFlowersData(data);
         setLoading(false);
-        console.log("花データ読み込み完了:", data);
       } catch (error) {
         console.error("データの読み込みエラー:", error);
         setLoading(false);
@@ -113,13 +107,8 @@ const MainPage = () => {
       });
     };
     window.addEventListener("resize", reSizeWindow);
-
-    reSizeWindow();
-
     //コンポーネントのアンマウント時(コンポーネントがwebページを離れたとき)に実行する関数
-    return () => {
-      window.removeEventListener("resize", reSizeWindow);
-    };
+    return () => window.removeEventListener("resize", reSizeWindow);
   }, []);
 
   return (
