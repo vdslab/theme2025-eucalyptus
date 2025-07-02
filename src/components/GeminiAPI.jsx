@@ -4,7 +4,9 @@ import { GoogleGenAI, Modality } from "@google/genai";
 const GeminiAPI = () => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [prompt, setPrompt] = useState("美しい薔薇の花");
+  const [prompt, setPrompt] = useState(
+    "薔薇、ガーベラ、ユーカリのラッピングられた花束生成して"
+  );
   const [error, setError] = useState("");
 
   const handleGenerateImage = async () => {
@@ -17,7 +19,7 @@ const GeminiAPI = () => {
         apiKey: import.meta.env.VITE_GEMINI_API_KEY,
       });
 
-      // 画像生成機能を試す
+      // 画像生成機能
       const response = await ai.models.generateContent({
         model: "gemini-2.0-flash-preview-image-generation",
         contents: prompt,
@@ -33,7 +35,7 @@ const GeminiAPI = () => {
         response.candidates[0].content.parts
       ) {
         for (const part of response.candidates[0].content.parts) {
-          // 画像データがあれば表示
+          // 画像データ表示
           if (part.inlineData) {
             const imageData = part.inlineData.data;
             setGeneratedImage(`data:image/png;base64,${imageData}`);
