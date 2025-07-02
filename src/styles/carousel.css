@@ -3,11 +3,11 @@
 /* カルーセルコンテナ */
 .carousel-container {
   position: relative;
-  width: 60%;
-  overflow: hidden;
+  /* width: 60%;
+  overflow: hidden; */
   padding-bottom: 20px;
-  height: calc(100vh - 78px);
-  background-color: aliceblue;
+  /* height: calc(100vh - 78px); */
+  /* background-color: aliceblue; */
 }
 
 .carousel-track {
