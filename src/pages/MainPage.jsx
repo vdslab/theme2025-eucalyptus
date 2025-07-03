@@ -85,8 +85,6 @@ const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
     });
   }, [allFlowersData, monthRange]);
 
-  console.log(allFlowersData);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
