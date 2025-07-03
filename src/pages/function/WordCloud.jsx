@@ -9,6 +9,7 @@ const WordCloud = ({
   fontFamily,
   slideColor,
   slideColorHover,
+  onWordClick,
 }) => {
   const ref = useRef();
 
@@ -44,6 +45,16 @@ const WordCloud = ({
             d3.select(this).style("fill", slideColor);
           })
 
+          .on("click", function (event, d) {
+            console.log("WordCloudでクリックされた単語:", d.text);
+            //todo: クリックされている単語がわかりやすいように、デザインを変える
+
+            // 親コンポーネントに単語を通知
+            if (onWordClick) {
+              onWordClick(d.text);
+            }
+          })
+
           .attr(
             "transform",
             (d) => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`
@@ -66,7 +77,15 @@ const WordCloud = ({
 
       layout.start();
     }
-  }, [width, height, data, fontFamily, slideColor, slideColorHover]);
+  }, [
+    width,
+    height,
+    data,
+    fontFamily,
+    slideColor,
+    slideColorHover,
+    onWordClick,
+  ]);
 
   return (
     <div>
