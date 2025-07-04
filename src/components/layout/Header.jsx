@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
+import GeminiAPI from "../GeminiAPI";
 
 const Header = ({ monthRange, onMonthChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,6 +30,7 @@ const Header = ({ monthRange, onMonthChange }) => {
           >
             {getCurrentSeason()}の花を探す ▼
           </button>
+          <GeminiAPI />
         </div>
       </header>
 
