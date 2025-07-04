@@ -15,7 +15,7 @@ const MonthSelectionModal = ({
     if (monthRange) {
       setTempMonthRange(monthRange);
     }
-  }, [monthRange, isOpen]); // isOpenも依存配列に追加
+  }, [monthRange, isOpen]);
 
   const getCurrentSeason = (start, end) => {
     if (start === 0 && end === 11) return "通年";
@@ -28,6 +28,7 @@ const MonthSelectionModal = ({
   };
 
   const handleApply = () => {
+    // tempMonthRangeをApp.jsxに反映
     onMonthChange(tempMonthRange);
     onClose();
   };
@@ -37,8 +38,12 @@ const MonthSelectionModal = ({
     onClose();
   };
 
-  // モーダルが開いていない場合は何も表示しない
   if (!isOpen) return null;
+
+  const selectMonth = (start, end) => {
+    if (start == end) return `${start + 1} 月`;
+    return `${start + 1}月 ～ ${end + 1}月`;
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -55,7 +60,7 @@ const MonthSelectionModal = ({
 
         <div className="modal-info">
           <div className="selected-period">
-            選択期間: {tempMonthRange.start + 1}月 〜 {tempMonthRange.end + 1}月
+            選択期間:{selectMonth(tempMonthRange.start, tempMonthRange.end)}
           </div>
           <div className="selected-season">
             {getCurrentSeason(tempMonthRange.start, tempMonthRange.end)}
