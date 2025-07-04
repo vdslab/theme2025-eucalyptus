@@ -2,7 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/wordCloud";
 
-const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
+const MainPage = ({
+  activeSlide,
+  setActiveSlide,
+  monthRange,
+  onWordSelect,
+  onFlowersDataLoad,
+}) => {
   const totalSlides = 5;
 
   // 前のスライドへ移動
@@ -91,6 +97,11 @@ const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
         const res = await fetch("/data/parent_child_data.json");
         const data = await res.json();
         setAllFlowersData(data);
+
+        if (onFlowersDataLoad) {
+          onFlowersDataLoad(data);
+        }
+
         setLoading(false);
       } catch (error) {
         console.error("データの読み込みエラー:", error);
@@ -109,7 +120,15 @@ const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
     window.addEventListener("resize", reSizeWindow);
     //コンポーネントのアンマウント時(コンポーネントがwebページを離れたとき)に実行する関数
     return () => window.removeEventListener("resize", reSizeWindow);
-  }, []);
+  }, [onFlowersDataLoad]);
+
+  const handleWordClick = (word) => {
+    console.log("クリックされた単語:", word, "現在のスライド:", activeSlide);
+
+    if (onWordSelect) {
+      onWordSelect(word, activeSlide);
+    }
+  };
 
   return (
     <div>
@@ -136,8 +155,7 @@ const MainPage = ({ activeSlide, setActiveSlide, monthRange }) => {
                       slideIndex={index}
                       slideColor={slideColors[index]}
                       slideColorHover={slideColorsHover[index]}
-                      // onWordClick={handleWordSelect}
-                      // currentSlideColor={index.toString()}
+                      onWordClick={handleWordClick}
                     />
                   ) : (
                     <div
