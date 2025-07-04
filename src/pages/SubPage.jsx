@@ -141,9 +141,9 @@ const SubPage = ({
             <div key={index} className="flower-card">
               <div className="flower-name">{flowers.name}</div>
 
-              <div className="card-header">
+              <div>
                 <div>花言葉: {flowers.meanings.join(",")}</div>
-                <button className="save-button">保存</button>
+                <button className="save-button">メインフラワーにする</button>
               </div>
 
               <div className="flower-info">開花時期: {flowers.bloomTime}</div>
