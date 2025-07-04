@@ -91,10 +91,11 @@ const SubPage = ({
     setChildElements(Array.from(childElementsSet));
     setFlowersList(flowersWithWord);
 
-    // console.log(flowersList);例
+    console.log("flowersList", flowersList);
     // bloomTime: "通年";
     // meanings: Array["感動"];
     // name: "スプレーカーネーション『恋心』";
+    console.log("childElements", childElements);
   }, [selectedWordData, allFlowersData]);
 
   if (!selectedWordData.selectedWord) {
@@ -110,12 +111,39 @@ const SubPage = ({
   console.log("花色:", flowerColor.name);
 
   return (
-    <div>
-      <h1>「{selectedWordData.selectedWord}」が含まれる花言葉</h1>
-      <div>{selectedWordData.flowerColorIndex}</div>
-      <div>{flowerColor.name}</div>
-      <div>{childElements}</div>
-      <h1></h1>
+    <div className="right-panel-container">
+      {/* flexでカードの領域を出したいので、ここをヘッダーとする */}
+      <div className="header-section">
+        <div className="main-title">
+          「{selectedWordData.selectedWord}」が含まれる花言葉
+        </div>
+
+        <div className="tags-container">
+          {/* 花色　これはtagじゃなくても良い　背景に入れてみたい */}
+          <div
+            className="color-tag-item"
+            style={{ background: flowerColor.color }}
+          >
+            {flowerColor.name}
+          </div>
+          {/* 子要素一覧 */}
+          {childElements.map((element, index) => (
+            <div key={index} className="tag-item">
+              {element}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="cards-scroll-container">
+        {flowersList.map((flowers, index) => (
+          <div key={index}>
+            <div>{flowers.name}</div>
+            <div>花言葉: {flowers.meanings.join(",")}</div>
+            <div>開花時期: {flowers.bloomTime}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
