@@ -136,13 +136,28 @@ const SubPage = ({
       </div>
 
       <div className="cards-scroll-container">
-        {flowersList.map((flowers, index) => (
-          <div key={index}>
-            <div>{flowers.name}</div>
-            <div>花言葉: {flowers.meanings.join(",")}</div>
-            <div>開花時期: {flowers.bloomTime}</div>
-          </div>
-        ))}
+        <div className="cards-grid">
+          {flowersList.map((flowers, index) => (
+            <div key={index} className="flower-card">
+              <div className="flower-name">{flowers.name}</div>
+
+              <div className="card-header">
+                <div>花言葉: {flowers.meanings.join(",")}</div>
+                <button className="save-button">保存</button>
+              </div>
+
+              <div className="flower-info">開花時期: {flowers.bloomTime}</div>
+
+              <div className="flower-image-container">
+                <img
+                  src="/images/questionMark.jpg"
+                  alt="花の画像"
+                  className="flower-image"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
