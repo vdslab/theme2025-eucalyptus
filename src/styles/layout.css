@@ -24,6 +24,8 @@
 .right-Panel {
   width: 40%;
   background-color: rgb(243, 255, 240);
+  height: calc(100vh - 90px);
+  padding: 1rem;
 }
 
 /* ヘッダー */
