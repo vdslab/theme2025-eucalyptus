@@ -61,6 +61,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  align-items: stretch;
 }
 /* 
 @media (min-width: 200px) {
@@ -74,6 +75,8 @@
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-header {
@@ -85,6 +88,20 @@
 
 .flower-name {
   margin-bottom: 0.5rem;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.flower-content {
+  margin-bottom: 1rem;
+}
+
+.flower-meanings {
+  margin-bottom: 0.5rem;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .save-button {
@@ -112,6 +129,7 @@
   height: 12rem;
   overflow: hidden;
   background-color: #f9fafb;
+  margin-top: auto;
 }
 
 .flower-image {
