@@ -33,9 +33,9 @@ const SubPage = ({
 
   // 開花時期の表示用関数
   const getCurrentSeason = (start, end) => {
-    if (start === 0 && end === 11) return "通年";
-    if (start === end) return `${start + 1}月のみ`;
-    return `${start + 1}月~${end + 1}月`;
+    if (start === 1 && end === 12) return "通年";
+    if (start === end) return `${start}月のみ`;
+    return `${start}月~${end}月`;
   };
   useEffect(() => {
     console.log("=== データ確認 ===");
@@ -66,23 +66,37 @@ const SubPage = ({
 
     Object.entries(allFlowersData.flowers).forEach(
       ([flowerName, flowerData]) => {
-        // todo: 開花時期フィルタリング
-        if (flowerData.花色 === flowerColorIndex) {
-          if (flowerData.花言葉[selectedWord]) {
-            console.log(
-              `${flowerName} に「${selectedWord}」が見つかりました:`,
-              flowerData.花言葉[selectedWord]
-            );
+        const bloomTimes = flowerData.開花時期;
 
-            flowerData.花言葉[selectedWord].forEach((meaning) => {
-              childElementsSet.add(meaning);
-            });
+        const matchMonth =
+          Array.isArray(bloomTimes) &&
+          bloomTimes.some((m) => {
+            const { start, end } = monthRange;
+            if (start <= end) return m - 1 >= start && m - 1 <= end;
+            return m - 1 >= start || m - 1 <= end;
+          });
 
-            flowersWithWord.push({
-              name: flowerName,
-              meanings: flowerData.花言葉[selectedWord],
-              bloomTime: getCurrentSeason(monthRange.start, monthRange.end),
-            });
+        if (matchMonth) {
+          if (flowerData.花色 === flowerColorIndex) {
+            if (flowerData.花言葉[selectedWord]) {
+              console.log(
+                `${flowerName} に「${selectedWord}」が見つかりました:`,
+                flowerData.花言葉[selectedWord]
+              );
+
+              flowerData.花言葉[selectedWord].forEach((meaning) => {
+                childElementsSet.add(meaning);
+              });
+
+              flowersWithWord.push({
+                name: flowerName,
+                meanings: flowerData.花言葉[selectedWord],
+                bloomTime: getCurrentSeason(
+                  bloomTimes[0],
+                  bloomTimes[bloomTimes.length - 1]
+                ),
+              });
+            }
           }
         }
       }
