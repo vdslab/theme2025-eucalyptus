@@ -159,7 +159,7 @@ const SubPage = ({
           </div>
           {/* 子要素一覧 */}
           {childElements.map((element, index) => (
-            <div
+            <button
               key={index}
               className="tag-item"
               onClick={() => {
@@ -167,7 +167,7 @@ const SubPage = ({
               }}
             >
               {element}
-            </div>
+            </button>
           ))}
         </div>
       </div>

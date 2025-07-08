@@ -38,6 +38,10 @@
   color: #374151;
 }
 
+.tag-item:hover{
+  background-color: rgb(229, 229, 229);
+}
+
 .color-tag-item {
   padding: 0.5rem 1rem;
   border-radius: 9999px;
