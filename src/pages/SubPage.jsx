@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
 
 // データの形 memo
@@ -21,6 +21,9 @@ const SubPage = ({
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
+
+  // 各花のカードへの参照を保存するためのref
+  const flowerRefs = useRef({});
 
   // 花色テーマの定義
   const colorThemes = {
@@ -124,6 +127,20 @@ const SubPage = ({
   const flowerColor = colorThemes[flowerColorIndex];
   console.log("花色:", flowerColor.name);
 
+  const scrollToFlowerWithMeaning = (targetMeaning) => {
+    // 該当する花言葉を持つ最初の花を見つける
+    const targetFlower = flowersList.find((flower) =>
+      flower.meanings.includes(targetMeaning)
+    );
+
+    if (targetFlower && flowerRefs.current[targetFlower.name]) {
+      flowerRefs.current[targetFlower.name].scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <div className="right-panel-container">
       {/* flexでカードの領域を出したいので、ここをヘッダーとする */}
@@ -142,7 +159,13 @@ const SubPage = ({
           </div>
           {/* 子要素一覧 */}
           {childElements.map((element, index) => (
-            <div key={index} className="tag-item">
+            <div
+              key={index}
+              className="tag-item"
+              onClick={() => {
+                scrollToFlowerWithMeaning(element);
+              }}
+            >
               {element}
             </div>
           ))}
@@ -152,7 +175,15 @@ const SubPage = ({
       <div className="cards-scroll-container">
         <div className="cards-grid">
           {flowersList.map((flowers, index) => (
-            <div key={index} className="flower-card">
+            <div
+              key={index}
+              className="flower-card"
+              ref={(target) => {
+                if (target) {
+                  flowerRefs.current[flowers.name] = target;
+                }
+              }}
+            >
               <div className="flower-name">{flowers.name}</div>
 
               <div>
