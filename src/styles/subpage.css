@@ -8,7 +8,6 @@
   /* ヘッダー分を抜かす必要がある */
   height: calc(100vh - 90px);
   background-color: #f3f4f6;
-  padding: 1rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -33,9 +32,10 @@
   background-color: white;
   padding: 0.5rem 1rem;
   border-radius: 9999px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
   font-size: 0.875rem;
   color: #374151;
+  border: none;
 }
 
 .tag-item:hover{
@@ -63,8 +63,8 @@
   gap: 1.5rem;
   align-items: stretch;
 }
-/* 
-@media (min-width: 200px) {
+
+/* @media (min-width: 1200px) {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -43,7 +43,7 @@
 
 .header .container {
   display: flex;
-  width: 60%;
+  width:calc(60% - 1rem);
   align-items: center;
   justify-content: space-between;
 }
