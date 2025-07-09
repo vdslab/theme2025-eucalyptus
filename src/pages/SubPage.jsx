@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
 
 // データの形 memo
@@ -22,6 +22,9 @@ const SubPage = ({
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
 
+  // 各花のカードへの参照を保存するためのref
+  const flowerRefs = useRef({});
+
   // 花色テーマの定義
   const colorThemes = {
     0: { color: "#DC8CC3", name: "ピンク系" },
@@ -33,9 +36,9 @@ const SubPage = ({
 
   // 開花時期の表示用関数
   const getCurrentSeason = (start, end) => {
-    if (start === 0 && end === 11) return "通年";
-    if (start === end) return `${start + 1}月のみ`;
-    return `${start + 1}月~${end + 1}月`;
+    if (start === 1 && end === 12) return "通年";
+    if (start === end) return `${start}月のみ`;
+    return `${start}月~${end}月`;
   };
   useEffect(() => {
     console.log("=== データ確認 ===");
@@ -66,23 +69,37 @@ const SubPage = ({
 
     Object.entries(allFlowersData.flowers).forEach(
       ([flowerName, flowerData]) => {
-        // todo: 開花時期フィルタリング
-        if (flowerData.花色 === flowerColorIndex) {
-          if (flowerData.花言葉[selectedWord]) {
-            console.log(
-              `${flowerName} に「${selectedWord}」が見つかりました:`,
-              flowerData.花言葉[selectedWord]
-            );
+        const bloomTimes = flowerData.開花時期;
 
-            flowerData.花言葉[selectedWord].forEach((meaning) => {
-              childElementsSet.add(meaning);
-            });
+        const matchMonth =
+          Array.isArray(bloomTimes) &&
+          bloomTimes.some((m) => {
+            const { start, end } = monthRange;
+            if (start <= end) return m - 1 >= start && m - 1 <= end;
+            return m - 1 >= start || m - 1 <= end;
+          });
 
-            flowersWithWord.push({
-              name: flowerName,
-              meanings: flowerData.花言葉[selectedWord],
-              bloomTime: getCurrentSeason(monthRange.start, monthRange.end),
-            });
+        if (matchMonth) {
+          if (flowerData.花色 === flowerColorIndex) {
+            if (flowerData.花言葉[selectedWord]) {
+              console.log(
+                `${flowerName} に「${selectedWord}」が見つかりました:`,
+                flowerData.花言葉[selectedWord]
+              );
+
+              flowerData.花言葉[selectedWord].forEach((meaning) => {
+                childElementsSet.add(meaning);
+              });
+
+              flowersWithWord.push({
+                name: flowerName,
+                meanings: flowerData.花言葉[selectedWord],
+                bloomTime: getCurrentSeason(
+                  bloomTimes[0],
+                  bloomTimes[bloomTimes.length - 1]
+                ),
+              });
+            }
           }
         }
       }
@@ -110,6 +127,20 @@ const SubPage = ({
   const flowerColor = colorThemes[flowerColorIndex];
   console.log("花色:", flowerColor.name);
 
+  const scrollToFlowerWithMeaning = (targetMeaning) => {
+    // 該当する花言葉を持つ最初の花を見つける
+    const targetFlower = flowersList.find((flower) =>
+      flower.meanings.includes(targetMeaning)
+    );
+
+    if (targetFlower && flowerRefs.current[targetFlower.name]) {
+      flowerRefs.current[targetFlower.name].scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <div className="right-panel-container">
       {/* flexでカードの領域を出したいので、ここをヘッダーとする */}
@@ -128,9 +159,15 @@ const SubPage = ({
           </div>
           {/* 子要素一覧 */}
           {childElements.map((element, index) => (
-            <div key={index} className="tag-item">
+            <button
+              key={index}
+              className="tag-item"
+              onClick={() => {
+                scrollToFlowerWithMeaning(element);
+              }}
+            >
               {element}
-            </div>
+            </button>
           ))}
         </div>
       </div>
@@ -138,11 +175,21 @@ const SubPage = ({
       <div className="cards-scroll-container">
         <div className="cards-grid">
           {flowersList.map((flowers, index) => (
-            <div key={index} className="flower-card">
+            <div
+              key={index}
+              className="flower-card"
+              ref={(target) => {
+                if (target) {
+                  flowerRefs.current[flowers.name] = target;
+                }
+              }}
+            >
               <div className="flower-name">{flowers.name}</div>
 
-              <div>
-                <div>花言葉: {flowers.meanings.join(",")}</div>
+              <div className="flower-content">
+                <div className="flower-meanings">
+                  花言葉: {flowers.meanings.join(",")}
+                </div>
                 <button className="save-button">メインフラワーにする</button>
               </div>
 

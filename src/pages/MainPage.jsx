@@ -133,6 +133,12 @@ const MainPage = ({
   return (
     <div>
       <div className="carousel-container">
+        {/* ページのタイトル */}
+        <div className="cluster-title">
+          {[...Array(totalSlides)].map((_, index) => (
+            <div key={index}>{activeSlide === index && title[index]}</div>
+          ))}
+        </div>
         {/* カルーセルトラック - 横スクロールするコンテナ */}
         <div
           className="carousel-track"
@@ -200,13 +206,6 @@ const MainPage = ({
               }`}
               onClick={() => goToSlide(index)}
             />
-          ))}
-        </div>
-
-        {/* ページのタイトル */}
-        <div className="cluster-title">
-          {[...Array(totalSlides)].map((_, index) => (
-            <div key={index}>{activeSlide === index && title[index]}</div>
           ))}
         </div>
       </div>
