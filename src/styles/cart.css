@@ -1,0 +1,40 @@
+.cart-content {
+  background-color: rgba(125, 39, 205, 0.101);
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+.back-button {
+  color: rgb(28, 27, 27);
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 14px 0;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.green-modal {
+  background-color: rgb(103, 192, 162);
+  color: aliceblue;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.green-modal:hover {
+  background-color: rgb(80, 152, 128);
+}
+
+.create-button {
+  background-color: rgb(133, 103, 192);
+  color: aliceblue;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: rgb(112, 86, 162);
+}
