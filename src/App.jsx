@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AppLayout from "./components/layout/AppLayout";
 import MainPage from "./pages/MainPage";
 import SubPage from "./pages/SubPage";
+import ModalPage from "./pages/function/ModalPage";
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(0);

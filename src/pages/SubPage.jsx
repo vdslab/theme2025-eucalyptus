@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
+import ModalPage from "./function/ModalPage";
 
 // データの形 memo
 //  "スプレーカーネーション『恋心』": {
@@ -21,6 +22,7 @@ const SubPage = ({
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   // 各花のカードへの参照を保存するためのref
   const flowerRefs = useRef({});
@@ -190,7 +192,15 @@ const SubPage = ({
                 <div className="flower-meanings">
                   花言葉: {flowers.meanings.join(",")}
                 </div>
-                <button className="save-button">メインフラワーにする</button>
+                <button
+                  className="save-button"
+                  onClick={() => {
+                    setOpenModal(true);
+                    console.log("Modal opened:", !openModal);
+                  }}
+                >
+                  メインフラワーにする
+                </button>
               </div>
 
               <div className="flower-info">開花時期: {flowers.bloomTime}</div>
@@ -206,6 +216,9 @@ const SubPage = ({
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
     </div>
   );
 };
