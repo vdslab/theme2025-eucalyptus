@@ -118,7 +118,7 @@ const SubPage = ({
   if (!selectedWordData.selectedWord) {
     return (
       <div>
-        <h1 className="no-select">選択してください</h1>
+        <div className="no-select">気になる花言葉を選択してください</div>
       </div>
     );
   }
@@ -190,7 +190,7 @@ const SubPage = ({
                 <div className="flower-meanings">
                   花言葉: {flowers.meanings.join(",")}
                 </div>
-                <button className="save-button">メインフラワーにする</button>
+                <button className="save-button">＋ 花束カートに入れる</button>
               </div>
 
               <div className="flower-info">開花時期: {flowers.bloomTime}</div>

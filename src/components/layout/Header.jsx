@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
+import { LuFlower2 } from "react-icons/lu";
 
 const Header = ({ monthRange, onMonthChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +33,8 @@ const Header = ({ monthRange, onMonthChange }) => {
           </button>
         </div>
         <Link to="/cart" className="cart-button">
-          花束カート
+          {/* 花束カート */}
+          <LuFlower2 />
         </Link>
       </header>
 
