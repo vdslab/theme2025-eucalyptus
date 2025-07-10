@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
+import GeminiAPI from "../GeminiAPI";
 
 const Header = ({ monthRange, onMonthChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,6 +31,7 @@ const Header = ({ monthRange, onMonthChange }) => {
           >
             {getCurrentSeason()}の花を探す ▼
           </button>
+          <GeminiAPI />
         </div>
         <Link to="/cart" className="cart-button">
           花束カート
