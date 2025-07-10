@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
 
@@ -30,6 +31,9 @@ const Header = ({ monthRange, onMonthChange }) => {
             {getCurrentSeason()}の花を探す ▼
           </button>
         </div>
+        <Link to="/cart" className="cart-button">
+          花束カート
+        </Link>
       </header>
 
       <MonthSelectionModal
