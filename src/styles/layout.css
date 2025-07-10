@@ -33,6 +33,7 @@
   background-color: rgb(250, 242, 232);
   border-bottom: 1px solid #e5e7eb;
   padding: 0 2rem;
+  display: flex;
   /* padding: 0.8rem 2rem; */
 }
 
@@ -43,9 +44,23 @@
 
 .header .container {
   display: flex;
-  width:calc(60% - 1rem);
+  width: calc(60% - 1rem);
   align-items: center;
   justify-content: space-between;
+}
+
+.cart-button {
+  background-color: #866bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
 }
 
 .month-select-button {
