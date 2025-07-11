@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
 import { LuFlower2 } from "react-icons/lu";
 
 const Header = ({ monthRange, onMonthChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const location = useLocation();
 
   const getCurrentSeason = () => {
     if (!monthRange) return "通年";
@@ -32,12 +34,11 @@ const Header = ({ monthRange, onMonthChange }) => {
             {getCurrentSeason()}の花を探す ▼
           </button>
         </div>
-        <Link to="/cart" className="cart-button">
+        <Link to={`/cart${location.search}`} className="cart-button">
           {/* 花束カート */}
           <LuFlower2 size="1.2rem" />
         </Link>
       </header>
-
       <MonthSelectionModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
