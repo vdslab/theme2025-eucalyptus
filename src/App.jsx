@@ -5,7 +5,6 @@ import MainPage from "./pages/MainPage";
 import SubPage from "./pages/SubPage";
 import ModalPage from "./pages/function/ModalPage";
 import FlowersCart from "./pages/FlowersCart";
- main
 
 function App() {
   const [activeSlide, setActiveSlide] = useState(0);
