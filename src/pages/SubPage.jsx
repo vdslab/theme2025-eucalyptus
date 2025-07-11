@@ -22,7 +22,7 @@ const SubPage = ({
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  // const [openModal, setOpenModal] = useState(false);
 
   // 各花のカードへの参照を保存するためのref
   const flowerRefs = useRef({});
@@ -217,8 +217,8 @@ const SubPage = ({
         </div>
       </div>
 
-      {/* Modal */}
-      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
+      {/* Modal
+      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} /> */}
     </div>
   );
 };
