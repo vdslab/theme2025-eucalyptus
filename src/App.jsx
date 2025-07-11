@@ -77,6 +77,7 @@ function App() {
             <FlowersCart
               selectList={selectList}
               setSelectList={setSelectList}
+              allFlowersData={allFlowersData}
             />
           }
         />

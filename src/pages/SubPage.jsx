@@ -201,9 +201,9 @@ const SubPage = ({
               <div className="flower-name">{flowers.name}</div>
 
               <div className="flower-content">
-                <div className="flower-meanings">
+                <di v className="flower-meanings">
                   花言葉: {flowers.meanings.join(",")}
-                </div>
+                </di>
                 <button
                   className="save-button"
                   onClick={() => toggleFlowerInCart(flowers)}
