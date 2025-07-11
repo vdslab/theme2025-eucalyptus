@@ -1,7 +1,18 @@
 .cart-content {
-  background-color: rgba(125, 39, 205, 0.101);
+  background-color: #faf9f7;
   width: 100%;
   height: calc(100vh - 60px);
+  position: relative;
+}
+
+.footer {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  position: absolute;
+  bottom: 0;
+  width: 96%;
+  margin-bottom: 2rem;
 }
 
 .back-button {
@@ -27,7 +38,7 @@
 }
 
 .create-button {
-  background-color: rgb(133, 103, 192);
+  background-color: #ab93ed;
   color: aliceblue;
   padding: 8px 16px;
   border-radius: 5px;
@@ -36,5 +47,5 @@
 }
 
 .create-button:hover {
-  background-color: rgb(112, 86, 162);
+  background-color: #9883d5;
 }

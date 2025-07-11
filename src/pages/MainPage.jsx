@@ -155,7 +155,7 @@ const MainPage = ({
                   {!loading && currentWordCloudData.length > 0 ? (
                     <WordCloud
                       width={windowSize.width * 0.5}
-                      height={windowSize.height * 0.8}
+                      height={windowSize.height * 0.79}
                       data={currentWordCloudData}
                       fontFamily="Noto Sans JP"
                       slideIndex={index}
