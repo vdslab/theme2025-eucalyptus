@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
+import ModalPage from "./function/ModalPage";
 
 // データの形 memo
 //  "スプレーカーネーション『恋心』": {
@@ -222,6 +223,9 @@ const SubPage = ({
           ))}
         </div>
       </div>
+
+      {/* Modal */}
+      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
     </div>
   );
 };
