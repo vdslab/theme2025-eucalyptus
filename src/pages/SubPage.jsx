@@ -21,6 +21,8 @@ const SubPage = ({
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
+  // 花束カートに入れたものだけを格納
+  const [selectList, setSelectList] = useState([]);
 
   // 各花のカードへの参照を保存するためのref
   const flowerRefs = useRef({});
@@ -34,6 +36,35 @@ const SubPage = ({
     4: { color: "#7B8EE1", name: "青・青紫系" },
   };
 
+  // URLパラメータに必要、選択されたデータを格納する
+  const toggleFlowerInCart = (flowers) => {
+    setSelectList((prevList) => {
+      const findIndex = prevList.findIndex(
+        (item) => item.name === flowers.name && item.color === activeSlide
+      );
+      if (findIndex >= 0) {
+        const newList = [...prevList];
+        newList.splice(findIndex, 1);
+        return newList;
+      } else {
+        const flowerWithColor = {
+          name: flowers.name,
+          color: activeSlide,
+        };
+        return [...prevList, flowerWithColor];
+      }
+    });
+  };
+
+  console.log("selectList:", selectList);
+
+  // カートに入ってるか否か
+  const isFlowerInCart = (flowerName) => {
+    return selectList.some(
+      (item) => item.name === flowerName && item.color === activeSlide
+    );
+  };
+
   // 開花時期の表示用関数
   const getCurrentSeason = (start, end) => {
     if (start === 1 && end === 12) return "通年";
@@ -41,16 +72,6 @@ const SubPage = ({
     return `${start}月~${end}月`;
   };
   useEffect(() => {
-    console.log("=== データ確認 ===");
-    console.log("selectedWordData:", selectedWordData);
-    console.log("selectedWordData:", selectedWordData);
-    console.log("activeSlide:", activeSlide);
-    // 開花時期
-    console.log("monthRange:", monthRange);
-    console.log("allFlowersData.flowers:", allFlowersData.flowers);
-    // 下だとmetaDataも入ってしまう
-    console.log("allFlowersData:", allFlowersData);
-
     if (!allFlowersData || !allFlowersData.flowers) {
       // 一周目は、allFlowersDataの中身がないのでスキップする必要がある
       // stateをクリア
@@ -82,11 +103,6 @@ const SubPage = ({
         if (matchMonth) {
           if (flowerData.花色 === flowerColorIndex) {
             if (flowerData.花言葉[selectedWord]) {
-              console.log(
-                `${flowerName} に「${selectedWord}」が見つかりました:`,
-                flowerData.花言葉[selectedWord]
-              );
-
               flowerData.花言葉[selectedWord].forEach((meaning) => {
                 childElementsSet.add(meaning);
               });
@@ -107,12 +123,6 @@ const SubPage = ({
 
     setChildElements(Array.from(childElementsSet));
     setFlowersList(flowersWithWord);
-
-    console.log("flowersList", flowersList);
-    // bloomTime: "通年";
-    // meanings: Array["感動"];
-    // name: "スプレーカーネーション『恋心』";
-    console.log("childElements", childElements);
   }, [selectedWordData, allFlowersData]);
 
   if (!selectedWordData.selectedWord) {
@@ -125,7 +135,6 @@ const SubPage = ({
 
   const flowerColorIndex = selectedWordData.flowerColorIndex;
   const flowerColor = colorThemes[flowerColorIndex];
-  console.log("花色:", flowerColor.name);
 
   const scrollToFlowerWithMeaning = (targetMeaning) => {
     // 該当する花言葉を持つ最初の花を見つける
@@ -190,7 +199,14 @@ const SubPage = ({
                 <div className="flower-meanings">
                   花言葉: {flowers.meanings.join(",")}
                 </div>
-                <button className="save-button">＋ 花束カートに入れる</button>
+                <button
+                  className="save-button"
+                  onClick={() => toggleFlowerInCart(flowers)}
+                >
+                  {isFlowerInCart(flowers.name)
+                    ? "ー 花束カートから削除"
+                    : "＋ 花束カートに入れる"}
+                </button>
               </div>
 
               <div className="flower-info">開花時期: {flowers.bloomTime}</div>

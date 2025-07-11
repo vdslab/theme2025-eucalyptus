@@ -2,6 +2,17 @@
   background-color: #faf9f7;
   width: 100%;
   height: calc(100vh - 60px);
+  position: relative;
+}
+
+.footer {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+  position: absolute;
+  bottom: 0;
+  width: 96%;
+  margin-bottom: 2rem;
 }
 
 .back-button {

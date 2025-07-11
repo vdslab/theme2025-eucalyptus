@@ -34,7 +34,7 @@ const Header = ({ monthRange, onMonthChange }) => {
         </div>
         <Link to="/cart" className="cart-button">
           {/* 花束カート */}
-          <LuFlower2 />
+          <LuFlower2 size="1.2rem" />
         </Link>
       </header>
 

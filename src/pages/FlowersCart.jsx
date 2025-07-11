@@ -14,9 +14,10 @@ const FlowersCart = () => {
       <div className="cart-content">
         <div>umu</div>
 
-        <div></div>
-        <button className="green-modal">グリーン系を選択</button>
-        <button className="create-button">作成</button>
+        <div className="footer">
+          <button className="green-modal">グリーン系を選択</button>
+          <button className="create-button">作成</button>
+        </div>
       </div>
     </div>
   );
