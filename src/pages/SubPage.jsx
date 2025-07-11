@@ -223,9 +223,6 @@ const SubPage = ({
           ))}
         </div>
       </div>
-
-      {/* Modal
-      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} /> */}
     </div>
   );
 };
