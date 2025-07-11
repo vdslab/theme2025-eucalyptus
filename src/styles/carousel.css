@@ -3,9 +3,9 @@
 /* カルーセルコンテナ */
 .carousel-container {
   position: relative;
-  /* width: 60%;
-  overflow: hidden; */
+  overflow: hidden;
   padding-bottom: 20px;
+  padding: 1rem;
   /* height: calc(100vh - 78px); */
   /* background-color: aliceblue; */
 }
@@ -13,7 +13,7 @@
 .carousel-track {
   display: flex;
   transition: transform 0.5s ease;
-  height: calc(100% - 40px);
+  /* height: calc(100% - 40px); */
 }
 
 .carousel-slide {
@@ -38,12 +38,12 @@
 
 .cluster-title {
   text-align: center;
-  margin-top: 10px;
-  font-size: 30px;
-  color: #666;
+  font-size: 1.5rem;
+  color: #323b49;
 }
 
 .carousel-nav-btn {
+  color: #475569;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);

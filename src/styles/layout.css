@@ -18,28 +18,33 @@
 .left-Panel {
   width: 60%;
   overflow: hidden;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
+  background-color: #faf9f7;
 }
 
 .right-Panel {
   width: 40%;
-  background-color: rgb(243, 255, 240);
+  /* background-color: rgb(243, 255, 240); */
+  background-color: #faf9f7;
   height: calc(100vh - 90px);
   padding: 1rem;
+  align-content: center;
 }
 
 /* ヘッダー */
 .header {
-  background-color: rgb(250, 242, 232);
+  /* background-color: rgb(249, 238, 225); */
+  background-color: #b0b1df;
   border-bottom: 1px solid #e5e7eb;
   padding: 0 2rem;
   display: flex;
-  /* padding: 0.8rem 2rem; */
+  justify-content: space-between;
 }
 
 .site-title {
   font-size: 1.25rem;
   font-weight: bold;
+  color: #282f3a;
 }
 
 .header .container {
@@ -50,10 +55,11 @@
 }
 
 .cart-button {
-  background-color: #866bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
+  background-color: white;
+  color: #475569;
+  border: 1px solid #c3c4f1;
+  padding: 0 9px;
+  margin: 10px 0;
   border-radius: 5px;
   text-decoration: none;
   font-weight: bold;
@@ -63,9 +69,14 @@
   align-items: center;
 }
 
+.cart-button:hover {
+  background-color: #fbf8fc;
+}
+
 .month-select-button {
   padding: 8px 16px;
-  background-color: #fbf8fc;
+  /* background-color: #fbf8fc; */
+  background-color: white;
   border: 1px solid #c3c4f1;
   border-radius: 6px;
   cursor: pointer;
@@ -75,6 +86,7 @@
 }
 
 .month-select-button:hover {
-  background-color: #f5f1f9;
+  /* background-color: #f5f1f9; */
+  background-color: #fbf8fc;
   border-color: #c3c4f1;
 }
