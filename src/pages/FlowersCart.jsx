@@ -1,12 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../styles/cart.css";
 
-const FlowersCart = () => {
+const FlowersCart = ({ selectList, setSelectList }) => {
+  const location = useLocation();
+  console.log("selectList:", selectList);
   return (
     <div>
       <header className="header">
-        <Link to="/" className="back-button">
+        <Link to={`/${location.search}`} className="back-button">
           花束作成支援サイト
         </Link>
       </header>

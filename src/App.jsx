@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { getSelectListFromURL, saveSelectListToURL } from "./utils/urlParams";
 import AppLayout from "./components/layout/AppLayout";
 import MainPage from "./pages/MainPage";
 import SubPage from "./pages/SubPage";
@@ -15,6 +16,21 @@ function App() {
     flowerColorIndex: null,
   });
   const [allFlowersData, setAllFlowersData] = useState({});
+  const [selectList, setSelectList] = useState([]);
+
+  // 初回読み込み時にURLからカート情報を復元
+  useEffect(() => {
+    const flowersFromURL = getSelectListFromURL();
+    if (flowersFromURL.length > 0) {
+      setSelectList(flowersFromURL);
+      console.log("URLからカート情報を復元:", flowersFromURL);
+    }
+  }, []);
+
+  // selectListが変更されたらURLを更新
+  useEffect(() => {
+    saveSelectListToURL(selectList);
+  }, [selectList]);
 
   const handleWordSelect = (word, slideIndex) => {
     console.log("単語が選択されました:", word, "スライド:", slideIndex);
@@ -39,6 +55,8 @@ function App() {
                   allFlowersData={allFlowersData}
                   activeSlide={activeSlide}
                   monthRange={monthRange}
+                  selectList={selectList}
+                  setSelectList={setSelectList}
                 />
               }
             >
@@ -53,7 +71,15 @@ function App() {
             </AppLayout>
           }
         />
-        <Route path="/cart" element={<FlowersCart />} />
+        <Route
+          path="/cart"
+          element={
+            <FlowersCart
+              selectList={selectList}
+              setSelectList={setSelectList}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
