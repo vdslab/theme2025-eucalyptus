@@ -21,6 +21,8 @@ const Header = ({ monthRange, onMonthChange }) => {
     return `${start + 1}月〜${end + 1}月`;
   };
 
+  // console.log("location.search", location.search);
+  // console.log("window.location.search", window.location.search);
   return (
     <>
       <header className="header">

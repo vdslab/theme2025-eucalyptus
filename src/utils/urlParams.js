@@ -1,6 +1,7 @@
 // URLからselectListを読み取る
 export const getSelectListFromURL = () => {
   const urlParams = new URLSearchParams(window.location.search);
+  console.log("window.location.search", window.location.search);
   //   console.log("urlParams:", urlParams);
   //   urlParams:
   // URLSearchParams { flowers → "0プリマドンナ アルストロメリア" }
@@ -37,4 +38,6 @@ export const saveSelectListToURL = (selectList) => {
 
   const newURL = `${window.location.pathname}?${urlParams.toString()}`;
   window.history.replaceState({}, "", newURL);
+  //   reactじゃなくて、ブラウザに向かってURLを書き換えている
+  // reactは受け取れない
 };
