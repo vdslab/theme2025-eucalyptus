@@ -5,9 +5,25 @@ import "../styles/cart.css";
 const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   const location = useLocation();
   console.log("selectList:", selectList);
+  // selectList: Array(3) [ {…}, {…}, {…} ]
   console.log("allFlowersData:", allFlowersData);
+  // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
 
+  const getFlowerData = (flowerName, color) => {
+    const foundEntry = Object.entries(allFlowersData.flowers).find(
+      ([name, data]) => name === flowerName && data.花色 === String(color)
+    );
+    if (!foundEntry) return { meaning: [], bloomTimes: [] };
+    const [matchedName, matchedData] = foundEntry;
+    const allMeanings = Object.values(matchedData.花言葉).flat();
+    return {
+      meaning: allMeanings,
+      bloomTimes: matchedData.開花時期,
+    };
+  };
+
+  // 開花時期の表示形式を変える
   const getCurrentSeason = (bloomTimes) => {
     if (!Array.isArray(bloomTimes) || bloomTimes.length === 0) return "不明";
 
@@ -20,8 +36,21 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   };
 
   useEffect(() => {
-    const newFlowersList = [];
-  }, [selectList]);
+    if (!allFlowersData.flowers) {
+      return;
+    }
+    const newFlowersList = selectList.map((flower) => {
+      const flowerData = getFlowerData(flower.name, flower.color);
+      return {
+        ...flower,
+        bloomTime: getCurrentSeason(flowerData.bloomTimes),
+        meaning: flowerData.meaning,
+      };
+    });
+    setFlowersList(newFlowersList);
+  }, [selectList, allFlowersData]);
+
+  console.log("flowersList", flowersList);
 
   return (
     <div>

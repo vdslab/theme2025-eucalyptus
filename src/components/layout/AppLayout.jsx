@@ -35,6 +35,22 @@ const AppLayout = () => {
   const [allFlowersData, setAllFlowersData] = useState({});
   const [selectList, setSelectList] = useState([]);
 
+  // AppLayoutでデータを読み込む(FlowersCartでallFlowersDataが読み込めなかったので)
+  //todo: Mainの読み込みも消して一つできたらいいところ
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/data/parent_child_data.json");
+        const data = await res.json();
+        setAllFlowersData(data);
+        console.log("AppLayoutでデータ読み込み完了:", data);
+      } catch (error) {
+        console.error("データの読み込みエラー:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   // React Routerの内側でuseUrlParamsを使いたかった
   const { getSelectListFromURL, saveSelectListToURL } = useUrlParams();
 
