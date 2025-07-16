@@ -18,12 +18,14 @@ const SubPage = ({
   allFlowersData,
   activeSlide,
   monthRange,
+  selectList,
+  setSelectList,
 }) => {
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
   // 花束カートに入れたものだけを格納
-  const [selectList, setSelectList] = useState([]);
+  // const [selectList, setSelectList] = useState([]);
 
   // 各花のカードへの参照を保存するためのref
   const flowerRefs = useRef({});
@@ -57,7 +59,7 @@ const SubPage = ({
     });
   };
 
-  console.log("selectList:", selectList);
+  // console.log("selectList:", selectList);
 
   // カートに入ってるか否か
   const isFlowerInCart = (flowerName) => {
@@ -72,6 +74,9 @@ const SubPage = ({
     if (start === end) return `${start}月のみ`;
     return `${start}月~${end}月`;
   };
+
+  // setListのあれこれをApp.jsxに移動
+
   useEffect(() => {
     if (!allFlowersData || !allFlowersData.flowers) {
       // 一周目は、allFlowersDataの中身がないのでスキップする必要がある
