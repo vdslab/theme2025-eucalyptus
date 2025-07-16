@@ -4,7 +4,7 @@ export const useUrlParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const getSelectListFromURL = () => {
     const flowersParam = searchParams.get("flowers");
-    console.log("flowersParam", flowersParam);
+    // console.log("flowersParam", flowersParam);
 
     if (!flowersParam) {
       return [];
@@ -38,7 +38,7 @@ export const useUrlParams = () => {
       newSearchParams.delete("flowers");
     }
     setSearchParams(newSearchParams);
-    console.log("newSearchParams", newSearchParams);
+    // console.log("newSearchParams", newSearchParams);
     // newSearchParams
     // URLSearchParams { flowers → "0ジェラート スプレーバラ,0アリシア " }
   };
