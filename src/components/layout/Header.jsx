@@ -8,6 +8,10 @@ const Header = ({ monthRange, onMonthChange }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const location = useLocation();
+  // console.log("location", location);
+  // location
+  // Object { pathname: "/", search: "", hash: "", state: null, key: "ey4avxu6" }
+  // console.log("location.search", location.search);
 
   const getCurrentSeason = () => {
     if (!monthRange) return "通年";
