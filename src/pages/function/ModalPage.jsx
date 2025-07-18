@@ -8,7 +8,11 @@ const customStyles = {
     right: "auto",
     bottom: "auto",
     marginRight: "-50%",
+    borderRadius: "1rem",
     transform: "translate(-50%, -50%)",
+  },
+  overlay: {
+    backgroundColor: "rgb(196 196 196 / 75%)",
   },
 };
 
@@ -45,6 +49,7 @@ const ModalPage = ({ isOpen, setIsOpen }) => {
           bloomTimes[0],
           bloomTimes[bloomTimes.length - 1]
         ),
+        image: flowerData.image,
       });
     });
   }
@@ -52,13 +57,17 @@ const ModalPage = ({ isOpen, setIsOpen }) => {
   const closeModal = () => {
     return setIsOpen(false);
   };
+
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
+      <h2>夏のグリーン系</h2>
+      <p>
+        グリーン系とは花束のバランスをとってくれる緑色のお花たちのことです。
+      </p>
       <div className="modal-grid">
         {greenFlowerData.map((greenFlower, index) => (
-          <div key={index} className="modal-card">
+          <button key={index} className="modal-card">
             <div className="flower-name">{greenFlower.name}</div>
-
             <div className="flower-content">
               <div className="flower-meanings">
                 花言葉: {greenFlower.meaning}
@@ -71,15 +80,22 @@ const ModalPage = ({ isOpen, setIsOpen }) => {
 
             <div className="flower-image-container">
               <img
-                src="/images/questionMark.jpg"
-                alt="花の画像"
+                src={greenFlower.image}
+                alt={greenFlower.name}
                 className="flower-image"
               />
             </div>
-          </div>
+          </button>
         ))}
+        <button className="modal-card">
+          <div>なし</div>
+        </button>
       </div>
-      <button onClick={closeModal}>追加</button>
+      <div className="modalPage-buttons">
+        <button onClick={closeModal} className="modal-button apply">
+          追加
+        </button>
+      </div>
     </Modal>
   );
 };

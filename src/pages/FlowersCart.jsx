@@ -1,6 +1,8 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/cart.css";
+import ModalPage from "./function/ModalPage";
 
 const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   const location = useLocation();
@@ -38,10 +40,13 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         </div>
 
         <div className="footer">
-          <button className="green-modal">グリーン系を選択</button>
+          <button className="green-modal" onClick={() => setOpenModal(true)}>
+            グリーン系を選択
+          </button>
           <button className="create-button">作成</button>
         </div>
       </div>
+      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
     </div>
   );
 };

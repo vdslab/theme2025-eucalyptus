@@ -56,6 +56,14 @@
   justify-content: center;
 }
 
+.modalPage-buttons {
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
 .modal-button {
   padding: 8px 24px;
   border: none;
@@ -85,16 +93,34 @@
 
 .modal-grid{
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   gap:1.5rem;
   align-items: stretch;
 }
 
 .modal-card {
-  background-color: white;
+  background-color: #e5e7eb;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  border: 1rem;
+}
+.modal-card:hover {
+  background-color: rgb(201, 200, 200);
+}
+
+.modalPage-content{
+  background-color: #666;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-overlay{
+  background-color: #b9b7b7;
 }
