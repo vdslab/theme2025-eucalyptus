@@ -60,6 +60,10 @@ const ModalPage = ({ isOpen, setIsOpen }) => {
 
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
+      <h2>夏のグリーン系</h2>
+      <p>
+        グリーン系とは花束のバランスをとってくれる緑色のお花たちのことです。
+      </p>
       <div className="modal-grid">
         {greenFlowerData.map((greenFlower, index) => (
           <button key={index} className="modal-card">
