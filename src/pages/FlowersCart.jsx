@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/cart.css";
@@ -9,6 +8,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   console.log("selectList:", selectList);
   console.log("allFlowersData:", allFlowersData);
   const [flowersList, setFlowersList] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
 
   const getCurrentSeason = (bloomTimes) => {
     if (!Array.isArray(bloomTimes) || bloomTimes.length === 0) return "不明";
