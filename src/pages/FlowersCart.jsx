@@ -4,11 +4,13 @@ import "../styles/cart.css";
 
 const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   const location = useLocation();
-  console.log("selectList:", selectList);
+  // console.log("selectList:", selectList);
   // selectList: Array(3) [ {…}, {…}, {…} ]
-  console.log("allFlowersData:", allFlowersData);
+  // console.log("allFlowersData:", allFlowersData);
+
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const getFlowerData = (flowerName, color) => {
     const foundEntry = Object.entries(allFlowersData.flowers).find(
@@ -50,7 +52,17 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
     setFlowersList(newFlowersList);
   }, [selectList, allFlowersData]);
 
+  // 花色テーマの定義
+  const colorThemes = {
+    0: { color: "#DC8CC3", name: "ピンク系" },
+    1: { color: "#A6A6B4", name: "白系" },
+    2: { color: "#E2AB62", name: "黄・オレンジ系" },
+    3: { color: "#DC5F79", name: "赤系" },
+    4: { color: "#7B8EE1", name: "青・青紫系" },
+  };
+
   console.log("flowersList", flowersList);
+  // Array [ {…}, {…} ]形式で、name,color,bloomTime,meaning[]が受け取れる
 
   return (
     <div>
@@ -61,11 +73,52 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
       </header>
 
       <div className="cart-content">
+        {/* <div class="cart-page-title">カートページ</div> */}
+
         <div className="cart-card-scroll">
           {/* 基本4,5列 */}
-          <div className="card-grid">orz</div>
-        </div>
+          <div className="cart-cards-grid">
+            {flowersList.map((flowers, index) => (
+              <div key={index} className="flower-card-cart">
+                <div className="flower-name">{flowers.name}</div>
 
+                <div>
+                  <div className="cart-overview">
+                    花言葉: {flowers.meaning.join(",")}
+                    {/* 花言葉: {"「" + flowers.meanings + "」"} */}
+                  </div>
+                  <div className="dropdown-content">
+                    <button
+                      className="setting-flower"
+                      onClick={() => setIsMenuOpen(!isMenuOpen)}
+                    >
+                      花束の役割を決める
+                    </button>
+                    {/* {isMenuOpen && (
+                      <div className="dropdown-menu">
+                        <div>メインフラワーに設定する</div>
+                        <div>サブフラワーに設定する</div>
+                        <div>閉じる</div>
+                      </div>
+                    )} */}
+                  </div>
+                </div>
+
+                <div className="cart-overview">
+                  開花時期: {flowers.bloomTime}
+                </div>
+
+                <div>
+                  <img
+                    src="/images/questionMark.jpg"
+                    alt="花の画像"
+                    className="flower-image"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="footer">
           <button className="green-modal">グリーン系を選択</button>
           <button className="create-button">作成</button>

@@ -28,7 +28,7 @@
 .green-modal {
   background-color: rgb(103, 192, 162);
   color: aliceblue;
-  padding: 8px 16px;
+  padding: 15px 30px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -40,7 +40,8 @@
 .create-button {
   background-color: #ab93ed;
   color: aliceblue;
-  padding: 8px 16px;
+  /* padding: 8px 16px; */
+  padding: 15px 30px;
   border-radius: 5px;
   border: none;
   cursor: pointer;
@@ -48,4 +49,68 @@
 
 .create-button:hover {
   background-color: #9883d5;
+}
+
+.cart-page-title {
+  padding: 17px 30px;
+  font-size: 20px;
+}
+
+.cart-card-scroll {
+  max-width: 100%;
+  /* height: calc(100% - 65px); */
+  height: 100%;
+  /* padding: 20px 0; */
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.cart-by-side {
+  display: block;
+}
+
+.flower-card-cart {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 350px;
+}
+
+.setting-flower {
+  white-space: nowrap;
+  background-color: #ab93ed;
+  color: white;
+  padding: 0.5rem 2rem;
+  margin: 10px 0px;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.setting-flower:hover {
+  background-color: #9883d5;
+}
+
+.cart-overview {
+  font-size: 14px;
+}
+
+.cart-cards-grid {
+  display: grid;
+  padding: 20px 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  /* margin-bottom: 5px; */
+}
+
+@media (max-width: 1200px) {
+  .cart-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
