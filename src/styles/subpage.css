@@ -69,11 +69,12 @@
   margin-bottom: 5px;
 }
 
-/* @media (min-width: 1200px) {
+/* 効いてない、カードのサイズ設定できてないから */
+@media (max-width: 800px) {
   .cards-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-} */
+}
 
 .flower-card {
   background-color: white;
