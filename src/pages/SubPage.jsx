@@ -11,6 +11,7 @@ import ModalPage from "./function/ModalPage";
 //         "愛情": ["あなたを想う"]
 //       },
 //       "開花時期": [4, 5, 6, 7, 8, 9, 10]
+//       "画像": "/images/pink_flower/恋心.jpeg"
 //     },
 
 const SubPage = ({
@@ -119,7 +120,8 @@ const SubPage = ({
                 bloomTime: getCurrentSeason(
                   bloomTimes[0],
                   bloomTimes[bloomTimes.length - 1]
-                ),
+                ),  
+                image: flowerData["画像"] || "/images/questionMark.jpg",
               });
             }
           }
@@ -219,11 +221,12 @@ const SubPage = ({
 
               <div className="flower-image-container">
                 <img
-                  src="/images/questionMark.jpg"
-                  alt="花の画像"
-                  className="flower-image"
+                src={flowers.image}
+                alt={`${flowers.name} の画像`}
+                className="flower-image"
                 />
-              </div>
+                </div>
+
             </div>
           ))}
         </div>
