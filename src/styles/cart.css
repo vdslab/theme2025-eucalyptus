@@ -16,7 +16,7 @@
 }
 
 .back-button {
-  color: rgb(28, 27, 27);
+  color: #323b49;
   font-size: 1.25rem;
   font-weight: bold;
   padding: 14px 0;
@@ -101,10 +101,20 @@
 .cart-overview {
   font-size: 14px;
 }
+.meaning-size {
+  min-height: 2.8rem;
+  margin-left: 4px;
+}
 
+.flower-name-card {
+  margin-bottom: 0.5rem;
+  min-height: 3rem;
+  display: flex;
+  align-items: center;
+}
 .cart-cards-grid {
   display: grid;
-  padding: 20px 0;
+  padding: 7% 0;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;
@@ -138,7 +148,7 @@
 }
 
 .dropdown-menu > div {
-  padding: 12px 16px;
+  padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid #eee;
   transition: background-color 0.2s;

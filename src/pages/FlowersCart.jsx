@@ -23,6 +23,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
     return {
       meaning: allMeanings,
       bloomTimes: matchedData.開花時期,
+      image: matchedData.画像 || "/images/questionMark.jpg",
     };
   };
 
@@ -48,11 +49,13 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         ...flower,
         bloomTime: getCurrentSeason(flowerData.bloomTimes),
         meaning: flowerData.meaning,
+        image: flowerData.image,
       };
     });
     setFlowersList(newFlowersList);
   }, [selectList, allFlowersData]);
 
+  console.log(flowersList);
   // 花束生成につかうListの作成
   const [generateList, setGenerateList] = useState([]);
 
@@ -94,6 +97,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         name: flower.name,
         color: flower.color,
         role: flowerRoles[index],
+        image: flower.image,
       };
     });
     setGenerateList(newGenerateList);
@@ -155,22 +159,19 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
           <div className="cart-cards-grid">
             {flowersList.map((flowers, index) => (
               <div key={index} className="flower-card-cart">
-                <div className="flower-name">{flowers.name}</div>
+                <div className="flower-name-card">{flowers.name}</div>
 
                 <div>
-                  <div className="cart-overview">
-                    花言葉: {flowers.meaning.join(",")}
+                  <div className="cart-overview meaning-size">
+                    {/* 花言葉:  */}
+                    {flowers.meaning.join(",")}
                   </div>
                   <div
                     className="dropdown-content"
                     // ホバー時
-                    onMouseEnter={() =>
-                      setHoveredFlower(index) + console.log(hoveredFlower)
-                    }
+                    onMouseEnter={() => setHoveredFlower(index)}
                     // マウスが離れた時
-                    onMouseLeave={() =>
-                      setHoveredFlower(null) + console.log("マウスが離れた")
-                    }
+                    onMouseLeave={() => setHoveredFlower(null)}
                   >
                     <button className="setting-flower">
                       {getButtonText(flowerRoles[index])}
@@ -196,10 +197,10 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
                   開花時期: {flowers.bloomTime}
                 </div>
 
-                <div>
+                <div className="flower-image-container">
                   <img
-                    src="/images/questionMark.jpg"
-                    alt="花の画像"
+                    src={flowers.image}
+                    alt={`${flowers.name} の画像`}
                     className="flower-image"
                   />
                 </div>
