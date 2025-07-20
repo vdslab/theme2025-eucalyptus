@@ -5,6 +5,15 @@
   position: relative;
 }
 
+.cart-header {
+  background-color: #b0b1df;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .footer {
   display: flex;
   gap: 10px;
@@ -23,6 +32,23 @@
   border: none;
   text-decoration: none;
   cursor: pointer;
+}
+
+.resetCart-button {
+  background-color: white;
+  color: #475569;
+  border: 1px solid #c3c4f1;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  padding: 0 10px;
+  font-size: 14px;
+  height: 32px;
 }
 
 .green-modal {
@@ -83,6 +109,14 @@
   height: 350px;
 }
 
+.icon-move-down {
+  transform: translateY(30px) translateX(-10px);
+  color: rgba(128, 128, 128, 0.834);
+}
+.icon-move-down:hover {
+  color: gray;
+}
+
 .setting-flower {
   white-space: nowrap;
   background-color: #ab93ed;
@@ -114,7 +148,7 @@
 }
 .cart-cards-grid {
   display: grid;
-  padding: 7% 0;
+  padding: 5% 0;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;

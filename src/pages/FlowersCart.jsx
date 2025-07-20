@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
+import { MdCancel } from "react-icons/md";
 
 const FlowersCart = ({
   selectList,
@@ -18,6 +19,17 @@ const FlowersCart = ({
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+
+  // リセットボタンを押した時→一番初めの画面に戻る
+  const navigate = useNavigate();
+  const handleReset = () => {
+    setSelectList([]);
+    setSelectGreen([]);
+    // 状態更新が完了してからナビゲーション
+    setTimeout(() => {
+      navigate("/");
+    }, 0);
+  };
 
   const getFlowerData = (flowerName, color) => {
     const foundEntry = Object.entries(allFlowersData.flowers).find(
@@ -76,11 +88,12 @@ const FlowersCart = ({
 
   // 花色テーマの定義
   const colorThemes = {
-    0: { color: "#DC8CC3", name: "ピンク系" },
-    1: { color: "#A6A6B4", name: "白系" },
-    2: { color: "#E2AB62", name: "黄・オレンジ系" },
-    3: { color: "#DC5F79", name: "赤系" },
-    4: { color: "#7B8EE1", name: "青・青紫系" },
+    0: { color: "#dc8cc359", name: "ピンク系" },
+    1: { color: "#FFFFFF", name: "白系" },
+    2: { color: "#e2ab6263", name: "黄・オレンジ系" },
+    3: { color: "#dc5f785e", name: "赤系" },
+    4: { color: "#7b8ee155", name: "青・青紫系" },
+    5: { color: "#DFF3ED", name: "グリーン系" },
   };
 
   // console.log("flowersList", flowersList);
@@ -162,10 +175,14 @@ const FlowersCart = ({
   console.log("selectGreen", selectGreen);
   return (
     <div>
-      <header className="header">
+      <header className="cart-header">
         <Link to={`/${location.search}`} className="back-button">
           花束作成支援サイト
         </Link>
+        <button className="resetCart-button" onClick={handleReset}>
+          {/* カートの中身をリセットする */}
+          最初からやり直す
+        </button>
       </header>
 
       <div className="cart-content">
@@ -174,51 +191,62 @@ const FlowersCart = ({
         <div className="cart-card-scroll">
           <div className="cart-cards-grid">
             {flowersList.map((flowers, index) => (
-              <div key={index} className="flower-card-cart">
-                <div className="flower-name-card">{flowers.name}</div>
+              <div>
+                <MdCancel
+                  size="2rem"
+                  className="icon-move-down"
+                  // onClick={toggleFlowerInCart(flowers)}
+                />
+                <div
+                  key={index}
+                  className="flower-card-cart"
+                  style={{ backgroundColor: colorThemes[flowers.color]?.color }}
+                >
+                  <div className="flower-name-card">{flowers.name}</div>
 
-                <div>
-                  <div className="cart-overview meaning-size">
-                    {/* 花言葉:  */}
-                    {flowers.meaning.join(",")}
+                  <div>
+                    <div className="cart-overview meaning-size">
+                      {/* 花言葉:  */}
+                      {flowers.meaning.join(",")}
+                    </div>
+                    <div
+                      className="dropdown-content"
+                      // ホバー時
+                      onMouseEnter={() => setHoveredFlower(index)}
+                      // マウスが離れた時
+                      onMouseLeave={() => setHoveredFlower(null)}
+                    >
+                      <button className="setting-flower">
+                        {getButtonText(flowerRoles[index])}
+                      </button>
+                      {hoveredFlower === index ? (
+                        <div className="dropdown-menu">
+                          {getMenuItems(flowerRoles[index]).map(
+                            (item, itemIndex) => (
+                              <div
+                                key={itemIndex}
+                                onClick={() => handleMenuClick(item, index)}
+                              >
+                                {item}
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
-                  <div
-                    className="dropdown-content"
-                    // ホバー時
-                    onMouseEnter={() => setHoveredFlower(index)}
-                    // マウスが離れた時
-                    onMouseLeave={() => setHoveredFlower(null)}
-                  >
-                    <button className="setting-flower">
-                      {getButtonText(flowerRoles[index])}
-                    </button>
-                    {hoveredFlower === index ? (
-                      <div className="dropdown-menu">
-                        {getMenuItems(flowerRoles[index]).map(
-                          (item, itemIndex) => (
-                            <div
-                              key={itemIndex}
-                              onClick={() => handleMenuClick(item, index)}
-                            >
-                              {item}
-                            </div>
-                          )
-                        )}
-                      </div>
-                    ) : null}
+
+                  <div className="cart-overview">
+                    開花時期: {flowers.bloomTime}
                   </div>
-                </div>
 
-                <div className="cart-overview">
-                  開花時期: {flowers.bloomTime}
-                </div>
-
-                <div className="flower-image-container">
-                  <img
-                    src={flowers.image}
-                    alt={`${flowers.name} の画像`}
-                    className="flower-image"
-                  />
+                  <div className="flower-image-container">
+                    <img
+                      src={flowers.image}
+                      alt={`${flowers.name} の画像`}
+                      className="flower-image"
+                    />
+                  </div>
                 </div>
               </div>
             ))}
