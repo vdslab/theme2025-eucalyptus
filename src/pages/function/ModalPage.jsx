@@ -19,9 +19,9 @@ const customStyles = {
   },
 };
 
-const ModalPage = ({ isOpen, setIsOpen }) => {
+const ModalPage = ({ isOpen, setIsOpen, selectGreen, setSelectGreen }) => {
   const [greenFlower, setGreenFlower] = useState({});
-  const [selectGreen, setSelectGreen] = useState([]);
+  // const [selectGreen, setSelectGreen] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,11 +75,6 @@ const ModalPage = ({ isOpen, setIsOpen }) => {
       setSelectGreen((prev) => [...prev, clickedGreen]);
     }
   };
-  // css用
-  // const isSelected = selectGreen.some(
-  //   (flower) => flower.name === greenFlower.name
-  // );
-  console.log("selectGreen", selectGreen);
 
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>

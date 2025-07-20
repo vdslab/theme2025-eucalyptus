@@ -3,7 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
 
-const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
+const FlowersCart = ({
+  selectList,
+  setSelectList,
+  allFlowersData,
+  selectGreen,
+  setSelectGreen,
+}) => {
   const location = useLocation();
   // console.log("selectList:", selectList);
   // selectList: Array(3) [ {…}, {…}, {…} ]
@@ -52,8 +58,17 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         image: flowerData.image,
       };
     });
-    setFlowersList(newFlowersList);
-  }, [selectList, allFlowersData]);
+
+    //グリーン系を末尾に追加したい
+    const newGreenList = selectGreen.map((green) => ({
+      name: green.name,
+      color: "5",
+      bloomTime: green.bloomTime,
+      meaning: [green.meaning],
+      image: green.image,
+    }));
+    setFlowersList([...newFlowersList, ...newGreenList]);
+  }, [selectList, selectGreen, allFlowersData]);
 
   console.log(flowersList);
   // 花束生成につかうListの作成
@@ -144,6 +159,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
     setHoveredFlower(null);
   };
 
+  console.log("selectGreen", selectGreen);
   return (
     <div>
       <header className="header">
@@ -215,7 +231,12 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
           <button className="create-button">作成</button>
         </div>
       </div>
-      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
+      <ModalPage
+        isOpen={openModal}
+        setIsOpen={setOpenModal}
+        selectGreen={selectGreen}
+        setSelectGreen={setSelectGreen}
+      />
     </div>
   );
 };

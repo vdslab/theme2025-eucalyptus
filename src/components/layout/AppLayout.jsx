@@ -35,6 +35,9 @@ const AppLayout = () => {
   const [allFlowersData, setAllFlowersData] = useState({});
   const [selectList, setSelectList] = useState([]);
 
+  //グリーンモーダルから受け取った選択されたデータ
+  const [selectGreen, setSelectGreen] = useState([]);
+
   // AppLayoutでデータを読み込む(FlowersCartでallFlowersDataが読み込めなかったので)
   //todo: Mainの読み込みも消して一つできたらいいところ
   useEffect(() => {
@@ -116,6 +119,8 @@ const AppLayout = () => {
             selectList={selectList}
             setSelectList={setSelectList}
             allFlowersData={allFlowersData}
+            selectGreen={selectGreen}
+            setSelectGreen={setSelectGreen}
           />
         }
       />
