@@ -19,23 +19,14 @@ const customStyles = {
   },
 };
 
-const ModalPage = ({ isOpen, setIsOpen, selectGreen, setSelectGreen }) => {
-  const [greenFlower, setGreenFlower] = useState({});
-  // const [selectGreen, setSelectGreen] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("../data/green_data.json");
-        const data = await res.json();
-        setGreenFlower(data);
-      } catch (error) {
-        console.log("データの読み込み失敗", error);
-      }
-    };
-    fetchData();
-  }, []);
-
+const ModalPage = ({
+  isOpen,
+  setIsOpen,
+  selectList,
+  setSelectList,
+  // グリーン系のデータはAppLayoutで取得している
+  greenFlowersData,
+}) => {
   const getCurrentSeason = (start, end) => {
     if (start === 1 && end === 12) return "通年";
     if (start === end) return `${start}月のみ`;
@@ -43,19 +34,21 @@ const ModalPage = ({ isOpen, setIsOpen, selectGreen, setSelectGreen }) => {
   };
 
   const greenFlowerData = [];
-  if (greenFlower.flowers) {
-    Object.entries(greenFlower.flowers).forEach(([flowerName, flowerData]) => {
-      const bloomTimes = flowerData.開花時期;
-      greenFlowerData.push({
-        name: flowerName,
-        meaning: flowerData.花言葉,
-        bloomTimes: getCurrentSeason(
-          bloomTimes[0],
-          bloomTimes[bloomTimes.length - 1]
-        ),
-        image: flowerData.image,
-      });
-    });
+  if (greenFlowersData.flowers) {
+    Object.entries(greenFlowersData.flowers).forEach(
+      ([flowerName, flowerData]) => {
+        const bloomTimes = flowerData.開花時期;
+        greenFlowerData.push({
+          name: flowerName,
+          meaning: flowerData.花言葉,
+          bloomTimes: getCurrentSeason(
+            bloomTimes[0],
+            bloomTimes[bloomTimes.length - 1]
+          ),
+          image: flowerData.image,
+        });
+      }
+    );
   }
 
   const closeModal = () => {
@@ -64,15 +57,19 @@ const ModalPage = ({ isOpen, setIsOpen, selectGreen, setSelectGreen }) => {
 
   // 選択したグリーン系が、既に選択されているか否かを判別する
   const handleGreenClick = (clickedGreen) => {
-    const isAlreadySelected = selectGreen.some(
+    const greenWithColor = {
+      name: clickedGreen.name,
+      color: 5,
+    };
+    const isAlreadySelected = selectList.some(
       (green) => green.name === clickedGreen.name
     );
     if (isAlreadySelected) {
-      setSelectGreen((prev) =>
+      setSelectList((prev) =>
         prev.filter((green) => green.name !== clickedGreen.name)
       );
     } else {
-      setSelectGreen((prev) => [...prev, clickedGreen]);
+      setSelectList((prev) => [...prev, greenWithColor]);
     }
   };
 
@@ -87,7 +84,7 @@ const ModalPage = ({ isOpen, setIsOpen, selectGreen, setSelectGreen }) => {
 
       <div className="modal-grid">
         {greenFlowerData.map((greenFlower, index) => {
-          const isSelected = selectGreen.some(
+          const isSelected = selectList.some(
             (flower) => flower.name === greenFlower.name
           );
           return (

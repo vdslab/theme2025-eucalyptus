@@ -32,21 +32,29 @@ const AppLayout = () => {
     selectedWord: null,
     flowerColorIndex: null,
   });
+  // グリーンのデータを取得する
+  const [greenFlowersData, setGreenFlowersData] = useState({});
+  // 切花データを取得する
   const [allFlowersData, setAllFlowersData] = useState({});
+  // 選んだ花たち
   const [selectList, setSelectList] = useState([]);
-
-  //グリーンモーダルから受け取った選択されたデータ
-  const [selectGreen, setSelectGreen] = useState([]);
 
   // AppLayoutでデータを読み込む(FlowersCartでallFlowersDataが読み込めなかったので)
   //todo: Mainの読み込みも消して一つできたらいいところ
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/data/parent_child_data.json");
-        const data = await res.json();
-        setAllFlowersData(data);
-        console.log("AppLayoutでデータ読み込み完了:", data);
+        // 通常の花データ
+        const res1 = await fetch("/data/parent_child_data.json");
+        const data1 = await res1.json();
+        setAllFlowersData(data1);
+
+        // グリーン系データ
+        const res2 = await fetch("/data/green_data.json");
+        const data2 = await res2.json();
+        setGreenFlowersData(data2);
+
+        console.log("AppLayoutでデータ読み込み完了");
       } catch (error) {
         console.error("データの読み込みエラー:", error);
       }
@@ -119,8 +127,7 @@ const AppLayout = () => {
             selectList={selectList}
             setSelectList={setSelectList}
             allFlowersData={allFlowersData}
-            selectGreen={selectGreen}
-            setSelectGreen={setSelectGreen}
+            greenFlowersData={greenFlowersData}
           />
         }
       />

@@ -8,13 +8,11 @@ const FlowersCart = ({
   selectList,
   setSelectList,
   allFlowersData,
-  selectGreen,
-  setSelectGreen,
+  greenFlowersData,
 }) => {
   const location = useLocation();
   // console.log("selectList:", selectList);
   // selectList: Array(3) [ {…}, {…}, {…} ]
-  // console.log("allFlowersData:", allFlowersData);
 
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
@@ -24,14 +22,22 @@ const FlowersCart = ({
   const navigate = useNavigate();
   const handleReset = () => {
     setSelectList([]);
-    setSelectGreen([]);
-    // 状態更新が完了してからナビゲーション
     setTimeout(() => {
       navigate("/");
     }, 0);
   };
 
   const getFlowerData = (flowerName, color) => {
+    if (color === 5) {
+      if (greenFlowersData.flowers && greenFlowersData.flowers[flowerName]) {
+        const greenData = greenFlowersData.flowers[flowerName];
+        return {
+          meaning: [greenData.花言葉],
+          bloomTimes: greenData.開花時期,
+          image: greenData.image || "/images/questionMark.jpg",
+        };
+      }
+    }
     const foundEntry = Object.entries(allFlowersData.flowers).find(
       ([name, data]) => name === flowerName && data.花色 === String(color)
     );
@@ -58,7 +64,7 @@ const FlowersCart = ({
   };
 
   useEffect(() => {
-    if (!allFlowersData.flowers) {
+    if (!allFlowersData.flowers || !greenFlowersData.flowers) {
       return;
     }
     const newFlowersList = selectList.map((flower) => {
@@ -71,18 +77,11 @@ const FlowersCart = ({
       };
     });
 
-    //グリーン系を末尾に追加したい
-    const newGreenList = selectGreen.map((green) => ({
-      name: green.name,
-      color: "5",
-      bloomTime: green.bloomTime,
-      meaning: [green.meaning],
-      image: green.image,
-    }));
-    setFlowersList([...newFlowersList, ...newGreenList]);
-  }, [selectList, selectGreen, allFlowersData]);
+    setFlowersList(newFlowersList);
+  }, [selectList, greenFlowersData, allFlowersData]);
 
   console.log(flowersList);
+  console.log("selectList", selectList);
   // 花束生成につかうListの作成
   const [generateList, setGenerateList] = useState([]);
 
@@ -172,7 +171,22 @@ const FlowersCart = ({
     setHoveredFlower(null);
   };
 
-  console.log("selectGreen", selectGreen);
+  // 削除ボタン
+  const deleteFlowerList = (flowers) => {
+    setSelectList((prevList) => {
+      const findIndex = prevList.findIndex(
+        (item) => item.name === flowers.name && item.color === flowers.color
+      );
+      if (findIndex >= 0) {
+        const newList = [...prevList];
+        newList.splice(findIndex, 1);
+        return newList;
+      }
+      return prevList;
+    });
+  };
+
+  console.log("selectList", selectList);
   return (
     <div>
       <header className="cart-header">
@@ -191,11 +205,11 @@ const FlowersCart = ({
         <div className="cart-card-scroll">
           <div className="cart-cards-grid">
             {flowersList.map((flowers, index) => (
-              <div>
+              <div key={index}>
                 <MdCancel
                   size="2rem"
                   className="icon-move-down"
-                  // onClick={toggleFlowerInCart(flowers)}
+                  onClick={() => deleteFlowerList(flowers)}
                 />
                 <div
                   key={index}
@@ -262,8 +276,9 @@ const FlowersCart = ({
       <ModalPage
         isOpen={openModal}
         setIsOpen={setOpenModal}
-        selectGreen={selectGreen}
-        setSelectGreen={setSelectGreen}
+        selectList={selectList}
+        setSelectList={setSelectList}
+        greenFlowersData={greenFlowersData}
       />
     </div>
   );
