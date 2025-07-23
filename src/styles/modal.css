@@ -27,10 +27,32 @@
   color: #333;
 }
 
+.greenModal-title-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+
+.greenModal-title {
+  font-size: 25px;
+}
+
+.greenModal-overview {
+  font-size: 15px;
+}
+
 .modal-slider-container {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
+}
+
+.greenFlower-name {
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
 }
 
 .modal-info {
@@ -58,14 +80,15 @@
 
 .modalPage-buttons {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 20px;
   flex-direction: row;
-  gap: 12px;
+  /* gap: 12px; */
   justify-content: flex-end;
 }
 
 .modal-button {
-  padding: 8px 24px;
+  padding: 10px 30px;
+  font-size: 16px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -83,18 +106,18 @@
 }
 
 .modal-button.apply {
-  background-color: #695bd6;
+  background-color: rgb(103, 192, 162);
   color: white;
 }
 
 .modal-button.apply:hover {
-  background-color: #5b4eaa;
+  background-color: rgb(80, 152, 128);
 }
 
-.modal-grid{
+.modal-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-  gap:1.5rem;
+  gap: 1.5rem;
   align-items: stretch;
 }
 
@@ -110,8 +133,11 @@
 .modal-card:hover {
   background-color: rgb(201, 200, 200);
 }
+.modal-card.selected {
+  background-color: rgb(223, 243, 237);
+}
 
-.modalPage-content{
+.modalPage-content {
   background-color: #666;
   top: 50%;
   left: 50%;
@@ -121,6 +147,7 @@
   transform: translate(-50%, -50%);
 }
 
-.modal-overlay{
+/* これがあるから、開花時期フィルタリングの背景が半透明じゃなくなった */
+/* .modal-overlay {
   background-color: #b9b7b7;
-}
+} */

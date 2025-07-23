@@ -1,19 +1,43 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
+import { MdCancel } from "react-icons/md";
 
-const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
+const FlowersCart = ({
+  selectList,
+  setSelectList,
+  allFlowersData,
+  greenFlowersData,
+}) => {
   const location = useLocation();
   // console.log("selectList:", selectList);
   // selectList: Array(3) [ {…}, {…}, {…} ]
-  // console.log("allFlowersData:", allFlowersData);
 
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
 
+  // リセットボタンを押した時→一番初めの画面に戻る
+  const navigate = useNavigate();
+  const handleReset = () => {
+    setSelectList([]);
+    setTimeout(() => {
+      navigate("/");
+    }, 0);
+  };
+
   const getFlowerData = (flowerName, color) => {
+    if (color === 5) {
+      if (greenFlowersData.flowers && greenFlowersData.flowers[flowerName]) {
+        const greenData = greenFlowersData.flowers[flowerName];
+        return {
+          meaning: [greenData.花言葉],
+          bloomTimes: greenData.開花時期,
+          image: greenData.image || "/images/questionMark.jpg",
+        };
+      }
+    }
     const foundEntry = Object.entries(allFlowersData.flowers).find(
       ([name, data]) => name === flowerName && data.花色 === String(color)
     );
@@ -23,6 +47,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
     return {
       meaning: allMeanings,
       bloomTimes: matchedData.開花時期,
+      image: matchedData.画像 || "/images/questionMark.jpg",
     };
   };
 
@@ -39,7 +64,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   };
 
   useEffect(() => {
-    if (!allFlowersData.flowers) {
+    if (!allFlowersData.flowers || !greenFlowersData.flowers) {
       return;
     }
     const newFlowersList = selectList.map((flower) => {
@@ -48,21 +73,26 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         ...flower,
         bloomTime: getCurrentSeason(flowerData.bloomTimes),
         meaning: flowerData.meaning,
+        image: flowerData.image,
       };
     });
-    setFlowersList(newFlowersList);
-  }, [selectList, allFlowersData]);
 
+    setFlowersList(newFlowersList);
+  }, [selectList, greenFlowersData, allFlowersData]);
+
+  console.log(flowersList);
+  console.log("selectList", selectList);
   // 花束生成につかうListの作成
   const [generateList, setGenerateList] = useState([]);
 
   // 花色テーマの定義
   const colorThemes = {
-    0: { color: "#DC8CC3", name: "ピンク系" },
-    1: { color: "#A6A6B4", name: "白系" },
-    2: { color: "#E2AB62", name: "黄・オレンジ系" },
-    3: { color: "#DC5F79", name: "赤系" },
-    4: { color: "#7B8EE1", name: "青・青紫系" },
+    0: { color: "#dc8cc359", name: "ピンク系" },
+    1: { color: "#FFFFFF", name: "白系" },
+    2: { color: "#e2ab6263", name: "黄・オレンジ系" },
+    3: { color: "#dc5f785e", name: "赤系" },
+    4: { color: "#7b8ee155", name: "青・青紫系" },
+    5: { color: "#DFF3ED", name: "グリーン系" },
   };
 
   // console.log("flowersList", flowersList);
@@ -94,6 +124,7 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         name: flower.name,
         color: flower.color,
         role: flowerRoles[index],
+        image: flower.image,
       };
     });
     setGenerateList(newGenerateList);
@@ -140,12 +171,32 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
     setHoveredFlower(null);
   };
 
+  // 削除ボタン
+  const deleteFlowerList = (flowers) => {
+    setSelectList((prevList) => {
+      const findIndex = prevList.findIndex(
+        (item) => item.name === flowers.name && item.color === flowers.color
+      );
+      if (findIndex >= 0) {
+        const newList = [...prevList];
+        newList.splice(findIndex, 1);
+        return newList;
+      }
+      return prevList;
+    });
+  };
+
+  console.log("selectList", selectList);
   return (
     <div>
-      <header className="header">
+      <header className="cart-header">
         <Link to={`/${location.search}`} className="back-button">
           花束作成支援サイト
         </Link>
+        <button className="resetCart-button" onClick={handleReset}>
+          {/* カートの中身をリセットする */}
+          最初からやり直す
+        </button>
       </header>
 
       <div className="cart-content">
@@ -154,54 +205,62 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
         <div className="cart-card-scroll">
           <div className="cart-cards-grid">
             {flowersList.map((flowers, index) => (
-              <div key={index} className="flower-card-cart">
-                <div className="flower-name">{flowers.name}</div>
+              <div key={index}>
+                <MdCancel
+                  size="2rem"
+                  className="icon-move-down"
+                  onClick={() => deleteFlowerList(flowers)}
+                />
+                <div
+                  key={index}
+                  className="flower-card-cart"
+                  style={{ backgroundColor: colorThemes[flowers.color]?.color }}
+                >
+                  <div className="flower-name-card">{flowers.name}</div>
 
-                <div>
+                  <div>
+                    <div className="cart-overview meaning-size">
+                      {/* 花言葉:  */}
+                      {flowers.meaning.join(",")}
+                    </div>
+                    <div
+                      className="dropdown-content"
+                      // ホバー時
+                      onMouseEnter={() => setHoveredFlower(index)}
+                      // マウスが離れた時
+                      onMouseLeave={() => setHoveredFlower(null)}
+                    >
+                      <button className="setting-flower">
+                        {getButtonText(flowerRoles[index])}
+                      </button>
+                      {hoveredFlower === index ? (
+                        <div className="dropdown-menu">
+                          {getMenuItems(flowerRoles[index]).map(
+                            (item, itemIndex) => (
+                              <div
+                                key={itemIndex}
+                                onClick={() => handleMenuClick(item, index)}
+                              >
+                                {item}
+                              </div>
+                            )
+                          )}
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+
                   <div className="cart-overview">
-                    花言葉: {flowers.meaning.join(",")}
+                    開花時期: {flowers.bloomTime}
                   </div>
-                  <div
-                    className="dropdown-content"
-                    // ホバー時
-                    onMouseEnter={() =>
-                      setHoveredFlower(index) + console.log(hoveredFlower)
-                    }
-                    // マウスが離れた時
-                    onMouseLeave={() =>
-                      setHoveredFlower(null) + console.log("マウスが離れた")
-                    }
-                  >
-                    <button className="setting-flower">
-                      {getButtonText(flowerRoles[index])}
-                    </button>
-                    {hoveredFlower === index ? (
-                      <div className="dropdown-menu">
-                        {getMenuItems(flowerRoles[index]).map(
-                          (item, itemIndex) => (
-                            <div
-                              key={itemIndex}
-                              onClick={() => handleMenuClick(item, index)}
-                            >
-                              {item}
-                            </div>
-                          )
-                        )}
-                      </div>
-                    ) : null}
+
+                  <div className="flower-image-container">
+                    <img
+                      src={flowers.image}
+                      alt={`${flowers.name} の画像`}
+                      className="flower-image"
+                    />
                   </div>
-                </div>
-
-                <div className="cart-overview">
-                  開花時期: {flowers.bloomTime}
-                </div>
-
-                <div>
-                  <img
-                    src="/images/questionMark.jpg"
-                    alt="花の画像"
-                    className="flower-image"
-                  />
                 </div>
               </div>
             ))}
@@ -214,7 +273,13 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
           <button className="create-button">作成</button>
         </div>
       </div>
-      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
+      <ModalPage
+        isOpen={openModal}
+        setIsOpen={setOpenModal}
+        selectList={selectList}
+        setSelectList={setSelectList}
+        greenFlowersData={greenFlowersData}
+      />
     </div>
   );
 };
