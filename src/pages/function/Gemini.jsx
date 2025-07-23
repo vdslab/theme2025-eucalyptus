@@ -20,11 +20,10 @@ const customStyles = {
 const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [prompt, setPrompt] = useState(
-    "薔薇、ガーベラ、ユーカリのラッピングられた花束の画像生成して"
+    `${flowerList}のデータをもとに花束の画像を生成して。ラッピングは任せる`
   );
   const [error, setError] = useState("");
 
-  console.log(flowerList);
   useEffect(() => {
     const fetchImage = async () => {
       setError("");

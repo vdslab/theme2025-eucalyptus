@@ -196,6 +196,9 @@ const FlowersCart = ({
         <Link to={`/${location.search}`} className="back-button">
           花束作成支援サイト
         </Link>
+        <button className="green-modal" onClick={() => setOpenModal(true)}>
+          グリーン系を選択
+        </button>
         <button className="resetCart-button" onClick={handleReset}>
           {/* カートの中身をリセットする */}
           最初からやり直す
@@ -269,9 +272,6 @@ const FlowersCart = ({
           </div>
         </div>
         <div className="footer">
-          <button className="green-modal" onClick={() => setOpenModal(true)}>
-            グリーン系を選択
-          </button>
           <button
             className="create-button"
             style={{ cursor: getImage ? "not-allowed" : "pointer" }}
@@ -284,7 +284,13 @@ const FlowersCart = ({
           </button>
         </div>
       </div>
-      <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
+      <ModalPage
+        isOpen={openModal}
+        setIsOpen={setOpenModal}
+        selectList={selectList}
+        setSelectList={setSelectList}
+        greenFlowersData={greenFlowersData}
+      />
 
       {openGemini && (
         <Gemini
