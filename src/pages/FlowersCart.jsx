@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
+import Gemini from "./function/Gemini";
+import { MdCancel } from "react-icons/md";
 
 const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   const location = useLocation();
@@ -12,6 +14,17 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+
+  // リセットボタンを押した時→一番初めの画面に戻る
+  const navigate = useNavigate();
+  const handleReset = () => {
+    setSelectList([]);
+    setTimeout(() => {
+      navigate("/");
+    }, 0);
+  };
+  const [openGemini, setOpenGemini] = useState(false);
+  const [getImage, setGetImage] = useState(false);
 
   const getFlowerData = (flowerName, color) => {
     const foundEntry = Object.entries(allFlowersData.flowers).find(
@@ -147,7 +160,6 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
           花束作成支援サイト
         </Link>
       </header>
-
       <div className="cart-content">
         {/* <div class="cart-page-title">カートページ</div> */}
 
@@ -211,10 +223,28 @@ const FlowersCart = ({ selectList, setSelectList, allFlowersData }) => {
           <button className="green-modal" onClick={() => setOpenModal(true)}>
             グリーン系を選択
           </button>
-          <button className="create-button">作成</button>
+          <button
+            className="create-button"
+            style={{ cursor: getImage ? "not-allowed" : "pointer" }}
+            onClick={() => {
+              setOpenGemini(true);
+              setGetImage(true);
+            }}
+          >
+            {getImage ? "作成中..." : "作成"}
+          </button>
         </div>
       </div>
       <ModalPage isOpen={openModal} setIsOpen={setOpenModal} />
+
+      {openGemini && (
+        <Gemini
+          flowerList={generateList}
+          openGemini={openGemini}
+          setOpenGemini={setOpenGemini}
+          setGetImage={setGetImage}
+        />
+      )}
     </div>
   );
 };
