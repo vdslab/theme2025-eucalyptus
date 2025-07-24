@@ -5,6 +5,7 @@ import ModalPage from "./function/ModalPage";
 import { MdCancel } from "react-icons/md";
 import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
 import { GiThreeLeaves } from "react-icons/gi";
+import Gemini from "./function/Gemini";
 
 const FlowersCart = ({
   selectList,
@@ -19,6 +20,9 @@ const FlowersCart = ({
   // selectList花名と花色しか持っていないので、開花時期と花言葉（全て)を受け取る必要がある
   const [flowersList, setFlowersList] = useState([]);
   const [openModal, setOpenModal] = useState(false);
+
+  const [openGemini, setOpenGemini] = useState(false);
+  const [getImage, setGetImage] = useState(false);
 
   // リセットボタンを押した時→一番初めの画面に戻る
   const navigate = useNavigate();
@@ -313,7 +317,16 @@ const FlowersCart = ({
           <button className="green-modal" onClick={() => setOpenModal(true)}>
             グリーン系を選択
           </button>
-          <button className="create-button">作成</button>
+          <button
+            className="create-button"
+            style={{ cursor: getImage ? "not-allowed" : "pointer" }}
+            onClick={() => {
+              setOpenGemini(true);
+              setGetImage(true);
+            }}
+          >
+            {getImage ? "作成中..." : "作成"}
+          </button>
         </div>
       </div>
       <ModalPage
@@ -323,6 +336,14 @@ const FlowersCart = ({
         setSelectList={setSelectList}
         greenFlowersData={greenFlowersData}
       />
+      {openGemini && (
+        <Gemini
+          flowerList={generateList}
+          openGemini={openGemini}
+          setOpenGemini={setOpenGemini}
+          setGetImage={setGetImage}
+        />
+      )}
     </div>
   );
 };
