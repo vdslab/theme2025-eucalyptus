@@ -106,7 +106,8 @@
 }
 
 .modal-button.apply {
-  background-color: rgb(103, 192, 162);
+  /* background-color: rgb(103, 192, 162); */
+  background-color: #84c890;
   color: white;
 }
 
@@ -134,7 +135,7 @@
   background-color: rgb(201, 200, 200);
 }
 .modal-card.selected {
-  background-color: rgb(223, 243, 237);
+  background-color: #d0f0d655;
 }
 
 .modalPage-content {
