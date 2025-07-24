@@ -32,6 +32,7 @@ const ModalPage = ({
     if (start === end) return `${start}月のみ`;
     return `${start}月~${end}月`;
   };
+
   const greenFlowerData = [];
   if (greenFlowersData.flowers) {
     Object.entries(greenFlowersData.flowers).forEach(

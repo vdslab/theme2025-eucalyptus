@@ -52,7 +52,8 @@
 }
 
 .green-modal {
-  background-color: rgb(103, 192, 162);
+  /* background-color: rgb(103, 192, 162); */
+  background-color: #84c890;
   color: aliceblue;
   padding: 15px 30px;
   font-size: 16px;
@@ -119,7 +120,8 @@
 
 .setting-flower {
   white-space: nowrap;
-  background-color: #ab93ed;
+  /* background-color: #ab93ed; */
+  background-color: rgba(128, 128, 128, 0.834);
   color: white;
   padding: 0.5rem 2rem;
   margin: 10px 0px;
@@ -127,9 +129,38 @@
   border: none;
   cursor: pointer;
   transition: background-color 0.2s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .setting-flower:hover {
+  /* background-color: #9883d5; */
+  background-color: gray;
+}
+
+.setting-flower.main-flower {
   background-color: #9883d5;
+  border: 1px solid #475569;
+}
+
+.setting-flower.sub-flower {
+  background-color: #e6e6fa;
+  border: 1px solid #9883d5;
+  color: #475569;
+}
+
+.greenRole {
+  background-color: #84c890;
+  width: 100%;
+  color: white;
+  padding: 0.5rem 2rem;
+  margin: 10px 0px;
+  border-radius: 0.5rem;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cart-overview {
