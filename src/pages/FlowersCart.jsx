@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
-import Gemini from "./function/Gemini";
 import { MdCancel } from "react-icons/md";
 import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
 import { GiThreeLeaves } from "react-icons/gi";
@@ -29,8 +28,6 @@ const FlowersCart = ({
       navigate("/");
     }, 0);
   };
-  const [openGemini, setOpenGemini] = useState(false);
-  const [getImage, setGetImage] = useState(false);
 
   const getFlowerData = (flowerName, color) => {
     if (color === 5) {
@@ -214,14 +211,12 @@ const FlowersCart = ({
         <Link to={`/${location.search}`} className="back-button">
           花束作成支援サイト
         </Link>
-        <button className="green-modal" onClick={() => setOpenModal(true)}>
-          グリーン系を選択
-        </button>
         <button className="resetCart-button" onClick={handleReset}>
           {/* カートの中身をリセットする */}
           最初からやり直す
         </button>
       </header>
+
       <div className="cart-content">
         {/* <div class="cart-page-title">カートページ</div> */}
 
@@ -315,16 +310,10 @@ const FlowersCart = ({
           </div>
         </div>
         <div className="footer">
-          <button
-            className="create-button"
-            style={{ cursor: getImage ? "not-allowed" : "pointer" }}
-            onClick={() => {
-              setOpenGemini(true);
-              setGetImage(true);
-            }}
-          >
-            {getImage ? "作成中..." : "作成"}
+          <button className="green-modal" onClick={() => setOpenModal(true)}>
+            グリーン系を選択
           </button>
+          <button className="create-button">作成</button>
         </div>
       </div>
       <ModalPage
@@ -334,15 +323,6 @@ const FlowersCart = ({
         setSelectList={setSelectList}
         greenFlowersData={greenFlowersData}
       />
-
-      {openGemini && (
-        <Gemini
-          flowerList={generateList}
-          openGemini={openGemini}
-          setOpenGemini={setOpenGemini}
-          setGetImage={setGetImage}
-        />
-      )}
     </div>
   );
 };

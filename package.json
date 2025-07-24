@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google/genai": "^1.10.0",
     "@uidotdev/usehooks": "^2.4.1",
     "d3": "^7.9.0",
     "d3-cloud": "^1.2.7",
