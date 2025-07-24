@@ -19,11 +19,15 @@ const customStyles = {
 
 const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
   const [generatedImage, setGeneratedImage] = useState("");
-  const [prompt, setPrompt] = useState(
-    `${flowerList}のデータをもとに花束の画像を生成して。ラッピングは任せる`
-  );
   const [error, setError] = useState("");
 
+  const promptFlowerList = flowerList.map((flower) => flower.name);
+  const createPrompt = `${promptFlowerList.join(
+    ","
+  )}の花を使用した花束の画像を生成して。ラッピングは任せる。`;
+
+  // const createPrompt =
+  //   "薔薇、カーネーションの花を使った花束の画像を生成して。ラッピングは任せる";
   useEffect(() => {
     const fetchImage = async () => {
       setError("");
@@ -31,15 +35,14 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
         const ai = new GoogleGenAI({
           apiKey: import.meta.env.VITE_GEMINI_API_KEY,
         });
-
         const response = await ai.models.generateContent({
           model: "gemini-2.0-flash-preview-image-generation",
-          contents: prompt,
+          contents: createPrompt,
           config: {
             responseModalities: [Modality.TEXT, Modality.IMAGE],
           },
         });
-
+        console.log(response.candidates[0].content.parts);
         if (
           response.candidates &&
           response.candidates[0] &&
