@@ -3,6 +3,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
 import { MdCancel } from "react-icons/md";
+import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
+import { GiThreeLeaves } from "react-icons/gi";
 
 const FlowersCart = ({
   selectList,
@@ -80,19 +82,17 @@ const FlowersCart = ({
     setFlowersList(newFlowersList);
   }, [selectList, greenFlowersData, allFlowersData]);
 
-  console.log(flowersList);
-  console.log("selectList", selectList);
   // 花束生成につかうListの作成
   const [generateList, setGenerateList] = useState([]);
 
   // 花色テーマの定義
   const colorThemes = {
-    0: { color: "#dc8cc359", name: "ピンク系" },
+    0: { color: "#db9dc759", name: "ピンク系" },
     1: { color: "#FFFFFF", name: "白系" },
-    2: { color: "#e2ab6263", name: "黄・オレンジ系" },
-    3: { color: "#dc5f785e", name: "赤系" },
-    4: { color: "#7b8ee155", name: "青・青紫系" },
-    5: { color: "#DFF3ED", name: "グリーン系" },
+    2: { color: "#d7ba9463", name: "黄・オレンジ系" },
+    3: { color: "#d194a05e", name: "赤系" },
+    4: { color: "#9aa5d655", name: "青・青紫系" },
+    5: { color: "#d0f0d655", name: "グリーン系" },
   };
 
   // console.log("flowersList", flowersList);
@@ -123,7 +123,7 @@ const FlowersCart = ({
       return {
         name: flower.name,
         color: flower.color,
-        role: flowerRoles[index],
+        role: flower.color === 5 ? "green" : flowerRoles[index],
         image: flower.image,
       };
     });
@@ -133,9 +133,23 @@ const FlowersCart = ({
   const getButtonText = (role) => {
     switch (role) {
       case "main":
-        return "メインフラワー";
+        return (
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
+          >
+            <PiFlowerFill size="1rem" /> メインフラワー
+          </span>
+        );
       case "sub":
-        return "サブフラワー";
+        return (
+          <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+            <PiFlowerLight size="1rem" /> サブフラワー
+          </span>
+        );
       default:
         return "花束の役割を決める";
     }
@@ -154,7 +168,6 @@ const FlowersCart = ({
 
   const handleMenuClick = (menuItem, flowerIndex) => {
     // console.log("クリックされました:", menuItem, flowerIndex);
-    console.log(flowerRoles);
     let newRole;
     if (menuItem === "メインフラワーに設定する") {
       newRole = "main";
@@ -186,7 +199,12 @@ const FlowersCart = ({
     });
   };
 
-  console.log("selectList", selectList);
+  console.log("hoveredFlower", hoveredFlower);
+  console.log("generateList", generateList);
+  // name,color,role
+  console.log("flowerRoles", flowerRoles);
+  // Object { 0: "none", 1: "main", 2: "none" }
+
   return (
     <div>
       <header className="cart-header">
@@ -212,7 +230,7 @@ const FlowersCart = ({
                   onClick={() => deleteFlowerList(flowers)}
                 />
                 <div
-                  key={index}
+                  // key={index}
                   className="flower-card-cart"
                   style={{ backgroundColor: colorThemes[flowers.color]?.color }}
                 >
@@ -223,31 +241,56 @@ const FlowersCart = ({
                       {/* 花言葉:  */}
                       {flowers.meaning.join(",")}
                     </div>
-                    <div
-                      className="dropdown-content"
-                      // ホバー時
-                      onMouseEnter={() => setHoveredFlower(index)}
-                      // マウスが離れた時
-                      onMouseLeave={() => setHoveredFlower(null)}
-                    >
-                      <button className="setting-flower">
-                        {getButtonText(flowerRoles[index])}
+
+                    {flowers.color === 5 ? (
+                      <button className="greenRole">
+                        <span
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "5px",
+                          }}
+                        >
+                          <GiThreeLeaves size="1rem" />
+                          グリーン
+                        </span>
                       </button>
-                      {hoveredFlower === index ? (
-                        <div className="dropdown-menu">
-                          {getMenuItems(flowerRoles[index]).map(
-                            (item, itemIndex) => (
-                              <div
-                                key={itemIndex}
-                                onClick={() => handleMenuClick(item, index)}
-                              >
-                                {item}
-                              </div>
-                            )
-                          )}
-                        </div>
-                      ) : null}
-                    </div>
+                    ) : (
+                      // ここで役割を決める
+                      <div
+                        className="dropdown-content"
+                        // ホバー時
+                        onMouseEnter={() => setHoveredFlower(index)}
+                        // マウスが離れた時
+                        onMouseLeave={() => setHoveredFlower(null)}
+                      >
+                        <button
+                          className={`setting-flower ${
+                            flowerRoles[index] === "main"
+                              ? "main-flower"
+                              : flowerRoles[index] === "sub"
+                              ? "sub-flower"
+                              : ""
+                          }`}
+                        >
+                          {getButtonText(flowerRoles[index])}
+                        </button>
+                        {hoveredFlower === index && (
+                          <div className="dropdown-menu">
+                            {getMenuItems(flowerRoles[index]).map(
+                              (item, itemIndex) => (
+                                <div
+                                  key={itemIndex}
+                                  onClick={() => handleMenuClick(item, index)}
+                                >
+                                  {item}
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   <div className="cart-overview">
