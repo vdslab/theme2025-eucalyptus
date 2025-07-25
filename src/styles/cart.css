@@ -51,6 +51,10 @@
   height: 32px;
 }
 
+.resetCart-button:hover {
+  background-color: #fbf8fc;
+}
+
 .green-modal {
   /* background-color: rgb(103, 192, 162); */
   background-color: #84c890;
@@ -179,7 +183,7 @@
 }
 .cart-cards-grid {
   display: grid;
-  padding: 5% 0;
+  padding: 2% 0;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;
@@ -225,4 +229,40 @@
 
 .dropdown-menu > div:last-child {
   border-bottom: none;
+}
+
+.number-setting-content {
+  display: flex;
+  padding: 0 40px;
+  padding-top: 20px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.number-button {
+  background-color: white;
+  color: #475569;
+  border: 1px solid #c3c4f1;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 7px;
+  height: 32px;
+}
+
+.number-button:hover {
+  background-color: #fbf8fc;
+}
+
+.number-area {
+  background-color: white;
+  color: #475569;
+  border: 2px solid #c3c4f1;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 35px;
 }

@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/cart.css";
 import ModalPage from "./function/ModalPage";
 import { MdCancel } from "react-icons/md";
+import { TbExposureMinus1, TbExposurePlus1 } from "react-icons/tb";
 import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
 import { GiThreeLeaves } from "react-icons/gi";
 
@@ -98,6 +99,31 @@ const FlowersCart = ({
   // console.log("flowersList", flowersList);
   // Array [ {…}, {…} ]形式で、name,color,bloomTime,meaning[]が受け取れる
 
+  // 本数設定
+  const [flowerCount, setFlowerCount] = useState({});
+
+  useEffect(() => {
+    if (flowersList.length > 0) {
+      setFlowerCount((prev) => {
+        const newCount = { ...prev };
+        flowersList.forEach((_, index) => {
+          if (newCount[index] === undefined) {
+            newCount[index] = 1;
+          }
+        });
+        return newCount;
+      });
+    }
+  }, [flowersList.length]);
+
+  const settingNumber = (index, change) => {
+    setFlowerCount((prev) => ({
+      ...prev,
+
+      [index]: Math.max(1, prev[index] + change),
+    }));
+  };
+
   // 花束の役割を決める
   // ホバーされた花のindex
   const [hoveredFlower, setHoveredFlower] = useState(null);
@@ -124,11 +150,12 @@ const FlowersCart = ({
         name: flower.name,
         color: flower.color,
         role: flower.color === 5 ? "green" : flowerRoles[index],
+        count: flowerCount[index],
         image: flower.image,
       };
     });
     setGenerateList(newGenerateList);
-  }, [flowersList, flowerRoles]);
+  }, [flowersList, flowerRoles, flowerCount]);
 
   const getButtonText = (role) => {
     switch (role) {
@@ -199,10 +226,10 @@ const FlowersCart = ({
     });
   };
 
-  console.log("hoveredFlower", hoveredFlower);
-  console.log("generateList", generateList);
+  // console.log("hoveredFlower", hoveredFlower);
+  // console.log("generateList", generateList);
   // name,color,role
-  console.log("flowerRoles", flowerRoles);
+  // console.log("flowerRoles", flowerRoles);
   // Object { 0: "none", 1: "main", 2: "none" }
 
   return (
@@ -304,6 +331,22 @@ const FlowersCart = ({
                       className="flower-image"
                     />
                   </div>
+                </div>
+                <div className="number-setting-content">
+                  <button
+                    className="number-button"
+                    onClick={() => settingNumber(index, -1)}
+                  >
+                    <TbExposureMinus1 size="1.1rem" />
+                  </button>
+
+                  <div className="number-area">{flowerCount[index]}</div>
+                  <button
+                    className="number-button"
+                    onClick={() => settingNumber(index, 1)}
+                  >
+                    <TbExposurePlus1 size="1.1rem" />
+                  </button>
                 </div>
               </div>
             ))}
