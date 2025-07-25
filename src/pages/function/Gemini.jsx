@@ -21,13 +21,14 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [error, setError] = useState("");
 
-  const promptFlowerList = flowerList.map((flower) => flower.name);
+  const promptFlowerList = flowerList.map(
+    (flower) => `${flower.name},花の画像${flower.image}`
+  );
   const createPrompt = `${promptFlowerList.join(
     ","
   )}の花を使用した花束の画像を生成して。ラッピングは任せる。`;
+  console.log(createPrompt);
 
-  // const createPrompt =
-  //   "薔薇、カーネーションの花を使った花束の画像を生成して。ラッピングは任せる";
   useEffect(() => {
     const fetchImage = async () => {
       setError("");
