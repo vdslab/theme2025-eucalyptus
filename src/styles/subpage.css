@@ -16,7 +16,7 @@
 
 .header-section {
   flex-shrink: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .main-title {
   font-size: 1.5rem;
@@ -25,11 +25,47 @@
   color: #323b49;
 }
 
+.tags-container-wrapper {
+  position: relative;
+}
 .tags-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin: 0 2px;
+  padding: 2px 0;
+  padding-left: 2px;
+  overflow: hidden;
+}
+
+.tags-container.collapsed {
+  max-height: 40px;
+}
+
+.tags-container.expanded {
+  max-height: 500px;
+}
+
+.toggle-button {
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  z-index: 1;
+  padding: 0.5rem 0.6rem;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+
+.toggle-button.expanded {
+  background-color: #323b49;
+  color: white;
+}
+
+.toggle-button.collapsed {
+  background-color: white;
+  color: #374151;
 }
 
 .tag-item {
@@ -78,6 +114,7 @@
 
 .flower-card {
   background-color: white;
+  color: #374151;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /* padding: 1.5rem; */
@@ -96,7 +133,7 @@
 
 .flower-name {
   margin-bottom: 0.5rem;
-  min-height: 2.5rem;
+  min-height: 3.2rem;
   display: flex;
   align-items: center;
 }
@@ -112,9 +149,16 @@
   align-items: center;
 }
 
+.flower-info {
+  display: flex;
+  align-items: center;
+}
+
+.overview-text {
+  font-size: 14px;
+}
 .save-button {
   white-space: nowrap;
-  background-color: #ab93ed;
   color: white;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -123,13 +167,15 @@
   transition: background-color 0.2s;
 }
 
-.save-button:hover {
-  background-color: #9883d5;
+.save-button.in-cart {
+  background-color: rgba(128, 128, 128, 0.834);
+  border: 1px solid;
 }
 
-/* .flower-info {
-  margin-bottom: 1.5rem;
-} */
+.save-button.not-in-cart {
+  background-color: #9883d5;
+  border: 1px solid #475569;
+}
 
 .flower-image-container {
   border: 2px solid #d1d5db;

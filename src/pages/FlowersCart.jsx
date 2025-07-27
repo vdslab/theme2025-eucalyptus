@@ -266,8 +266,14 @@ const FlowersCart = ({
                   className="flower-card-cart"
                   style={{ backgroundColor: colorThemes[flowers.color]?.color }}
                 >
-                  <div className="flower-name-card">{flowers.name}</div>
-
+                  {/* <div className="flower-name-card">{flowers.name}</div> */}
+                  {/* 『を基準に改行 */}
+                  <div
+                    className="flower-name-card"
+                    dangerouslySetInnerHTML={{
+                      __html: flowers.name.replace("『", "<br />『"),
+                    }}
+                  />
                   <div>
                     <div className="cart-overview meaning-size">
                       {/* 花言葉:  */}
