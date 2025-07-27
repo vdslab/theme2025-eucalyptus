@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
 import ModalPage from "./function/ModalPage";
+import { LuCopyright } from "react-icons/lu";
 
 // データの形 memo
 //  "スプレーカーネーション『恋心』": {
@@ -121,7 +122,7 @@ const SubPage = ({
                 bloomTime: getCurrentSeason(
                   bloomTimes[0],
                   bloomTimes[bloomTimes.length - 1]
-                ),  
+                ),
                 image: flowerData["画像"] || "/images/questionMark.jpg",
               });
             }
@@ -222,12 +223,22 @@ const SubPage = ({
 
               <div className="flower-image-container">
                 <img
-                src={flowers.image}
-                alt={`${flowers.name} の画像`}
-                className="flower-image"
+                  src={flowers.image}
+                  alt={`${flowers.name} の画像`}
+                  className="flower-image"
                 />
-                </div>
-
+              </div>
+              {/* todo: クレジット記載をしているが、ハナスタ以外で記載する必要があった時に、条件の修正が必要 */}
+              <div className="credit">
+                {flowers.image !== "/images/questionMark.jpg" ? (
+                  <div className="credit-text">
+                    <LuCopyright size="0.7rem" />
+                    株式会社シフラ
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           ))}
         </div>

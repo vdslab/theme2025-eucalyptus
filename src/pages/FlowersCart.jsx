@@ -6,6 +6,7 @@ import { MdCancel } from "react-icons/md";
 import { TbExposureMinus1, TbExposurePlus1 } from "react-icons/tb";
 import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
 import { GiThreeLeaves } from "react-icons/gi";
+import { LuCopyright } from "react-icons/lu";
 import Gemini from "./function/Gemini";
 
 const FlowersCart = ({
@@ -334,6 +335,16 @@ const FlowersCart = ({
                       alt={`${flowers.name} の画像`}
                       className="flower-image"
                     />
+                  </div>
+                  <div className="credit">
+                    {flowers.image !== "/images/questionMark.jpg" ? (
+                      <div className="credit-text">
+                        <LuCopyright size="0.7rem" />
+                        株式会社シフラ
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </div>
                 <div className="number-setting-content">
