@@ -381,6 +381,15 @@ const FlowersCart = ({
             className="create-button"
             style={{ cursor: getImage ? "not-allowed" : "pointer" }}
             onClick={() => {
+              const hasGreen = generateList.some(
+                (flower) => flower.color === 5
+              );
+              if (!hasGreen) {
+                const result = window.confirm(
+                  "花束にグリーンが含まれていません。グリーンがあるとより華やかになりますが、このまま作成しますか？"
+                );
+                if (!result) return;
+              }
               setOpenGemini(true);
               setGetImage(true);
             }}

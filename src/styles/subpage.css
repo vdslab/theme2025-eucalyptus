@@ -59,13 +59,13 @@
 }
 
 .toggle-button.expanded {
-  background-color: #323b49;
-  color: white;
+  background-color: white;
+  color: #374151;
 }
 
 .toggle-button.collapsed {
-  background-color: white;
-  color: #374151;
+  background-color: #323b49;
+  color: white;
 }
 
 .tag-item {
