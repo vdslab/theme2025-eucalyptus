@@ -76,7 +76,7 @@ const ModalPage = ({
   return (
     <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
       <div className="greenModal-title-content">
-        <div className="greenModal-title">夏のグリーン系</div>
+        <div className="greenModal-title">グリーン系</div>
         <div className="greenModal-overview">
           グリーン系とは花束のバランスをとってくれる緑色のお花たちのことです。
         </div>
@@ -115,9 +115,6 @@ const ModalPage = ({
             </button>
           );
         })}
-        <button className="modal-card">
-          <div>なし</div>
-        </button>
       </div>
       <div className="modalPage-buttons">
         <button onClick={closeModal} className="modal-button apply">
