@@ -3,8 +3,9 @@ import { Link, useLocation } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
 import { LuFlower2 } from "react-icons/lu";
+import { IoSearch } from "react-icons/io5";
 
-const Header = ({ monthRange, onMonthChange }) => {
+const Header = ({ monthRange, onMonthChange, selectList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const location = useLocation();
@@ -25,8 +26,6 @@ const Header = ({ monthRange, onMonthChange }) => {
     return `${start + 1}月〜${end + 1}月`;
   };
 
-  // console.log("location.search", location.search);
-  // console.log("window.location.search", window.location.search);
   return (
     <>
       <header className="header">
@@ -37,13 +36,26 @@ const Header = ({ monthRange, onMonthChange }) => {
             onClick={() => setIsModalOpen(true)}
             className="month-select-button"
           >
-            {getCurrentSeason()}の花を探す ▼
+            {getCurrentSeason()}の花を探す
+            <IoSearch size="0.9rem" />
           </button>
         </div>
-        <Link to={`/cart${location.search}`} className="cart-button">
-          {/* 花束カート */}
-          <LuFlower2 size="1.2rem" />
-        </Link>
+        <div className="cart-link-content">
+          {selectList.length === 0 ? (
+            ""
+          ) : (
+            <div className="cart-count">{selectList.length}</div>
+          )}
+
+          <Link
+            to={`/cart${location.search}`}
+            className="cart-button"
+            title="カートページへ進む"
+          >
+            {/* 花束カート */}
+            <LuFlower2 size="1.2rem" />
+          </Link>
+        </div>
       </header>
       <MonthSelectionModal
         isOpen={isModalOpen}

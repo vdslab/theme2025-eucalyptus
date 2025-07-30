@@ -105,13 +105,17 @@
 
 .flower-card-cart {
   background-color: white;
+  color: #323b49;
   border-radius: 1rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
+  /* padding: 1.5rem; */
+  padding: 0 1.5rem;
+  padding-top: 1.5rem;
   display: flex;
   flex-direction: column;
   width: 200px;
-  height: 350px;
+  height: 400px;
+  /* height: 350px; */
 }
 
 .icon-move-down {
@@ -183,7 +187,7 @@
 }
 .cart-cards-grid {
   display: grid;
-  padding: 2% 0;
+  padding: 4% 0;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;

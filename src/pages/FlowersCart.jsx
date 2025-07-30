@@ -6,6 +6,7 @@ import { MdCancel } from "react-icons/md";
 import { TbExposureMinus1, TbExposurePlus1 } from "react-icons/tb";
 import { PiFlowerLight, PiFlowerFill } from "react-icons/pi";
 import { GiThreeLeaves } from "react-icons/gi";
+import { LuCopyright } from "react-icons/lu";
 import Gemini from "./function/Gemini";
 
 const FlowersCart = ({
@@ -258,6 +259,7 @@ const FlowersCart = ({
                 <MdCancel
                   size="2rem"
                   className="icon-move-down"
+                  title="削除する"
                   onClick={() => deleteFlowerList(flowers)}
                 />
                 <div
@@ -265,8 +267,14 @@ const FlowersCart = ({
                   className="flower-card-cart"
                   style={{ backgroundColor: colorThemes[flowers.color]?.color }}
                 >
-                  <div className="flower-name-card">{flowers.name}</div>
-
+                  {/* <div className="flower-name-card">{flowers.name}</div> */}
+                  {/* 『を基準に改行 */}
+                  <div
+                    className="flower-name-card"
+                    dangerouslySetInnerHTML={{
+                      __html: flowers.name.replace("『", "<br />『"),
+                    }}
+                  />
                   <div>
                     <div className="cart-overview meaning-size">
                       {/* 花言葉:  */}
@@ -335,6 +343,16 @@ const FlowersCart = ({
                       className="flower-image"
                     />
                   </div>
+                  <div className="credit">
+                    {flowers.image !== "/images/questionMark.jpg" ? (
+                      <div className="credit-text">
+                        <LuCopyright size="0.7rem" />
+                        株式会社シフラ
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
                 </div>
                 <div className="number-setting-content">
                   <button
@@ -364,6 +382,15 @@ const FlowersCart = ({
             className="create-button"
             style={{ cursor: getImage ? "not-allowed" : "pointer" }}
             onClick={() => {
+              const hasGreen = generateList.some(
+                (flower) => flower.color === 5
+              );
+              if (!hasGreen) {
+                const result = window.confirm(
+                  "花束にグリーンが含まれていません。グリーンがあるとより華やかになりますが、このまま作成しますか？"
+                );
+                if (!result) return;
+              }
               setOpenGemini(true);
               setGetImage(true);
             }}

@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "../styles/subpage.css";
 import ModalPage from "./function/ModalPage";
+import { LuCopyright } from "react-icons/lu";
+import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
 
 // データの形 memo
 //  "スプレーカーネーション『恋心』": {
@@ -25,11 +27,21 @@ const SubPage = ({
   // 選択した花言葉を持つ花のリスト
   const [flowersList, setFlowersList] = useState([]);
   const [childElements, setChildElements] = useState([]);
-  // 花束カートに入れたものだけを格納
-  // const [selectList, setSelectList] = useState([]);
-
   // 各花のカードへの参照を保存するためのref
   const flowerRefs = useRef({});
+  // 子要素にトグルボタンをつける
+  const [needsToggle, setNeedsToggle] = useState(false);
+  const containerRef = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      const height = containerRef.current.scrollHeight;
+      console.log("実際の高さ:", height);
+      console.log("43pxを超えているか:", height > 43);
+      setNeedsToggle(height > 43);
+    }
+  }, [childElements]);
 
   // 花色テーマの定義
   const colorThemes = {
@@ -59,8 +71,6 @@ const SubPage = ({
       }
     });
   };
-
-  // console.log("selectList:", selectList);
 
   // カートに入ってるか否か
   const isFlowerInCart = (flowerName) => {
@@ -121,7 +131,7 @@ const SubPage = ({
                 bloomTime: getCurrentSeason(
                   bloomTimes[0],
                   bloomTimes[bloomTimes.length - 1]
-                ),  
+                ),
                 image: flowerData["画像"] || "/images/questionMark.jpg",
               });
             }
@@ -167,26 +177,47 @@ const SubPage = ({
           「{selectedWordData.selectedWord}」が含まれる花言葉
         </div>
 
-        <div className="tags-container">
-          {/* 花色　これはtagじゃなくても良い　背景に入れてみたい */}
+        <div className="tags-container-wrapper">
           <div
-            className="color-tag-item"
-            style={{ background: flowerColor.color }}
+            className={`tags-container ${
+              isExpanded ? "expanded" : "collapsed"
+            }`}
+            ref={containerRef}
           >
-            {flowerColor.name}
-          </div>
-          {/* 子要素一覧 */}
-          {childElements.map((element, index) => (
-            <button
-              key={index}
-              className="tag-item"
-              onClick={() => {
-                scrollToFlowerWithMeaning(element);
-              }}
+            {/* 花色　これはtagじゃなくても良い　背景に入れてみたい */}
+            <div
+              className="color-tag-item"
+              style={{ background: flowerColor.color }}
             >
-              {element}
+              {flowerColor.name}
+            </div>
+            {/* 子要素一覧 */}
+            {childElements.map((element, index) => (
+              <button
+                key={index}
+                className="tag-item"
+                onClick={() => {
+                  scrollToFlowerWithMeaning(element);
+                }}
+              >
+                {element}
+              </button>
+            ))}
+          </div>
+          {needsToggle && (
+            <button
+              className={`toggle-button ${
+                isExpanded ? "expanded" : "collapsed"
+              }`}
+              onClick={() => setIsExpanded(!isExpanded)}
+            >
+              {isExpanded ? (
+                <FaAngleUp size="1rem" />
+              ) : (
+                <FaAngleDown size="1rem" />
+              )}
             </button>
-          ))}
+          )}
         </div>
       </div>
 
@@ -202,14 +233,24 @@ const SubPage = ({
                 }
               }}
             >
-              <div className="flower-name">{flowers.name}</div>
-
+              {/* 『を基準に改行 */}
+              <div
+                className="flower-name"
+                dangerouslySetInnerHTML={{
+                  __html: flowers.name.replace("『", "<br />『"),
+                }}
+              />
               <div className="flower-content">
                 <div className="flower-meanings">
-                  花言葉: {flowers.meanings.join(",")}
+                  花言葉：{" "}
+                  <div className="overview-text">
+                    {flowers.meanings.join(",")}
+                  </div>
                 </div>
                 <button
-                  className="save-button"
+                  className={`save-button ${
+                    isFlowerInCart(flowers.name) ? "in-cart" : "not-in-cart"
+                  }`}
                   onClick={() => toggleFlowerInCart(flowers)}
                 >
                   {isFlowerInCart(flowers.name)
@@ -218,16 +259,29 @@ const SubPage = ({
                 </button>
               </div>
 
-              <div className="flower-info">開花時期: {flowers.bloomTime}</div>
+              <div className="flower-info">
+                開花時期：{" "}
+                <div className="overview-text">{flowers.bloomTime}</div>
+              </div>
 
               <div className="flower-image-container">
                 <img
-                src={flowers.image}
-                alt={`${flowers.name} の画像`}
-                className="flower-image"
+                  src={flowers.image}
+                  alt={`${flowers.name} の画像`}
+                  className="flower-image"
                 />
-                </div>
-
+              </div>
+              {/* todo: クレジット記載をしているが、ハナスタ以外で記載する必要があった時に、条件の修正が必要 */}
+              <div className="credit">
+                {flowers.image !== "/images/questionMark.jpg" ? (
+                  <div className="credit-text">
+                    <LuCopyright size="0.7rem" />
+                    株式会社シフラ
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           ))}
         </div>
