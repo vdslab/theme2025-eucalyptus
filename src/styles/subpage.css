@@ -39,10 +39,12 @@
 
 .tags-container.collapsed {
   max-height: 40px;
+  max-width: 550px;
 }
 
 .tags-container.expanded {
   max-height: 500px;
+  max-width: 550px;
 }
 
 .toggle-button {

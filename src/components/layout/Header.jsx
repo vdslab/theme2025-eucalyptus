@@ -4,7 +4,7 @@ import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
 import { LuFlower2 } from "react-icons/lu";
 
-const Header = ({ monthRange, onMonthChange }) => {
+const Header = ({ monthRange, onMonthChange, selectList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const location = useLocation();
@@ -25,8 +25,6 @@ const Header = ({ monthRange, onMonthChange }) => {
     return `${start + 1}月〜${end + 1}月`;
   };
 
-  // console.log("location.search", location.search);
-  // console.log("window.location.search", window.location.search);
   return (
     <>
       <header className="header">
@@ -40,10 +38,17 @@ const Header = ({ monthRange, onMonthChange }) => {
             {getCurrentSeason()}の花を探す ▼
           </button>
         </div>
-        <Link to={`/cart${location.search}`} className="cart-button">
-          {/* 花束カート */}
-          <LuFlower2 size="1.2rem" />
-        </Link>
+        <div className="cart-link-content">
+          <div className="cart-count">{selectList.length}</div>
+          <Link
+            to={`/cart${location.search}`}
+            className="cart-button"
+            title="カートページへ進む"
+          >
+            {/* 花束カート */}
+            <LuFlower2 size="1.2rem" />
+          </Link>
+        </div>
       </header>
       <MonthSelectionModal
         isOpen={isModalOpen}

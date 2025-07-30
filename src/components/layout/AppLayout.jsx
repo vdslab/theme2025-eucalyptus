@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-// import { useUrlParams } from "./utils/urlParams";
 import { useUrlParams } from "../../utils/urlParams";
 import Header from "./Header";
 import MainPage from "../../pages/MainPage";
@@ -93,7 +92,11 @@ const AppLayout = () => {
         path="/"
         element={
           <div className="app-container">
-            <Header monthRange={monthRange} onMonthChange={setMonthRange} />
+            <Header
+              monthRange={monthRange}
+              onMonthChange={setMonthRange}
+              selectList={selectList}
+            />
             <main className="main-content">
               <div className="content-wrapper">
                 <div className="left-Panel">

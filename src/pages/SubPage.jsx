@@ -72,8 +72,6 @@ const SubPage = ({
     });
   };
 
-  // console.log("selectList:", selectList);
-
   // カートに入ってるか否か
   const isFlowerInCart = (flowerName) => {
     return selectList.some(
