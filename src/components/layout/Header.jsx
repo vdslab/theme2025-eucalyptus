@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import "../../styles/layout.css";
 import MonthSelectionModal from "../MonthSelectionModal";
 import { LuFlower2 } from "react-icons/lu";
+import { IoSearch } from "react-icons/io5";
 
 const Header = ({ monthRange, onMonthChange, selectList }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -35,11 +36,17 @@ const Header = ({ monthRange, onMonthChange, selectList }) => {
             onClick={() => setIsModalOpen(true)}
             className="month-select-button"
           >
-            {getCurrentSeason()}の花を探す ▼
+            {getCurrentSeason()}の花を探す
+            <IoSearch size="0.9rem" />
           </button>
         </div>
         <div className="cart-link-content">
-          <div className="cart-count">{selectList.length}</div>
+          {selectList.length === 0 ? (
+            ""
+          ) : (
+            <div className="cart-count">{selectList.length}</div>
+          )}
+
           <Link
             to={`/cart${location.search}`}
             className="cart-button"

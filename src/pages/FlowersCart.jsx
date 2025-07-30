@@ -259,6 +259,7 @@ const FlowersCart = ({
                 <MdCancel
                   size="2rem"
                   className="icon-move-down"
+                  title="削除する"
                   onClick={() => deleteFlowerList(flowers)}
                 />
                 <div
