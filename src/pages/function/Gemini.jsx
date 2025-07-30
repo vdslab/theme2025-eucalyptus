@@ -21,13 +21,56 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [error, setError] = useState("");
 
-  const promptFlowerList = flowerList.map(
-    (flower) => `${flower.name},花の画像${flower.image}`
+  const changeBase64 = async (url) => {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result.split(",")[1];
+        resolve(base64);
+      };
+      reader.readAsDataURL(blob);
+    });
+  };
+
+  const [promptImgList, setPromptImgList] = useState([]);
+
+  // const test = [
+  //   "of two",
+  //   " Celebrity Queen lisianthus flowers",
+  //   "two Prima Donna Alstroemeria flowers.",
+  // ];
+  // const createPrompt = `Create a bouquet${test.join(
+  //   "、"
+  // )}I'll leave the wrapping to you.`;
+
+  useEffect(() => {
+    const convertImagesToBase64 = async () => {
+      try {
+        const base64Images = await Promise.all(
+          flowerList.map((flower) => changeBase64(flower.image))
+        );
+        setPromptImgList(base64Images);
+        console.log("Base64 converted images:", base64Images);
+      } catch (error) {
+        console.error("Error converting images to base64:", error);
+      }
+    };
+
+    if (flowerList && flowerList.length > 0) {
+      convertImagesToBase64();
+    }
+  }, [flowerList]);
+
+  const prompt = flowerList.map(
+    (flower, index) =>
+      `${flower.name},${flower.count}本,${promptImgList[index]}`
   );
-  const createPrompt = `${promptFlowerList.join(
-    ","
-  )}の花を使用した花束の画像を生成して。ラッピングは任せる。`;
-  console.log(createPrompt);
+
+  const createPrompt = `ピンク色の${prompt.join(
+    "、"
+  )}の花束を作って。ラッピングは任せ。`;
 
   useEffect(() => {
     const fetchImage = async () => {
