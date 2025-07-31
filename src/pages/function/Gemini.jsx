@@ -64,13 +64,14 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
   }, [flowerList]);
 
   const prompt = flowerList.map(
-    (flower, index) =>
-      `${flower.name},${flower.count}本,${promptImgList[index]}`
+    (flower, index) => `${flower.count},${flower.en},image: ${flower.image} `
   );
 
-  const createPrompt = `ピンク色の${prompt.join(
+  console.log("pronpt", prompt);
+
+  const createPrompt = `Create a bouquet of${prompt.join(
     "、"
-  )}の花束を作って。ラッピングは任せ。`;
+  )}I will leave the wrapping to you.`;
 
   useEffect(() => {
     const fetchImage = async () => {
