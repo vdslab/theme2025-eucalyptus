@@ -43,6 +43,7 @@ const FlowersCart = ({
           meaning: [greenData.花言葉],
           bloomTimes: greenData.開花時期,
           image: greenData.image || "/images/questionMark.jpg",
+          en: greenData.en || flowerName,
           credit: " ",
         };
       }
@@ -57,6 +58,7 @@ const FlowersCart = ({
       meaning: allMeanings,
       bloomTimes: matchedData.開花時期,
       image: matchedData.画像 || "/images/questionMark.jpg",
+      en: matchedData.en || flowerName,
       credit: matchedData.クレジット || "株式会社シフラ",
     };
   };
@@ -84,6 +86,7 @@ const FlowersCart = ({
         bloomTime: getCurrentSeason(flowerData.bloomTimes),
         meaning: flowerData.meaning,
         image: flowerData.image,
+        en: flowerData.en,
         credit: flowerData.credit,
       };
     });
@@ -160,6 +163,7 @@ const FlowersCart = ({
         role: flower.color === 5 ? "green" : flowerRoles[index],
         count: flowerCount[index],
         image: flower.image,
+        en: flower.en,
       };
     });
     setGenerateList(newGenerateList);
