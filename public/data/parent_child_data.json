@@ -9,7 +9,8 @@
       "color": "色",
       "blooming_period": "開花期",
       "image": "写真",
-      "en": "英語表記"
+      "en": "英語表記",
+      "credit": "クレジット 空白の場合=パブリックドメイン 無記載の場合=ハナスタ"
     }
   },
   "flowers": {
@@ -563,7 +564,8 @@
       },
       "開花時期": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
       "画像": "/images/pink_flower/ローズゼラニウム.jpeg",
-      "en": "Geranium Rose Geranium"
+      "en": "Geranium Rose Geranium",
+      "クレジット": " "
     },
     "トルコキキョウ セレブピンク": {
       "花色": "0",

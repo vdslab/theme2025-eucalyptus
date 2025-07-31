@@ -43,6 +43,7 @@ const FlowersCart = ({
           meaning: [greenData.花言葉],
           bloomTimes: greenData.開花時期,
           image: greenData.image || "/images/questionMark.jpg",
+          credit: " ",
         };
       }
     }
@@ -56,6 +57,7 @@ const FlowersCart = ({
       meaning: allMeanings,
       bloomTimes: matchedData.開花時期,
       image: matchedData.画像 || "/images/questionMark.jpg",
+      credit: matchedData.クレジット || "株式会社シフラ",
     };
   };
 
@@ -82,6 +84,7 @@ const FlowersCart = ({
         bloomTime: getCurrentSeason(flowerData.bloomTimes),
         meaning: flowerData.meaning,
         image: flowerData.image,
+        credit: flowerData.credit,
       };
     });
 
@@ -236,7 +239,10 @@ const FlowersCart = ({
   // name,color,role
   // console.log("flowerRoles", flowerRoles);
   // Object { 0: "none", 1: "main", 2: "none" }
-
+  console.log(
+    "flowersList",
+    flowersList.map((f) => f.credit)
+  );
   return (
     <div>
       <header className="cart-header">
@@ -344,10 +350,11 @@ const FlowersCart = ({
                     />
                   </div>
                   <div className="credit">
-                    {flowers.image !== "/images/questionMark.jpg" ? (
+                    {flowers.credit !== " " ? (
                       <div className="credit-text">
                         <LuCopyright size="0.7rem" />
-                        株式会社シフラ
+                        {/* 株式会社シフラ */}
+                        {flowers.credit}
                       </div>
                     ) : (
                       ""
