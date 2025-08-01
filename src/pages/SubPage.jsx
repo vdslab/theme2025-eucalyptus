@@ -56,7 +56,9 @@ const SubPage = ({
   const toggleFlowerInCart = (flowers) => {
     setSelectList((prevList) => {
       const findIndex = prevList.findIndex(
-        (item) => item.name === flowers.name && item.color === activeSlide
+        (item) =>
+          item.name === flowers.name &&
+          item.color === selectedWordData.flowerColorIndex
       );
       if (findIndex >= 0) {
         const newList = [...prevList];
@@ -65,7 +67,7 @@ const SubPage = ({
       } else {
         const flowerWithColor = {
           name: flowers.name,
-          color: activeSlide,
+          color: selectedWordData.flowerColorIndex,
         };
         return [...prevList, flowerWithColor];
       }
@@ -75,7 +77,9 @@ const SubPage = ({
   // カートに入ってるか否か
   const isFlowerInCart = (flowerName) => {
     return selectList.some(
-      (item) => item.name === flowerName && item.color === activeSlide
+      (item) =>
+        item.name === flowerName &&
+        item.color === selectedWordData.flowerColorIndex
     );
   };
 
