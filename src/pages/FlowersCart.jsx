@@ -243,10 +243,10 @@ const FlowersCart = ({
   // name,color,role
   // console.log("flowerRoles", flowerRoles);
   // Object { 0: "none", 1: "main", 2: "none" }
-  console.log(
-    "flowersList",
-    flowersList.map((f) => f.credit)
-  );
+  // console.log(
+  //   "flowersList",
+  //   flowersList.map((f) => f.credit)
+  // );
   return (
     <div>
       <header className="cart-header">
@@ -288,7 +288,7 @@ const FlowersCart = ({
                   <div>
                     <div className="cart-overview meaning-size">
                       {/* 花言葉:  */}
-                      {flowers.meaning.join(",")}
+                      {flowers.meaning.join("・")}
                     </div>
 
                     {flowers.color === 5 ? (

@@ -56,7 +56,9 @@ const SubPage = ({
   const toggleFlowerInCart = (flowers) => {
     setSelectList((prevList) => {
       const findIndex = prevList.findIndex(
-        (item) => item.name === flowers.name && item.color === activeSlide
+        (item) =>
+          item.name === flowers.name &&
+          item.color === selectedWordData.flowerColorIndex
       );
       if (findIndex >= 0) {
         const newList = [...prevList];
@@ -65,7 +67,7 @@ const SubPage = ({
       } else {
         const flowerWithColor = {
           name: flowers.name,
-          color: activeSlide,
+          color: selectedWordData.flowerColorIndex,
         };
         return [...prevList, flowerWithColor];
       }
@@ -75,7 +77,9 @@ const SubPage = ({
   // カートに入ってるか否か
   const isFlowerInCart = (flowerName) => {
     return selectList.some(
-      (item) => item.name === flowerName && item.color === activeSlide
+      (item) =>
+        item.name === flowerName &&
+        item.color === selectedWordData.flowerColorIndex
     );
   };
 
@@ -125,6 +129,7 @@ const SubPage = ({
                 childElementsSet.add(meaning);
               });
 
+              const imageUrl = flowerData["画像"] || "/images/questionMark.jpg";
               flowersWithWord.push({
                 name: flowerName,
                 meanings: flowerData.花言葉[selectedWord],
@@ -132,7 +137,11 @@ const SubPage = ({
                   bloomTimes[0],
                   bloomTimes[bloomTimes.length - 1]
                 ),
-                image: flowerData["画像"] || "/images/questionMark.jpg",
+                image: imageUrl,
+                credit:
+                  imageUrl === "/images/questionMark.jpg"
+                    ? " "
+                    : flowerData.クレジット || "株式会社シフラ",
               });
             }
           }
@@ -152,6 +161,10 @@ const SubPage = ({
     );
   }
 
+  console.log(
+    "flowersList",
+    flowersList.map((f) => f.credit)
+  );
   const flowerColorIndex = selectedWordData.flowerColorIndex;
   const flowerColor = colorThemes[flowerColorIndex];
 
@@ -274,10 +287,11 @@ const SubPage = ({
               </div>
               {/* todo: クレジット記載をしているが、ハナスタ以外で記載する必要があった時に、条件の修正が必要 */}
               <div className="credit">
-                {flowers.image !== "/images/questionMark.jpg" ? (
+                {flowers.credit !== " " ? (
                   <div className="credit-text">
                     <LuCopyright size="0.7rem" />
-                    株式会社シフラ
+                    {/* 株式会社シフラ */}
+                    {flowers.credit}
                   </div>
                 ) : (
                   ""
