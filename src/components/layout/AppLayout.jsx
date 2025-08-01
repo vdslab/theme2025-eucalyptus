@@ -5,6 +5,7 @@ import Header from "./Header";
 import MainPage from "../../pages/MainPage";
 import SubPage from "../../pages/SubPage";
 import ModalPage from "../../pages/function/ModalPage";
+import FlowersMain from "../../pages/FlowersMain";
 import FlowersCart from "../../pages/FlowersCart";
 import "../../styles/layout.css";
 
@@ -99,7 +100,11 @@ const AppLayout = () => {
             />
             <main className="main-content">
               <div className="content-wrapper">
-                <div className="left-Panel">
+                <div
+                  className={`left-Panel ${
+                    selectList.length > 0 ? "with-flower" : ""
+                  }`}
+                >
                   <MainPage
                     activeSlide={activeSlide}
                     setActiveSlide={setActiveSlide}
@@ -118,6 +123,16 @@ const AppLayout = () => {
                     setSelectList={setSelectList}
                   />
                 </div>
+                {selectList.length > 0 && (
+                  <div className="flowers-panel">
+                    <FlowersMain
+                      allFlowersData={allFlowersData}
+                      selectList={selectList}
+                      setSelectList={setSelectList}
+                      greenFlowersData={greenFlowersData}
+                    />
+                  </div>
+                )}
               </div>
             </main>
           </div>

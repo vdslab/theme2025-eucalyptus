@@ -265,7 +265,7 @@ const FlowersCart = ({
         <div className="cart-card-scroll">
           <div className="cart-cards-grid">
             {flowersList.map((flowers, index) => (
-              <div key={index}>
+              <div key={index} className="cart-cards">
                 <MdCancel
                   size="2rem"
                   className="icon-move-down"

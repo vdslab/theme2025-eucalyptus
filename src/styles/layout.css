@@ -18,8 +18,8 @@
 .left-Panel {
   width: 60%;
   overflow: hidden;
-  /* background-color: aliceblue; */
   background-color: #faf9f7;
+  transition: width 0.3s ease;
 }
 
 .right-Panel {
@@ -29,6 +29,17 @@
   height: calc(100vh - 90px);
   padding: 1rem;
   align-content: center;
+}
+
+.left-Panel.with-flower {
+  width: 50%;
+}
+.flowers-panel {
+  width: 10%;
+  height: calc(100vh - 58px);
+  border-left: 1px solid #e5e7eb;
+  background-color: #faf9f7;
+  overflow-y: auto;
 }
 
 /* ヘッダー */

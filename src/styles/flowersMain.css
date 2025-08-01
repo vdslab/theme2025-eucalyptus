@@ -1,0 +1,64 @@
+.flowersMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.flowersMain-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.flowersMain-image-content {
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  height: 7rem;
+  width: 7rem;
+  overflow: hidden;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flower-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.icon-flowers-cancel {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: rgba(128, 128, 128, 0.834);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+.icon-flowers-cancel:hover {
+  color: gray;
+}
+
+.main-cart-button {
+  background-color: white;
+  color: #475569;
+  border: 1px solid #c3c4f1;
+  padding: 2px 9px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+
+  display: flex;
+  align-items: center;
+}
+
+.main-cart-button:hover {
+  background-color: #fbf8fc;
+}
