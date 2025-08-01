@@ -129,6 +129,7 @@ const SubPage = ({
                 childElementsSet.add(meaning);
               });
 
+              const imageUrl = flowerData["画像"] || "/images/questionMark.jpg";
               flowersWithWord.push({
                 name: flowerName,
                 meanings: flowerData.花言葉[selectedWord],
@@ -136,7 +137,11 @@ const SubPage = ({
                   bloomTimes[0],
                   bloomTimes[bloomTimes.length - 1]
                 ),
-                image: flowerData["画像"] || "/images/questionMark.jpg",
+                image: imageUrl,
+                credit:
+                  imageUrl === "/images/questionMark.jpg"
+                    ? " "
+                    : flowerData.クレジット || "株式会社シフラ",
               });
             }
           }
@@ -156,6 +161,10 @@ const SubPage = ({
     );
   }
 
+  console.log(
+    "flowersList",
+    flowersList.map((f) => f.credit)
+  );
   const flowerColorIndex = selectedWordData.flowerColorIndex;
   const flowerColor = colorThemes[flowerColorIndex];
 
@@ -278,10 +287,11 @@ const SubPage = ({
               </div>
               {/* todo: クレジット記載をしているが、ハナスタ以外で記載する必要があった時に、条件の修正が必要 */}
               <div className="credit">
-                {flowers.image !== "/images/questionMark.jpg" ? (
+                {flowers.credit !== " " ? (
                   <div className="credit-text">
                     <LuCopyright size="0.7rem" />
-                    株式会社シフラ
+                    {/* 株式会社シフラ */}
+                    {flowers.credit}
                   </div>
                 ) : (
                   ""
