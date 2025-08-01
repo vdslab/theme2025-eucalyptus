@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
-import WordCloud from "./function/wordCloud";
+import WordCloud from "./function/WordCloud";
 
 const MainPage = ({
   activeSlide,
