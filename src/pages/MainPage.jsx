@@ -45,6 +45,7 @@ const MainPage = ({
     "#DC5766",
     "#7A71E1",
   ];
+  const selectColors = ["#A70B76", "#01030d", "#B56904", "#B10327", "#05219F"];
 
   // 花色別にワードクラウドデータを生成する関数
   const generateWordCloudData = (flowerColor) => {
@@ -140,9 +141,10 @@ const MainPage = ({
                       height={windowSize.height * 0.79}
                       data={currentWordCloudData}
                       fontFamily="Noto Sans JP"
-                      slideIndex={index}
+                      slideIndex={activeSlide}
                       slideColor={slideColors[index]}
                       slideColorHover={slideColorsHover[index]}
+                      selectColors={selectColors[index]}
                       onWordClick={handleWordClick}
                     />
                   ) : (

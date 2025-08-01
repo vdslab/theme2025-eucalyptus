@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import * as d3Cloud from "d3-cloud";
 
 const WordCloud = ({
@@ -9,12 +9,17 @@ const WordCloud = ({
   fontFamily,
   slideColor,
   slideColorHover,
+  selectColors,
+  slideIndex,
   onWordClick,
 }) => {
   const ref = useRef();
+  const [selectedWord, setSelectedWord] = useState(null);
 
-  // 単一の色を使用
-  // const mainColor = "#4A90E2"; // 青系の色
+  // スライドが変更リセット
+  useEffect(() => {
+    setSelectedWord(null);
+  }, [slideIndex]);
 
   useEffect(() => {
     if (data && data.length > 0) {
@@ -34,31 +39,45 @@ const WordCloud = ({
           // .style("fill", (d) => {
           //   return d3.color(mainColor).copy({ opacity: 0.8 });
           // })
-          .style("fill", slideColor)
+          .style("fill", (d) => {
+            return selectedWord === d.text ? selectColors : slideColor;
+          })
           .attr("text-anchor", "middle")
           .attr("dominant-baseline", "central")
+          .attr(
+            "transform",
+            (d) => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`
+          )
           .on("mouseover", function (event, d) {
-            d3.select(this).style("fill", slideColorHover);
+            if (selectedWord !== d.text) {
+              d3.select(this).style("fill", slideColorHover);
+            }
           })
-
           .on("mouseout", function (event, d) {
-            d3.select(this).style("fill", slideColor);
+            if (selectedWord !== d.text) {
+              d3.select(this).style("fill", slideColor);
+            }
           })
-
           .on("click", function (event, d) {
             console.log("WordCloudでクリックされた単語:", d.text);
-            //todo: クリックされている単語がわかりやすいように、デザインを変える
+
+            // 前に選択されていたワードがある場合は色をリセット
+            if (selectedWord && selectedWord !== d.text) {
+              g.selectAll("text")
+                .filter((textData) => textData.text === selectedWord)
+                .style("fill", slideColor);
+            }
+
+            if (selectedWord !== d.text) {
+              setSelectedWord(d.text);
+              d3.select(this).style("fill", selectColors);
+            }
 
             // 親コンポーネントに単語を通知
             if (onWordClick) {
               onWordClick(d.text);
             }
           })
-
-          .attr(
-            "transform",
-            (d) => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`
-          )
           .text((d) => d.text);
       };
 
@@ -72,7 +91,6 @@ const WordCloud = ({
         .fontSize((d) => Math.min(Math.max(d.value * 5, 20), 40))
         .spiral("archimedean")
         .random(d3.randomLcg(42))
-
         .on("end", draw);
 
       layout.start();
@@ -84,6 +102,8 @@ const WordCloud = ({
     fontFamily,
     slideColor,
     slideColorHover,
+    selectColors,
+    selectedWord,
     onWordClick,
   ]);
 
