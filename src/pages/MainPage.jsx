@@ -7,7 +7,7 @@ const MainPage = ({
   setActiveSlide,
   monthRange,
   onWordSelect,
-  onFlowersDataLoad,
+  allFlowersData,
 }) => {
   const totalSlides = 5;
 
@@ -28,9 +28,6 @@ const MainPage = ({
     width: window.innerWidth,
     height: window.innerHeight,
   });
-
-  const [allFlowersData, setAllFlowersData] = useState({});
-  const [loading, setLoading] = useState(true);
 
   const title = [
     "ピンク系の花の花言葉",
@@ -91,26 +88,11 @@ const MainPage = ({
     });
   }, [allFlowersData, monthRange]);
 
+  // データ存在チェック用の変数追加
+  const isDataLoaded = allFlowersData && allFlowersData.flowers;
+
+  // useEffectをリサイズ専用に変更
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/data/parent_child_data.json");
-        const data = await res.json();
-        setAllFlowersData(data);
-
-        if (onFlowersDataLoad) {
-          onFlowersDataLoad(data);
-        }
-
-        setLoading(false);
-      } catch (error) {
-        console.error("データの読み込みエラー:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-
     const reSizeWindow = () => {
       setWindowSize({
         width: window.innerWidth,
@@ -118,9 +100,9 @@ const MainPage = ({
       });
     };
     window.addEventListener("resize", reSizeWindow);
-    //コンポーネントのアンマウント時(コンポーネントがwebページを離れたとき)に実行する関数
+
     return () => window.removeEventListener("resize", reSizeWindow);
-  }, [onFlowersDataLoad]);
+  }, []);
 
   const handleWordClick = (word) => {
     console.log("クリックされた単語:", word, "現在のスライド:", activeSlide);
@@ -152,7 +134,7 @@ const MainPage = ({
             return (
               <div className="carousel-slide" key={index}>
                 <div className="slide-content">
-                  {!loading && currentWordCloudData.length > 0 ? (
+                  {isDataLoaded && currentWordCloudData.length > 0 ? (
                     <WordCloud
                       width={windowSize.width * 0.5}
                       height={windowSize.height * 0.79}
@@ -171,7 +153,9 @@ const MainPage = ({
                         color: "#666",
                       }}
                     >
-                      {loading ? "データ読み込み中..." : "データがありません"}
+                      {!isDataLoaded
+                        ? "データ読み込み中..."
+                        : "データがありません"}
                     </div>
                   )}
                 </div>

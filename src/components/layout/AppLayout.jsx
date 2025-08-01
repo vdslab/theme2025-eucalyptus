@@ -5,22 +5,9 @@ import Header from "./Header";
 import MainPage from "../../pages/MainPage";
 import SubPage from "../../pages/SubPage";
 import ModalPage from "../../pages/function/ModalPage";
+import FlowersMain from "../../pages/FlowersMain";
 import FlowersCart from "../../pages/FlowersCart";
 import "../../styles/layout.css";
-
-// const AppLayout = ({ children, monthRange, onMonthChange, rightContent }) => {
-//   return (
-//     <div className="app-container">
-//       <Header monthRange={monthRange} onMonthChange={onMonthChange} />
-//       <main className="main-content">
-//         <div className="content-wrapper">
-//           <div className="left-Panel">{children}</div>
-//           <div className="right-Panel">{rightContent}</div>
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
 
 const AppLayout = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -99,13 +86,17 @@ const AppLayout = () => {
             />
             <main className="main-content">
               <div className="content-wrapper">
-                <div className="left-Panel">
+                <div
+                  className={`left-Panel ${
+                    selectList.length > 0 ? "with-flower" : ""
+                  }`}
+                >
                   <MainPage
                     activeSlide={activeSlide}
                     setActiveSlide={setActiveSlide}
                     monthRange={monthRange}
                     onWordSelect={handleWordSelect}
-                    onFlowersDataLoad={setAllFlowersData}
+                    allFlowersData={allFlowersData}
                   />
                 </div>
                 <div className="right-Panel">
@@ -118,6 +109,16 @@ const AppLayout = () => {
                     setSelectList={setSelectList}
                   />
                 </div>
+                {selectList.length > 0 && (
+                  <div className="flowers-panel">
+                    <FlowersMain
+                      allFlowersData={allFlowersData}
+                      selectList={selectList}
+                      setSelectList={setSelectList}
+                      greenFlowersData={greenFlowersData}
+                    />
+                  </div>
+                )}
               </div>
             </main>
           </div>

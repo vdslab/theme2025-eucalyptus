@@ -50,7 +50,7 @@ const Header = ({ monthRange, onMonthChange, selectList }) => {
           <Link
             to={`/cart${location.search}`}
             className="cart-button"
-            title="カートページへ進む"
+            title="花束作成ページへ進む"
           >
             {/* 花束カート */}
             <LuFlower2 size="1.2rem" />

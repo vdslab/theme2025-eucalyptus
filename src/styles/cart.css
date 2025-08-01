@@ -91,9 +91,8 @@
 
 .cart-card-scroll {
   max-width: 100%;
-  /* height: calc(100% - 65px); */
   height: 100%;
-  /* padding: 20px 0; */
+  /* height: calc(100% - 80px); */
   overflow-y: auto;
   display: flex;
   justify-content: center;
@@ -101,6 +100,10 @@
 
 .cart-by-side {
   display: block;
+}
+
+.cart-cards {
+  position: relative;
 }
 
 .flower-card-cart {
@@ -119,8 +122,13 @@
 }
 
 .icon-move-down {
-  transform: translateY(30px) translateX(-10px);
+  position: absolute;
+  top: -10px;
+  right: -10px;
   color: rgba(128, 128, 128, 0.834);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
 }
 .icon-move-down:hover {
   color: gray;
@@ -191,7 +199,6 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1.5rem;
   align-items: stretch;
-  /* margin-bottom: 5px; */
 }
 
 @media (max-width: 1200px) {

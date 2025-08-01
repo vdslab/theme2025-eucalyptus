@@ -269,6 +269,7 @@ const SubPage = ({
                   src={flowers.image}
                   alt={`${flowers.name} の画像`}
                   className="flower-image"
+                  loading="lazy"
                 />
               </div>
               {/* todo: クレジット記載をしているが、ハナスタ以外で記載する必要があった時に、条件の修正が必要 */}
