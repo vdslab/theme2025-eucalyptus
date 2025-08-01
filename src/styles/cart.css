@@ -128,7 +128,6 @@
   color: rgba(128, 128, 128, 0.834);
   border-radius: 50%;
   cursor: pointer;
-  z-index: 10;
 }
 .icon-move-down:hover {
   color: gray;
