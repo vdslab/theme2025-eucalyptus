@@ -45,11 +45,14 @@ const ModalPage = ({
             bloomTimes[0],
             bloomTimes[bloomTimes.length - 1]
           ),
+          en: flowerData.en,
           image: flowerData.image,
         });
       }
     );
   }
+
+  console.log(greenFlowerData);
 
   const closeModal = () => {
     return setIsOpen(false);
