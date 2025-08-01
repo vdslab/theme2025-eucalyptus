@@ -95,8 +95,6 @@ const CircularMonthSlider = ({ start, end, onChange }) => {
     // 角度から月を計算し、対応する季節を検索
     const angle = getAngleFromCoord(x, y);
     const month = monthFromAngle(angle);
-    console.log(angle);
-    console.log(month);
 
     return seasons.find((season) => season.months.includes(month));
   };

@@ -391,7 +391,10 @@ const FlowersCart = ({
           </button>
           <button
             className="create-button"
-            style={{ cursor: getImage ? "not-allowed" : "pointer" }}
+            disabled={selectList.length === 0 ? true : false}
+            style={{
+              cursor: selectList.length === 0 ? "not-allowed" : "pointer",
+            }}
             onClick={() => {
               const hasGreen = generateList.some(
                 (flower) => flower.color === 5
