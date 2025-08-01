@@ -21,9 +21,10 @@ const FlowersMain = ({
         };
       }
     }
-    const foundEntry = Object.entries(allFlowersData.flowers).find(
-      ([name, data]) => name === flowerName && data.花色 === String(color)
-    );
+    const foundEntry =
+      Object.entries(allFlowersData.flowers).find(
+        ([name, data]) => name === flowerName && data.花色 === String(color)
+      ) || [];
 
     const [matchedName, matchedData] = foundEntry;
     return { image: matchedData.画像 || "/images/questionMark.jpg" };
