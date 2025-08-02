@@ -52,8 +52,6 @@ const ModalPage = ({
     );
   }
 
-  console.log(greenFlowerData);
-
   const closeModal = () => {
     return setIsOpen(false);
   };

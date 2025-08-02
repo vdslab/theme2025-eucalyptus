@@ -56,7 +56,6 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
     }
   }, [flowerList]);
 
-  console.log("flower", flowerList);
   const prompt = flowerList.map(
     (flower) => `${flower.count} ${color[flower.color]} ${flower.en}`
   );
@@ -103,7 +102,6 @@ const Gemini = ({ flowerList, openGemini, setOpenGemini, setGetImage }) => {
           setError("画像の生成に失敗しました");
         }
       } catch (error) {
-        console.error("Error generating image:", error);
         setError("エラーが発生しました: " + error.message);
       } finally {
         setGetImage(false);

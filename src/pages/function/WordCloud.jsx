@@ -59,8 +59,6 @@ const WordCloud = ({
             }
           })
           .on("click", function (event, d) {
-            console.log("WordCloudでクリックされた単語:", d.text);
-
             // 前に選択されていたワードがある場合は色をリセット
             if (selectedWord && selectedWord !== d.text) {
               g.selectAll("text")
