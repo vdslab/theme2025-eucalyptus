@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import "../styles/carousel.css";
 import WordCloud from "./function/WordCloud";
+import Bunsan from "./function/Bunsan";
 
 const MainPage = ({
   activeSlide,
@@ -115,87 +116,93 @@ const MainPage = ({
 
   return (
     <div>
-      <div className="carousel-container">
-        {/* ページのタイトル */}
-        <div className="cluster-title">
-          {[...Array(totalSlides)].map((_, index) => (
-            <div key={index}>{activeSlide === index && title[index]}</div>
-          ))}
-        </div>
-        {/* カルーセルトラック - 横スクロールするコンテナ */}
-        <div
-          className="carousel-track"
-          style={{ transform: `translateX(-${activeSlide * 100}%)` }}
-        >
-          {[...Array(totalSlides)].map((_, index) => {
-            // スライドごとに花色を決定
-            //0から順に"ピンク系","白系","黄・オレンジ系","赤系","青・青紫系",
-            const currentWordCloudData = allWordCloudData[index] || [];
-
-            return (
-              <div className="carousel-slide" key={index}>
-                <div className="slide-content">
-                  {isDataLoaded && currentWordCloudData.length > 0 ? (
-                    <WordCloud
-                      width={windowSize.width * 0.5}
-                      height={windowSize.height * 0.79}
-                      data={currentWordCloudData}
-                      fontFamily="Noto Sans JP"
-                      slideIndex={activeSlide}
-                      slideColor={slideColors[index]}
-                      slideColorHover={slideColorsHover[index]}
-                      selectColors={selectColors[index]}
-                      onWordClick={handleWordClick}
-                    />
-                  ) : (
-                    <div
-                      style={{
-                        textAlign: "center",
-                        fontSize: "18px",
-                        color: "#666",
-                      }}
-                    >
-                      {!isDataLoaded
-                        ? "データ読み込み中..."
-                        : "データがありません"}
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/*左*/}
-        <button
-          className="carousel-nav-btn carousel-prev"
-          onClick={goToPrevSlide}
-        >
-          &#9664;
-        </button>
-
-        {/*右*/}
-        <button
-          className="carousel-nav-btn carousel-next"
-          onClick={goToNextSlide}
-        >
-          &#9654;
-        </button>
-
-        {/*ドット*/}
-        <div className="carousel-dots">
-          {[...Array(totalSlides)].map((_, index) => (
-            <div
-              key={index}
-              className={`carousel-dot ${
-                activeSlide === index ? "active" : ""
-              }`}
-              onClick={() => goToSlide(index)}
-            />
-          ))}
-        </div>
-      </div>
+      <Bunsan
+        width={windowSize.width * 0.5}
+        height={windowSize.height * 0.79}
+      />
     </div>
+    // <div>
+    //   <div className="carousel-container">
+    //     {/* ページのタイトル */}
+    //     <div className="cluster-title">
+    //       {[...Array(totalSlides)].map((_, index) => (
+    //         <div key={index}>{activeSlide === index && title[index]}</div>
+    //       ))}
+    //     </div>
+    //     {/* カルーセルトラック - 横スクロールするコンテナ */}
+    //     <div
+    //       className="carousel-track"
+    //       style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+    //     >
+    //       {[...Array(totalSlides)].map((_, index) => {
+    //         // スライドごとに花色を決定
+    //         //0から順に"ピンク系","白系","黄・オレンジ系","赤系","青・青紫系",
+    //         const currentWordCloudData = allWordCloudData[index] || [];
+
+    //         return (
+    //           <div className="carousel-slide" key={index}>
+    //             <div className="slide-content">
+    //               {isDataLoaded && currentWordCloudData.length > 0 ? (
+    //                 <WordCloud
+    //                   width={windowSize.width * 0.5}
+    //                   height={windowSize.height * 0.79}
+    //                   data={currentWordCloudData}
+    //                   fontFamily="Noto Sans JP"
+    //                   slideIndex={activeSlide}
+    //                   slideColor={slideColors[index]}
+    //                   slideColorHover={slideColorsHover[index]}
+    //                   selectColors={selectColors[index]}
+    //                   onWordClick={handleWordClick}
+    //                 />
+    //               ) : (
+    //                 <div
+    //                   style={{
+    //                     textAlign: "center",
+    //                     fontSize: "18px",
+    //                     color: "#666",
+    //                   }}
+    //                 >
+    //                   {!isDataLoaded
+    //                     ? "データ読み込み中..."
+    //                     : "データがありません"}
+    //                 </div>
+    //               )}
+    //             </div>
+    //           </div>
+    //         );
+    //       })}
+    //     </div>
+
+    //     {/*左*/}
+    //     <button
+    //       className="carousel-nav-btn carousel-prev"
+    //       onClick={goToPrevSlide}
+    //     >
+    //       &#9664;
+    //     </button>
+
+    //     {/*右*/}
+    //     <button
+    //       className="carousel-nav-btn carousel-next"
+    //       onClick={goToNextSlide}
+    //     >
+    //       &#9654;
+    //     </button>
+
+    //     {/*ドット*/}
+    //     <div className="carousel-dots">
+    //       {[...Array(totalSlides)].map((_, index) => (
+    //         <div
+    //           key={index}
+    //           className={`carousel-dot ${
+    //             activeSlide === index ? "active" : ""
+    //           }`}
+    //           onClick={() => goToSlide(index)}
+    //         />
+    //       ))}
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
