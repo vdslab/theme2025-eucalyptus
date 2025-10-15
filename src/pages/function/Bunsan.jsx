@@ -12,7 +12,7 @@ const Bunsan = ({ height, width }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("/data/tsne_flower.json");
+        const res = await fetch("/data/umap1_flower.json");
         const data = await res.json();
         console.log(data);
         setBunsanData(data);
@@ -66,11 +66,11 @@ const Bunsan = ({ height, width }) => {
       {bunsanData.map((d, i) => (
         <image
           key={i}
-          href={`/images/pink_flower/${d.filename}`}
+          href={`/images/all_flower/${d.filename}`}
           x={xScale(d.x)}
           y={yScale(d.y)}
-          height={40}
-          width={40}
+          height={20}
+          width={20}
           preserveAspectRatio="xMidYMid slice"
           style={{
             cursor: "pointer",

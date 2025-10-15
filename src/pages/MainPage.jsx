@@ -117,7 +117,7 @@ const MainPage = ({
   return (
     <div>
       <Bunsan
-        width={windowSize.width * 0.5}
+        width={windowSize.width * 0.6}
         height={windowSize.height * 0.79}
       />
     </div>
