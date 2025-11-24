@@ -84,6 +84,31 @@ function App() {
     console.log(`${colorName}で${matches.length}件見つかりました`);
   };
 
+  const handleMonthSearch = () => {
+    const matchMonth = Object.entries(flowerMetadata)
+      .filter(([filename, data]) => {
+        const { start, end } = monthRange;
+        if (!data.bloom_season || !Array.isArray(data.bloom_season)) {
+          return false;
+        }
+        if (start <= end) {
+          return data.bloom_season.some(
+            (month) => month >= start && month <= end
+          );
+        } else {
+          return data.bloom_season.some(
+            (month) => month >= start || month <= end
+          );
+        }
+      })
+      .map(([filename, data]) => ({
+        filename: filename,
+        bloom_season: data.bloom_season,
+      }));
+    console.log("matchMonth:", matchMonth);
+    setFloweringMatchNodes(matchMonth);
+  };
+
   const handleClearSearch = () => {
     setColorMatchedNodes([]); // 検索結果をクリア
   };
@@ -107,6 +132,7 @@ function App() {
         onFloweringPeriodClose={() => setIsFloweringPeriodOpen(false)}
         monthRange={monthRange}
         onMonthChange={setMonthRange}
+        onFloweringPeriodSelect={handleMonthSearch}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz

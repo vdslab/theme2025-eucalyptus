@@ -16,6 +16,7 @@ const Header = ({
   onFloweringPeriodClose,
   monthRange,
   onMonthChange,
+  onFloweringPeriodSelect,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
@@ -61,6 +62,7 @@ const Header = ({
             onClose={onFloweringPeriodClose}
             monthRange={monthRange}
             onMonthChange={onMonthChange}
+            onFloweringPeriodSelect={onFloweringPeriodSelect}
           />
         </div>
       )}

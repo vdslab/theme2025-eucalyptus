@@ -7,6 +7,7 @@ const MonthSelectionModal = ({
   onClose,
   monthRange,
   onMonthChange,
+  onFloweringPeriodSelect,
 }) => {
   const [tempMonthRange, setTempMonthRange] = useState(monthRange);
 
@@ -30,6 +31,7 @@ const MonthSelectionModal = ({
   const handleApply = () => {
     // tempMonthRangeをApp.jsxに反映
     onMonthChange(tempMonthRange);
+    onFloweringPeriodSelect();
     onClose();
   };
 
