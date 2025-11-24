@@ -15,6 +15,9 @@ function App() {
   const [isColorSearchOpen, setIsColorSearchOpen] = useState(false);
   const [colorMatchedNodes, setColorMatchedNodes] = useState([]);
 
+  //開花時期パネル
+  const [isFloweringPeriodOpen, setIsFloweringPeriodOpen] = useState(false);
+
   // モバイル版は画像生成の箇所を開閉する
   const [isGenerationOpen, setIsGenerationOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState(50); // 初期値50vh
@@ -97,6 +100,9 @@ function App() {
         onColorSearchClose={() => setIsColorSearchOpen(false)}
         onColorSelect={handleColorSearch}
         onClearSearch={handleClearSearch}
+        onFloweringPeriodClick={() => setIsFloweringPeriodOpen(true)}
+        isFloweringPeriodOpen={isFloweringPeriodOpen}
+        onFloweringPeriodClose={() => setIsFloweringPeriodOpen(false)}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz

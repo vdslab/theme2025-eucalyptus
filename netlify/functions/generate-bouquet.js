@@ -1,35 +1,20 @@
-exports.handler = async (event, context) => {
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+import { GoogleGenAI } from "@google/genai";
+
+export async function handler(event, context) {
+  const body = JSON.parse(event.body);
+  const prompt = body.prompt;
+
+  const ai = new GoogleGenAI({
+    apiKey: process.env.GEMINI_API_KEY,  // ← ここは安全
+  });
+
+  const response = await ai.models.generateContent({
+    model: "gemini-2.0-flash-preview-image-generation",
+    contents: prompt,
+  });
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(response),
   };
-
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 200, headers, body: "" };
-  }
-
-  try {
-    const { flowerList } = JSON.parse(event.body);
-
-    console.log("Received flowers:", flowerList);
-
-    // まずはテスト用のレスポンスを返す
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({
-        success: true,
-        message: "Function is working!",
-        receivedFlowers: flowerList,
-      }),
-    };
-  } catch (error) {
-    console.error("Error:", error);
-    return {
-      statusCode: 500,
-      headers,
-      body: JSON.stringify({ error: error.message }),
-    };
-  }
-};
+}
