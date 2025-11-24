@@ -14,10 +14,11 @@ const Header = ({
   onFloweringPeriodClick,
   isFloweringPeriodOpen,
   onFloweringPeriodClose,
+  monthRange,
+  onMonthChange,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
-  const [monthRange, setMonthRange] = useState({ start: 0, end: 11 });
   return (
     <>
       <header className="flex justify-between items-center bg-[#fff4cc] px-4 py-3 md:px-8 md:py-4">
@@ -59,7 +60,7 @@ const Header = ({
             isOpen={isFloweringPeriodOpen}
             onClose={onFloweringPeriodClose}
             monthRange={monthRange}
-            onMonthChange={setMonthRange}
+            onMonthChange={onMonthChange}
           />
         </div>
       )}

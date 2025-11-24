@@ -17,6 +17,7 @@ function App() {
 
   //開花時期パネル
   const [isFloweringPeriodOpen, setIsFloweringPeriodOpen] = useState(false);
+  const [monthRange, setMonthRange] = useState({ start: 0, end: 11 });
 
   // モバイル版は画像生成の箇所を開閉する
   const [isGenerationOpen, setIsGenerationOpen] = useState(false);
@@ -103,6 +104,8 @@ function App() {
         onFloweringPeriodClick={() => setIsFloweringPeriodOpen(true)}
         isFloweringPeriodOpen={isFloweringPeriodOpen}
         onFloweringPeriodClose={() => setIsFloweringPeriodOpen(false)}
+        monthRange={monthRange}
+        onMonthChange={setMonthRange}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz
