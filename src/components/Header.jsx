@@ -1,4 +1,4 @@
-import "../styles/Header.css";
+import "../styles/header.css";
 import ColorSearch from "./ColorSearch";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
