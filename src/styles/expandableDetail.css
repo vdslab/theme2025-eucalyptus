@@ -1,0 +1,32 @@
+.expandable-detail {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  width: 16rem;
+  height: 21rem;
+  z-index: 1000;
+  background-color: rgb(241, 239, 239);
+  color: #282f3a;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 7px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0; */
+}
+
+.close-button:hover {
+  color: #000;
+}
