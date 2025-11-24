@@ -3,6 +3,7 @@ import ColorSearch from "./ColorSearch";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
+import MonthSelectionModal from "./MonthSelectionModal";
 
 const Header = ({
   onColorSearchClick,
@@ -10,6 +11,11 @@ const Header = ({
   onColorSearchClose,
   onColorSelect,
   onClearSearch,
+  onFloweringPeriodClick,
+  isFloweringPeriodOpen,
+  onFloweringPeriodClose,
+  monthRange,
+  onMonthChange,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
@@ -23,7 +29,9 @@ const Header = ({
           <button className="search-button" onClick={onColorSearchClick}>
             色から探す
           </button>
-          <button className="search-button">開花時期から探す</button>
+          <button className="search-button" onClick={onFloweringPeriodClick}>
+            開花時期から探す
+          </button>
           <button className="search-button">イベントから探す</button>
         </div>
         {/* モバイル版：ハンバーガーメニュー */}
@@ -43,6 +51,16 @@ const Header = ({
             onColorSelect={onColorSelect}
             onClearSearch={onClearSearch}
             isMobile={false}
+          />
+        </div>
+      )}
+      {isFloweringPeriodOpen && (
+        <div>
+          <MonthSelectionModal
+            isOpen={isFloweringPeriodOpen}
+            onClose={onFloweringPeriodClose}
+            monthRange={monthRange}
+            onMonthChange={onMonthChange}
           />
         </div>
       )}
