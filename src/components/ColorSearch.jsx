@@ -1,6 +1,5 @@
 import "../styles/colorSearch.css";
 import { useState } from "react";
-import { RxCross2 } from "react-icons/rx";
 
 const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
   const presetColors = [
@@ -14,63 +13,60 @@ const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
   ];
 
   const [colorCode, setColorCode] = useState("");
+  const [colorName, setColorName] = useState("");
 
   return (
-    <div className="color-search-panel">
-      {/* todo:画面外を触った場合に閉じるようにする */}
-      <button onClick={onClose} className="close-button">
-        <RxCross2 />
-      </button>
-
-      {/* 選択中の色*/}
-      <div className="selected-color-display">
-        <div
-          className="color-preview-box"
-          style={{ backgroundColor: colorCode || "#CCCCCC" }}
-        />
-        <span className="selected-text">
-          選択中の色 {colorCode || "未選択"}
-        </span>
-
-        <button
-          className="search-button"
-          onClick={() => onColorSelect(colorCode)}
-        >
-          検索
-        </button>
-        <button
-          className="search-button"
-          onClick={() => {
-            setColorCode("");
-            onClearSearch();
-          }}
-        >
-          検索を解除
-        </button>
-      </div>
-
-      {/* プリセットカラー */}
-      <div className="preset-colors">
-        {presetColors.map((color) => (
-          <div key={color.name} className="color-item">
-            <button
-              className="color-chip"
-              style={{ backgroundColor: color.hex }}
-              onClick={() => {
-                setColorCode(color.hex);
-                onColorSelect(color.name);
-              }}
-              title={color.name}
+    <>
+      <div className="color-search-overlay" onClick={onClose} />
+      <div className="color-search-panel" onClick={(e) => e.stopPropagation()}>
+        {/* 選択中の色*/}
+        <div className="selected-color-display">
+          <div className="display-flex">
+            <div
+              className="color-preview-box"
+              style={{ backgroundColor: colorCode || "#CCCCCC" }}
             />
-            <span className="color-name">{color.name}</span>
+            <span className="selected-text">
+              選択中の色： {colorName || colorCode || "未選択"}
+            </span>
           </div>
-        ))}
-      </div>
+          {colorName && (
+            <button
+              className="search-button"
+              onClick={() => {
+                setColorCode("");
+                setColorName("");
+                onClearSearch();
+              }}
+            >
+              絞り込みを解除
+            </button>
+          )}
+        </div>
 
-      {/* todo: 配置を整える */}
-      <div className="color-code-picker">
+        {/* プリセットカラー */}
+        <div className="preset-colors">
+          {presetColors.map((color) => (
+            <div key={color.name} className="color-item">
+              <button
+                className="color-chip"
+                style={{ backgroundColor: color.hex }}
+                onClick={() => {
+                  setColorCode(color.hex);
+                  setColorName(color.name);
+                  onColorSelect(color.name);
+                }}
+                title={color.name}
+              />
+              <span className="color-name">{color.name}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* todo: 配置を整える */}
+        {/* <div className="color-code-picker"> */}
         {/* カラーコード入力 */}
-        <div className="color-input">
+        {/* <div className="color-input">
           <span className="input-label"></span>
           <input
             type="text"
@@ -79,10 +75,10 @@ const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
             value={colorCode}
             onChange={(e) => setColorCode(e.target.value)}
           />
-        </div>
+        </div> */}
 
         {/* カラーピッカー */}
-        <div className="color-picker-wrapper">
+        {/* <div className="color-picker-wrapper">
           <input
             type="color"
             className="color-picker"
@@ -90,8 +86,9 @@ const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
           />
           <span className="picker-label">カラーピッカー</span>
         </div>
+      </div> */}
       </div>
-    </div>
+    </>
   );
 };
 
