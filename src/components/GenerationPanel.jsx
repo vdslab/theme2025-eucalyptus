@@ -1,5 +1,5 @@
 import "../styles/generationPanel.css";
-import GeminiApi from "./GeminiAPI";
+import GeminiApi from "./GeminiApi";
 const GenerationPanel = ({ flowerList }) => {
   return (
     <div className="generation">
