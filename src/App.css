@@ -1,44 +1,35 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+    /* color: #5d4037; */
+    color: #0e4037;
+  }
 }
 
-html,
-body {
-  height: 100%;
-  overflow: hidden;
-}
+@layer components {
+  .btn {
+    @apply px-3 py-1.5 bg-yellow-500 text-white text-xs rounded cursor-pointer border-none transition-colors;
+  }
 
-.container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.main-content {
-  display: flex;
-  height: calc(100vh - 60px);
-  overflow: hidden;
-  position: relative;
-}
-
-.section {
-  background-color: #faf9f7;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-}
-
-.sidebar-panels {
-  position: absolute;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  height: calc(100vh - 60px);
-  padding-right: 1.5rem;
+  .btn:hover {
+    @apply bg-yellow-900;
+  }
 }

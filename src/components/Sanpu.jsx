@@ -146,7 +146,8 @@ const Sanpu = ({
                   cy={d.y}
                   r={size / 2 + 3}
                   fill="none"
-                  stroke="#00ffc3ff"
+                  // stroke="#00ffc3ff"
+                  stroke="#FFB53E"
                   strokeWidth="4"
                 />
               )}

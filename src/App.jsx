@@ -6,6 +6,7 @@ import SelectedNodesPanel from "./components/SelectedNodesPanel";
 import GenerationPanel from "./components/GenerationPanel";
 import ColorSearch from "./components/ColorSearch";
 import { useState, useEffect } from "react";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [selectedNodes, setSelectedNodes] = useState([]);
@@ -13,6 +14,36 @@ function App() {
   // 色検索パネル
   const [isColorSearchOpen, setIsColorSearchOpen] = useState(false);
   const [colorMatchedNodes, setColorMatchedNodes] = useState([]);
+
+  // モバイル版は画像生成の箇所を開閉する
+  const [isGenerationOpen, setIsGenerationOpen] = useState(false);
+  const [sheetHeight, setSheetHeight] = useState(50); // 初期値50vh
+  const [isDragging, setIsDragging] = useState(false);
+  const [startY, setStartY] = useState(0);
+
+  // モバイル版の画面制御
+  const handleDragStart = (e) => {
+    setIsDragging(true);
+    setStartY(e.touches ? e.touches[0].clientY : e.clientY);
+  };
+  // ドラッグ中
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+
+    const currentY = e.touches ? e.touches[0].clientY : e.clientY;
+    const deltaY = startY - currentY; // 上にスワイプで正の値
+    const windowHeight = window.innerHeight;
+    // 高さ20〜80vhの範囲
+    const newHeight = Math.min(
+      80,
+      Math.max(20, sheetHeight + (deltaY / windowHeight) * 100)
+    );
+    setSheetHeight(newHeight);
+    setStartY(currentY);
+  };
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
 
   // meta.json読み込み
   const [flowerMetadata, setFlowerMetadata] = useState(null);
@@ -59,16 +90,15 @@ function App() {
   console.log("selectData", selectedData);
 
   return (
-    <div className="container">
-      <Header onColorSearchClick={() => setIsColorSearchOpen(true)} />
-      {isColorSearchOpen && (
-        <ColorSearch
-          onClose={() => setIsColorSearchOpen(false)}
-          onColorSelect={handleColorSearch}
-          onClearSearch={handleClearSearch}
-        />
-      )}
-      <main className="main-content">
+    <div className="h-screen flex flex-col overflow-hidden">
+      <Header
+        onColorSearchClick={() => setIsColorSearchOpen(true)}
+        isColorSearchOpen={isColorSearchOpen}
+        onColorSearchClose={() => setIsColorSearchOpen(false)}
+        onColorSelect={handleColorSearch}
+        onClearSearch={handleClearSearch}
+      />
+      <main className="flex-1 flex relative overflow-hidden">
         <ColorViz
           onNodeClick={setSelectedData}
           onNodesSelect={setSelectedNodes}
@@ -78,7 +108,7 @@ function App() {
         />
 
         {selectedNodes.length > 0 && (
-          <div className="sidebar-panels">
+          <div className="hidden md:flex md:absolute md:right-0 md:flex-col md:gap-4 md:h-full md:pr-6 md:w-80">
             <SelectedNodesPanel
               selectedNodes={selectedNodes}
               onNodeRemove={handleNodeRemove}
@@ -89,12 +119,97 @@ function App() {
         )}
 
         {selectedData && (
-          <ExpandableDetail
-            data={selectedData}
-            onClose={() => setSelectedData(null)}
-          />
+          <>
+            <div className="hidden md:block">
+              <ExpandableDetail
+                data={selectedData}
+                onClose={() => setSelectedData(null)}
+                isMobile={false}
+                flowerMetadata={flowerMetadata}
+              />
+            </div>
+            <div className="md:hidden fixed bottom-20 left-0 right-0 top-20 z-20 px-4 pointer-events-none">
+              <div className="pointer-events-auto">
+                <ExpandableDetail
+                  data={selectedData}
+                  onClose={() => setSelectedData(null)}
+                  isMobile={true}
+                  flowerMetadata={flowerMetadata}
+                />
+              </div>
+            </div>
+          </>
         )}
       </main>
+
+      {selectedNodes.length > 0 && (
+        <div
+          className="md:hidden fixed bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-lg z-40  flex flex-col transition-all"
+          style={{
+            height: `${sheetHeight}vh`,
+            maxHeight: "80vh",
+            minHeight: "20vh",
+          }}
+        >
+          {/* ヘッダーを触った際に、高さを変えられる */}
+          <div
+            className="flex-shrink-0 cursor-grab active:cursor-grabbing select-none"
+            onTouchStart={handleDragStart}
+            onTouchMove={handleDragMove}
+            onTouchEnd={handleDragEnd}
+            onMouseDown={handleDragStart}
+            onMouseMove={handleDragMove}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
+          >
+            <div className="w-12 h-1 bg-gray-300 rounded-full mx-auto my-3" />
+
+            {/* ヘッダー */}
+            <div className="px-4 py-2 border-b flex items-center justify-between">
+              <p className="text-sm font-medium">
+                選択中: {selectedNodes.length}個
+              </p>
+              <button
+                onClick={handleClearAll}
+                className="btn"
+                onTouchStart={(e) => e.stopPropagation()}
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                すべてクリア
+              </button>
+            </div>
+          </div>
+
+          {/* 選択中の花リスト */}
+          <div className="flex-1 overflow-y-auto px-4">
+            <SelectedNodesPanel
+              selectedNodes={selectedNodes}
+              onNodeRemove={handleNodeRemove}
+              onClearAll={handleClearAll}
+              isMobile={true}
+            />
+          </div>
+
+          <div className="border-t bg-white flex-shrink-0">
+            <button
+              onClick={() => setIsGenerationOpen(!isGenerationOpen)}
+              className="w-full px-4 py-3 flex items-center justify-between text-left font-medium"
+            >
+              <span className="text-sm">花束イメージを生成</span>
+              <span className="text-xl">
+                {isGenerationOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}
+              </span>
+            </button>
+
+            {/* 画像生成 */}
+            {isGenerationOpen && (
+              <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
+                <GenerationPanel flowerList={selectedNodes} />
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
