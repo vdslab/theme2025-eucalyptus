@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import CircularMonthSlider from "../pages/function/CircularMonthSlider";
 import "../styles/modal.css";
+import CircularMonthSlider from "./CircularMonthSlider";
 
 const MonthSelectionModal = ({
   isOpen,
