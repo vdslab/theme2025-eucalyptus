@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const GeminiApi = ({ flowerList }) => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [error, setError] = useState("");
+  const createPrompt = "こんにちは";
 
   useEffect(() => {
     // flowerListが空の場合は処理しない
@@ -15,24 +16,16 @@ const GeminiApi = ({ flowerList }) => {
 
       try {
         // Netlify Functionを呼び出す
-        const response = await fetch("/.netlify/functions/generate-bouquet", {
+        const res = await fetch("/.netlify/functions/generateBouquet", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            flowerList: flowerList.map((flower) => ({
-              filename: flower.filename,
-              image: flower.image,
-            })),
-          }),
+          body: JSON.stringify({ prompt: createPrompt }),
         });
+
+        const data = await res.json();
 
         if (!response.ok) {
           throw new Error(`HTTPエラー: ${response.status}`);
         }
-
-        const data = await response.json();
 
         // Vertex AIからの画像データを処理
         if (data.imageData) {
