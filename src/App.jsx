@@ -18,6 +18,7 @@ function App() {
   //開花時期パネル
   const [isFloweringPeriodOpen, setIsFloweringPeriodOpen] = useState(false);
   const [monthRange, setMonthRange] = useState({ start: 0, end: 11 });
+  const [floweringMatchedNodes, setFloweringMatchNodes] = useState([]);
 
   // モバイル版は画像生成の箇所を開閉する
   const [isGenerationOpen, setIsGenerationOpen] = useState(false);
