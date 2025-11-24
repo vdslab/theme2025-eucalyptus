@@ -1,7 +1,12 @@
 import "../styles/colorSearch.css";
 import { useState } from "react";
 
-const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
+const ColorSearch = ({
+  onClose,
+  onColorSelect,
+  onClearSearch,
+  isMobile = false,
+}) => {
   const presetColors = [
     { name: "ピンク", hex: "#FFB6C1" },
     { name: "赤", hex: "#FF0000" },
@@ -15,6 +20,56 @@ const ColorSearch = ({ onClose, onColorSelect, onClearSearch }) => {
   const [colorCode, setColorCode] = useState("");
   const [colorName, setColorName] = useState("");
 
+  if (isMobile) {
+    // モバイル版: シンプルなレイアウト
+    return (
+      <div className="p-4">
+        {/* 選択中の色 */}
+        {colorName && (
+          <div className="mb-4 p-3 bg-white rounded-lg flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded border-2 border-gray-200"
+                style={{ backgroundColor: colorCode }}
+              />
+              <span className="text-sm">{colorName}</span>
+            </div>
+            <button
+              className="text-xs px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded transition-colors"
+              onClick={() => {
+                setColorCode("");
+                setColorName("");
+                onClearSearch();
+              }}
+            >
+              解除
+            </button>
+          </div>
+        )}
+
+        {/* プリセットカラー - 2列表示 */}
+        <div className="grid grid-cols-2 gap-2">
+          {presetColors.map((color) => (
+            <button
+              key={color.name}
+              className="flex items-center gap-2.5 p-2 hover:bg-white rounded-lg transition-colors"
+              onClick={() => {
+                setColorCode(color.hex);
+                setColorName(color.name);
+                onColorSelect(color.name);
+              }}
+            >
+              <div
+                className="w-8 h-8 rounded-full border-2 border-gray-200 flex-shrink-0"
+                style={{ backgroundColor: color.hex }}
+              />
+              <span className="text-sm">{color.name}</span>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <div className="color-search-overlay" onClick={onClose} />
