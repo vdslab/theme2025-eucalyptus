@@ -1,4 +1,4 @@
-import "../styles/ExpandableDetail.css";
+import "../styles/expandableDetail.css";
 import { RxCross2 } from "react-icons/rx";
 
 function ExpandableDetail({ data, onClose }) {
