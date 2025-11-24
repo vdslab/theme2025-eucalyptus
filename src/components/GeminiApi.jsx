@@ -1,91 +1,54 @@
 import { useEffect, useState } from "react";
-import { GoogleGenAI, Modality } from "@google/genai";
 
 const GeminiApi = ({ flowerList }) => {
   const [generatedImage, setGeneratedImage] = useState("");
   const [error, setError] = useState("");
 
-  const changeBase64 = async (url) => {
-    const response = await fetch(url);
-    const blob = await response.blob();
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64 = reader.result.split(",")[1];
-        resolve(base64);
-      };
-      reader.readAsDataURL(blob);
-    });
-  };
-
-  const [promptImgList, setPromptImgList] = useState([]);
-  const color = ["pink", "white", "yellow", "red", "blue"];
-
   useEffect(() => {
-    const convertImagesToBase64 = async () => {
-      try {
-        const base64Images = await Promise.all(
-          flowerList.map((flower) => changeBase64(flower.image))
-        );
-        setPromptImgList(
-          base64Images.map((base64) => `data:images/png;base64,${base64}`)
-        );
-      } catch (error) {
-        console.error("Error converting images to base64:", error);
-      }
-    };
+    // flowerListが空の場合は処理しない
+    if (!flowerList || flowerList.length === 0) return;
 
-    if (flowerList && flowerList.length > 0) {
-      convertImagesToBase64();
-    }
-  }, [flowerList]);
-
-  const prompt = flowerList.map((flower) => `${flower.filename}`);
-
-  const createPrompt = [
-    {
-      text: `Create a bouquet of ${prompt.join(
-        ","
-      )}. I will leave the wrapping to you.`,
-    },
-  ];
-  useEffect(() => {
     setGeneratedImage("");
+
     const fetchImage = async () => {
       setError("");
+
       try {
-        const ai = new GoogleGenAI({
-          apiKey: import.meta.env.VITE_GEMINI_API_KEY,
-        });
-        const response = await ai.models.generateContent({
-          model: "gemini-2.0-flash-preview-image-generation",
-          contents: createPrompt,
-          config: {
-            responseModalities: [Modality.TEXT, Modality.IMAGE],
+        // Netlify Functionを呼び出す
+        const response = await fetch("/.netlify/functions/generate-bouquet", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
+          body: JSON.stringify({
+            flowerList: flowerList.map((flower) => ({
+              filename: flower.filename,
+              image: flower.image,
+            })),
+          }),
         });
-        if (
-          response.candidates &&
-          response.candidates[0] &&
-          response.candidates[0].content.parts
-        ) {
-          for (const part of response.candidates[0].content.parts) {
-            if (part.inlineData) {
-              const imageData = part.inlineData.data;
-              setGeneratedImage(`data:images/png;base64,${imageData}`);
-            }
-          }
+
+        if (!response.ok) {
+          throw new Error(`HTTPエラー: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        // Vertex AIからの画像データを処理
+        if (data.imageData) {
+          setGeneratedImage(`data:image/png;base64,${data.imageData}`);
+        } else if (data.error) {
+          setError(data.error);
         } else {
           setError("画像の生成に失敗しました");
         }
       } catch (error) {
         setError("エラーが発生しました: " + error.message);
-        console.log(error.message);
+        console.error("Fetch error:", error);
       }
     };
 
     fetchImage();
-    console.log("aa");
   }, [flowerList]);
 
   return (
