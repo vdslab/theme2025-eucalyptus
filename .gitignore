@@ -147,3 +147,4 @@ create_json/output_data/processed_data.json
 
 # Local Netlify folder
 .netlify
+deno.lock
