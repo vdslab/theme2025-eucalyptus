@@ -13,13 +13,13 @@ exports.handler = async (event, context) => {
     const { prompt } = JSON.parse(event.body);
     console.log("受信したプロンプト:", prompt);
 
-    const apiKey = process.env.VITE_GEMINI_API_KEY;
+    const apiKey = process.env.API_KEY;
     if (!apiKey) {
-      throw new Error("VITE_GEMINI_API_KEY が設定されていません");
+      throw new Error("API_KEY が設定されていません");
     }
 
-    // gemini-flash-latest
-    const modelName = "gemini-flash-latest";
+    // gemini-2.5-flash-image
+    const modelName = "gemini-2.5-flash-image";
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
 
     console.log(`使用するモデル: ${modelName}`);
@@ -51,9 +51,21 @@ exports.handler = async (event, context) => {
     }
 
     const data = await response.json();
-    const generatedText = data.candidates[0].content.parts[0].text;
+    console.log("APIレスポンス構造:", JSON.stringify(data, null, 2));
 
-    console.log("生成されたテキスト:", generatedText);
+    // 画像データを取得
+    const parts = data.candidates[0].content.parts;
+
+    // inlineDataから画像を取得
+    const imagePart = parts.find((part) => part.inlineData);
+
+    if (!imagePart || !imagePart.inlineData) {
+      throw new Error("画像データが見つかりませんでした");
+    }
+
+    const imageData = imagePart.inlineData.data;
+    const mimeType = imagePart.inlineData.mimeType;
+
     console.log("使用トークン数:", data.usageMetadata);
 
     return {
@@ -61,7 +73,8 @@ exports.handler = async (event, context) => {
       headers,
       body: JSON.stringify({
         success: true,
-        text: generatedText,
+        imageData: imageData,
+        mimeType: mimeType,
         usage: data.usageMetadata, // トークン使用量
       }),
     };

@@ -114,7 +114,10 @@ function App() {
               onNodeRemove={handleNodeRemove}
               onClearAll={handleClearAll}
             />
-            <GenerationPanel flowerList={selectedNodes} />
+            <GenerationPanel
+              flowerList={selectedNodes}
+              flowerMetadata={flowerMetadata}
+            />
           </div>
         )}
 
@@ -204,7 +207,10 @@ function App() {
             {/* 画像生成 */}
             {isGenerationOpen && (
               <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
-                <GenerationPanel flowerList={selectedNodes} />
+                <GenerationPanel
+                  flowerList={selectedNodes}
+                  flowerMetadata={flowerMetadata}
+                />
               </div>
             )}
           </div>

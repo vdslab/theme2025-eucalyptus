@@ -1,9 +1,9 @@
 import "../styles/generationPanel.css";
 import GeminiApi from "./GeminiApi";
-const GenerationPanel = ({ flowerList }) => {
+const GenerationPanel = ({ flowerList, flowerMetadata }) => {
   return (
     <div className="generation">
-      <GeminiApi flowerList={flowerList} />
+      <GeminiApi flowerList={flowerList} flowerMetadata={flowerMetadata} />
     </div>
   );
 };
