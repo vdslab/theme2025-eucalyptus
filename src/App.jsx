@@ -142,6 +142,17 @@ function App() {
           selectedNodes={selectedNodes}
           colorMatchedNodes={colorMatchedNodes}
         />
+        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-2 text-center text-xs text-gray-600 z-10">
+          Photo by{" "}
+          <a
+            href="https://photosuta.hanasuta.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-gray-900"
+          >
+            ハナスタ
+          </a>
+        </div>
 
         {selectedNodes.length > 0 && (
           <div className="hidden md:flex md:absolute md:right-0 md:flex-col md:gap-4 md:h-full md:pr-6 md:w-80">
@@ -150,7 +161,10 @@ function App() {
               onNodeRemove={handleNodeRemove}
               onClearAll={handleClearAll}
             />
-            <GenerationPanel flowerList={selectedNodes} />
+            <GenerationPanel
+              flowerList={selectedNodes}
+              flowerMetadata={flowerMetadata}
+            />
           </div>
         )}
 
@@ -224,6 +238,17 @@ function App() {
               onClearAll={handleClearAll}
               isMobile={true}
             />
+            <p className="text-xs text-gray-500 mt-2 text-center">
+              Photo by{" "}
+              <a
+                href="https://photosuta.hanasuta.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-gray-900"
+              >
+                ハナスタ
+              </a>
+            </p>
           </div>
 
           <div className="border-t bg-white flex-shrink-0">
@@ -240,7 +265,10 @@ function App() {
             {/* 画像生成 */}
             {isGenerationOpen && (
               <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
-                <GenerationPanel flowerList={selectedNodes} />
+                <GenerationPanel
+                  flowerList={selectedNodes}
+                  flowerMetadata={flowerMetadata}
+                />
               </div>
             )}
           </div>
