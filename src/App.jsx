@@ -5,7 +5,7 @@ import ExpandableDetail from "./components/ExpandableDetail";
 import SelectedNodesPanel from "./components/SelectedNodesPanel";
 import GenerationPanel from "./components/GenerationPanel";
 import ColorSearch from "./components/ColorSearch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 function App() {
@@ -20,6 +20,12 @@ function App() {
   const [sheetHeight, setSheetHeight] = useState(30); // 初期値50vh
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
+
+  // 画像生成
+  const [generatedImage, setGeneratedImage] = useState("");
+  const [imageError, setImageError] = useState("");
+  const [isImageLoading, setIsImageLoading] = useState(false);
+  const prevSelectedNodesRef = useRef();
 
   // モバイル版の画面制御
   const handleDragStart = (e) => {
@@ -119,6 +125,7 @@ function App() {
         </div>
 
         {selectedNodes.length > 0 && (
+          // <div className="hidden md:block">
           <div className="hidden md:flex md:absolute md:right-0 md:flex-col md:gap-4 md:h-full md:pr-6 md:w-80">
             <SelectedNodesPanel
               selectedNodes={selectedNodes}
@@ -126,10 +133,18 @@ function App() {
               onClearAll={handleClearAll}
             />
             <GenerationPanel
-              flowerList={selectedNodes}
+              selectedNodes={selectedNodes}
               flowerMetadata={flowerMetadata}
+              generatedImage={generatedImage}
+              setGeneratedImage={setGeneratedImage}
+              error={imageError}
+              setError={setImageError}
+              loading={isImageLoading}
+              setLoading={setIsImageLoading}
+              prevSelectedNodesRef={prevSelectedNodesRef}
             />
           </div>
+          // </div>
         )}
 
         {selectedData && (
@@ -230,8 +245,15 @@ function App() {
             {isGenerationOpen && (
               <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
                 <GenerationPanel
-                  flowerList={selectedNodes}
+                  selectedNodes={selectedNodes}
                   flowerMetadata={flowerMetadata}
+                  generatedImage={generatedImage}
+                  setGeneratedImage={setGeneratedImage}
+                  error={imageError}
+                  setError={setImageError}
+                  loading={isImageLoading}
+                  setLoading={setIsImageLoading}
+                  prevSelectedNodesRef={prevSelectedNodesRef}
                 />
               </div>
             )}

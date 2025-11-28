@@ -1,14 +1,38 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const GeminiApi = ({ flowerList, flowerMetadata }) => {
-  const [generatedImage, setGeneratedImage] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
+const GeminiApi = ({
+  selectedNodes,
+  flowerMetadata,
+  generatedImage,
+  setGeneratedImage,
+  error,
+  setError,
+  loading,
+  setLoading,
+  prevSelectedNodesRef,
+}) => {
   useEffect(() => {
     // flowerListまたはflowerMetadataが空の場合は処理しない
-    if (!flowerList || flowerList.length === 0 || !flowerMetadata) return;
+    if (!selectedNodes || selectedNodes.length === 0 || !flowerMetadata) {
+      return;
+    }
 
+    // selectedNodesが実質的に変わったかチェック
+    const nodesChanged =
+      !prevSelectedNodesRef.current ||
+      prevSelectedNodesRef.current.length !== selectedNodes.length ||
+      prevSelectedNodesRef.current.some(
+        (prev, idx) => prev.filename !== selectedNodes[idx]?.filename
+      );
+
+    if (!nodesChanged) {
+      console.log("花の選択は変わっていないので、画像生成をスキップ");
+      return;
+    }
+
+    prevSelectedNodesRef.current = selectedNodes;
+
+    console.log("新しい花が選択されたので、画像生成を開始");
     setGeneratedImage("");
     setLoading(true);
 
@@ -16,17 +40,15 @@ const GeminiApi = ({ flowerList, flowerMetadata }) => {
       setError("");
 
       try {
-        // 各花のpromptを取得して組み合わせる
-        const flowerPrompts = flowerList
+        const flowerPrompts = selectedNodes
           .map((f) => {
             const metadata = flowerMetadata[f.filename];
             if (metadata && metadata.prompt) {
               return metadata.prompt;
             }
-            // promptがない場合はfilenameをフォールバック
             return f.filename;
           })
-          .filter(Boolean); // 空の値を除外
+          .filter(Boolean);
 
         if (flowerPrompts.length === 0) {
           setError("花のプロンプト情報が見つかりませんでした");
@@ -34,22 +56,18 @@ const GeminiApi = ({ flowerList, flowerMetadata }) => {
           return;
         }
 
-        // 花のプロンプトを組み合わせて画像生成用のプロンプトを作成
         const combinedPrompts = flowerPrompts.join(", ");
-        const prompt = `Please ${combinedPrompts} to create a bouquet.`;
+        const prompt = `Create a hand-tied bouquet (NOT in a vase) consisting of these flowers: ${combinedPrompts}. The bouquet should be wrapped and ready to give as a gift. Show only the flowers and wrapping, no vase or container.`;
 
         console.log("送信するプロンプト:", prompt);
         console.log("使用する花のプロンプト:", flowerPrompts);
 
-        // Netlify Functionを呼び出す
         const response = await fetch("/.netlify/functions/generate-bouquet", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            prompt: prompt,
-          }),
+          body: JSON.stringify({ prompt }),
         });
 
         console.log("ステータスコード:", response.status);
@@ -86,7 +104,7 @@ const GeminiApi = ({ flowerList, flowerMetadata }) => {
     };
 
     fetchImage();
-  }, [flowerList, flowerMetadata]);
+  }, [selectedNodes, flowerMetadata]);
 
   return (
     <div>
@@ -107,12 +125,7 @@ const GeminiApi = ({ flowerList, flowerMetadata }) => {
         )}
 
         {loading && (
-          <div
-            style={{
-              padding: "15px",
-              textAlign: "center",
-            }}
-          >
+          <div style={{ padding: "15px", textAlign: "center" }}>
             <p>花束画像を生成中...</p>
             <p style={{ fontSize: "0.9em", color: "#666" }}>
               数秒かかる場合があります
