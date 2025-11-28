@@ -17,7 +17,7 @@ function App() {
 
   // モバイル版は画像生成の箇所を開閉する
   const [isGenerationOpen, setIsGenerationOpen] = useState(false);
-  const [sheetHeight, setSheetHeight] = useState(50); // 初期値50vh
+  const [sheetHeight, setSheetHeight] = useState(30); // 初期値50vh
   const [isDragging, setIsDragging] = useState(false);
   const [startY, setStartY] = useState(0);
 

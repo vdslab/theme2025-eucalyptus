@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useRef, useEffect, useState } from "react";
 
-const margin = { top: 10, right: 10, bottom: 10, left: 10 };
+const margin = { top: 5, right: 5, bottom: 5, left: 5 };
 
 const Sanpu = ({
   height,
@@ -12,7 +12,7 @@ const Sanpu = ({
   colorMatchedNodes,
 }) => {
   const [bunsanData, setBunsanData] = useState([]);
-  const size = 65;
+  const size = width * 0.03 + height * 0.03;
   const [simulateData, setSimulateData] = useState([]);
 
   const svgRef = useRef();
@@ -40,8 +40,8 @@ const Sanpu = ({
     zoomRef.current = d3
       .zoom()
       .translateExtent([
-        [0, 0],
-        [width, height],
+        [-width / 2, -height / 2],
+        [width * 1.5, height * 1.5],
       ])
       .on("zoom", (event) => {
         const { x, y, k } = event.transform;
