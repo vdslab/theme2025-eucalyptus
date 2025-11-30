@@ -15,10 +15,16 @@ const Header = ({
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
   return (
     <>
-      <header className="flex justify-between items-center bg-[#fff4cc] px-4 py-3 md:px-8 md:py-4">
-        <h1 className=" font-dancing text-2xl md:text-3xl leading-none m-0">
+      {/* todo:今は仮の画像なので、BooPickの画像を新しく入れる必要がある */}
+      <header className="flex justify-between items-center bg-[#fff4cc] px-3 md:px-8 md:py-3">
+        {/* <h1 className=" font-dancing text-2xl md:text-3xl leading-none m-0">
           BooPick
-        </h1>
+        </h1> */}
+        <img
+          src="/images/image0.png"
+          alt="BooPick"
+          className="h-9 md:h-10 leading-none m-0"
+        />
         <div className="search-content hidden md:flex">
           <button className="search-button" onClick={onColorSearchClick}>
             色から探す
@@ -28,7 +34,7 @@ const Header = ({
         </div>
         {/* モバイル版：ハンバーガーメニュー */}
         <button
-          className="md:hidden text-2xl p-2 hover:bg-gray-100 rounded transition-colors"
+          className="md:hidden text-2xl p-3 hover:bg-gray-100 rounded transition-colors"
           onClick={() => setIsMobileMenuOpen(true)}
           aria-label="メニューを開く"
         >

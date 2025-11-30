@@ -3,8 +3,7 @@ import Header from "./components/Header";
 import ColorViz from "./components/ColorViz";
 import ExpandableDetail from "./components/ExpandableDetail";
 import SelectedNodesPanel from "./components/SelectedNodesPanel";
-import GenerationPanel from "./components/GenerationPanel";
-import ColorSearch from "./components/ColorSearch";
+import GeminiApi from "./components/GeminiApi";
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -61,6 +60,12 @@ function App() {
     };
     fetchMetadata();
   }, []);
+
+  useEffect(() => {
+    // 花の選択が変わったら既存の画像をクリア
+    setGeneratedImage("");
+    setImageError("");
+  }, [selectedNodes]);
 
   const handleNodeRemove = (nodeToRemove) => {
     setSelectedNodes((prev) =>
@@ -132,7 +137,7 @@ function App() {
               onNodeRemove={handleNodeRemove}
               onClearAll={handleClearAll}
             />
-            <GenerationPanel
+            <GeminiApi
               selectedNodes={selectedNodes}
               flowerMetadata={flowerMetadata}
               generatedImage={generatedImage}
@@ -142,6 +147,7 @@ function App() {
               loading={isImageLoading}
               setLoading={setIsImageLoading}
               prevSelectedNodesRef={prevSelectedNodesRef}
+              isMobile={false}
             />
           </div>
           // </div>
@@ -243,8 +249,8 @@ function App() {
 
             {/* 画像生成 */}
             {isGenerationOpen && (
-              <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
-                <GenerationPanel
+              <div className="px-4 pb-4 border-t max-h-96 overflow-y-auto">
+                <GeminiApi
                   selectedNodes={selectedNodes}
                   flowerMetadata={flowerMetadata}
                   generatedImage={generatedImage}
@@ -254,6 +260,7 @@ function App() {
                   loading={isImageLoading}
                   setLoading={setIsImageLoading}
                   prevSelectedNodesRef={prevSelectedNodesRef}
+                  isMobile={true}
                 />
               </div>
             )}
