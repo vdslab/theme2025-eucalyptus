@@ -6,6 +6,7 @@
     "colors_en": ["purple"],
     "prompt": "Lisianthus (Eustoma) grandiflorum Carmen Blue Rim, colors purple",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "優しさ": ["優しさ", "思いやり"],
       "希望": ["希望"]
@@ -21,7 +22,7 @@
       "hex": "#833FD3",
       "rgb": [131, 63, 211]
     },
-    "events": []
+    "events": ["お見舞い", "入学祝い"]
   },
   "アルーラ.jpeg": {
     "name": "アルーラ",
@@ -30,6 +31,7 @@
     "colors_en": ["purple"],
     "prompt": "Alstroemeria Arula, colors purple",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["持続"],
       "希望": ["未来への憧れ"],
@@ -46,7 +48,7 @@
       "hex": "#B37AC1",
       "rgb": [179, 122, 193]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "清涼殿.jpeg": {
     "name": "清涼殿",
@@ -55,6 +57,7 @@
     "colors_en": ["purple"],
     "prompt": "China Aster ’Seiryoden’ , colors purple",
     "bloom_season": [9, 10, 11],
+    "available_season": "",
     "flower_language": {
       "努力": ["忍耐"],
       "美しさ": ["優美"],
@@ -81,6 +84,7 @@
     "colors_en": ["red"],
     "prompt": "Peony Bunker Hill,  colors dark pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "謙虚": ["慎ましさ", "はじらい"],
       "嫉妬": ["憤怒", "怒り"]
@@ -105,6 +109,7 @@
     "colors_en": ["purple"],
     "prompt": "Lisianthus (Eustoma) grandiflorum Carmen Blue Rim",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["すがすがしい美しさ", "優美"],
       "希望": ["希望"]
@@ -120,7 +125,7 @@
       "hex": "#5C3084",
       "rgb": [92, 48, 132]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "ライラッククラシック.jpeg": {
     "name": "ライラッククラシック",
@@ -129,6 +134,7 @@
     "colors_en": ["purple"],
     "prompt": "Rose ’Lilac classic’",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "高貴": ["誇り"],
       "美しさ": ["気品"],
@@ -154,6 +160,7 @@
     "colors_en": ["blue"],
     "prompt": "Sea Lavender ’Aqua Blue’",
     "bloom_season": [4, 5, 6],
+    "available_season": "",
     "flower_language": {
       "永遠": ["永遠の幸福"],
       "感謝": ["感謝"],
@@ -170,7 +177,7 @@
       "hex": "#C09FCE",
       "rgb": [192, 159, 206]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ", "入学祝い"]
   },
   "マリティム.jpeg": {
     "name": "マリティム",
@@ -179,6 +186,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose ’Maritime’",
     "bloom_season": [5, 6, 7, 8, 9, 10, 11],
+    "available_season": "",
     "flower_language": {
       "愛情": ["永遠の愛"],
       "献身": ["あなたのものになりたい"]
@@ -194,7 +202,7 @@
       "hex": "#D876B3",
       "rgb": [216, 118, 179]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "クラリスピンク.jpeg": {
     "name": "クラリスピンク",
@@ -203,6 +211,7 @@
     "colors_en": ["pink"],
     "prompt": "Double Lisianthus 'Claris Pink'",
     "bloom_season": [4, 5, 6, 7, 9, 10],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -226,6 +235,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Gerbera 'Alliance'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望", "前進"],
       "優しさ": ["思いやり"],
@@ -242,7 +252,7 @@
       "hex": "#F5DAC9",
       "rgb": [245, 218, 201]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "スパークリンググラフィティ.jpeg": {
     "name": "スパークリンググラフィティ",
@@ -251,6 +261,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Rose 'Sparkling Graffiti'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -275,6 +286,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose Geranium",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "選択": ["選択"],
       "決心": ["決心"],
@@ -295,7 +307,7 @@
       "hex": "#D6B8CD",
       "rgb": [214, 184, 205]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "パーティラナンキュラ.jpeg": {
     "name": "パーティラナンキュラ",
@@ -304,6 +316,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose 'party ranunculus'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["晴れやかな魅力", "とても魅力的"]
     },
@@ -327,6 +340,7 @@
     "colors_en": ["purple"],
     "prompt": "Statice 'Noble Light'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["気品", "優美", "華麗"]
     },
@@ -350,6 +364,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Carnation 'Viper Wine'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["貴賓"],
       "感謝": ["感謝"],
@@ -366,7 +381,7 @@
       "hex": "#993f64",
       "rgb": [153, 63, 100]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "アリシア.jpeg": {
     "name": "アリシア",
@@ -375,6 +390,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Rose 'Alicia'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"],
@@ -402,6 +418,7 @@
     "colors_en": ["purple"],
     "prompt": "Double Lisianthus 'Rosina Blue Picotee'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["すがすがしい美しさ", "優美"],
       "希望": ["希望"]
@@ -417,7 +434,7 @@
       "hex": "#8953BF",
       "rgb": [137, 83, 191]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "チェリオ.jpeg": {
     "name": "チェリオ",
@@ -426,6 +443,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Carnation 'Cheerio'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["無垢で深い愛", "女性の愛", "熱愛の告白"],
       "美しさ": ["美しい仕草"],
@@ -442,7 +460,7 @@
       "hex": "#bb5367",
       "rgb": [187, 83, 103]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ"]
   },
   "キャンディータフト.jpeg": {
     "name": "キャンディータフト",
@@ -451,6 +469,7 @@
     "colors_en": ["purple"],
     "prompt": "Purple Rain Candytuft Seeds",
     "bloom_season": [4, 5, 6],
+    "available_season": "",
     "flower_language": {
       "感動": ["心をひきつける"],
       "初恋": ["初恋の思い出", "甘い誘惑"]
@@ -475,6 +494,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose Standard Aries (+)'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"],
       "美しさ": ["美しい"],
@@ -500,6 +520,7 @@
     "colors_en": ["white"],
     "prompt": "Standard Carnation 'Viper' pale color",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["無垢で深い愛"]
     },
@@ -523,6 +544,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Koigokoro' , light pink",
     "bloom_season": [4, 5, 6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純粋な愛"],
       "感動": ["感動"],
@@ -539,7 +561,7 @@
       "hex": "#D6697A",
       "rgb": [214, 105, 122]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ボヤージュライトアプリコット.jpeg": {
     "name": "ボヤージュライトアプリコット",
@@ -548,6 +570,7 @@
     "colors_en": ["pink"],
     "prompt": "Double Lisianthus 'Voyage Light Apricot'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -571,6 +594,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Angel Veil'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美", "上品"],
@@ -596,6 +620,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Blossom Pink'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -620,6 +645,7 @@
     "colors_en": ["white"],
     "prompt": "Spray Rose 'Fancy Laura'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純潔"],
       "私はあなたにふさわしい": ["私はあなたにふさわしい"],
@@ -645,6 +671,7 @@
     "colors_en": ["ピンク"],
     "prompt": "Double Lisianthus 'Granas Light Pink'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -668,6 +695,7 @@
     "colors_en": ["red"],
     "prompt": "Spray Carnation 'Minuet'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "純粋": ["素朴"]
@@ -692,6 +720,7 @@
     "colors_en": ["pink"],
     "prompt": "Chrysanthemum 'Rossano Charlotte Dark'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["真心"],
       "美しさ": ["高潔", "高貴", "貴賓"]
@@ -716,6 +745,7 @@
     "colors_en": ["pink"],
     "prompt": "Anthurium 'Maxima'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["恋にもだえる心"],
       "美しさ": ["飾らない美しさ"]
@@ -740,6 +770,7 @@
     "colors_en": ["white"],
     "prompt": "Standard Carnation 'Amico', White with pink flakes",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["純粋な愛"],
       "尊敬": ["尊敬"]
@@ -755,7 +786,7 @@
       "hex": "#F2D8CE",
       "rgb": [242, 216, 206]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ"]
   },
   "ロイヤルテン.jpeg": {
     "name": "ロイヤルテン",
@@ -764,6 +795,7 @@
     "colors_en": ["pink"],
     "prompt": "Lily-flowered Tulip 'Royal Ten'",
     "bloom_season": [12, 1, 2, 3],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛の芽生え", "誠実な愛"]
     },
@@ -778,7 +810,7 @@
       "hex": "#F19FB9",
       "rgb": [241, 159, 185]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "プリマドンナ.jpeg": {
     "name": "プリマドンナ",
@@ -787,6 +819,7 @@
     "colors_en": ["pink"],
     "prompt": "Alstroemeria 'Prima Donna'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸福"],
       "永遠": ["持続"],
@@ -806,7 +839,7 @@
       "hex": "#E7B2C7",
       "rgb": [231, 178, 199]
     },
-    "events": []
+    "events": ["入学祝い", "送別・退職祝い"]
   },
   "ピンクキャンディケーン.jpeg": {
     "name": "ピンクキャンディケーン",
@@ -815,6 +848,7 @@
     "colors_en": ["pink"],
     "prompt": "Curcuma 'Pink Candy Cane'",
     "bloom_season": [9, 10, 11],
+    "available_season": "",
     "flower_language": {
       "努力": ["忍耐"],
       "あなたの姿に酔いしれる": ["あなたの姿に酔いしれる"],
@@ -832,7 +866,7 @@
       "hex": "#B795B9",
       "rgb": [183, 149, 185]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "マルガリータ.jpeg": {
     "name": "マルガリータ",
@@ -841,6 +875,7 @@
     "colors_en": ["pink"],
     "prompt": "Dahlia 'Margarita'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優雅", "気品", "華麗"],
       "不誠実": ["移り気", "裏切り"]
@@ -865,6 +900,7 @@
     "colors_en": ["pink"],
     "prompt": "Ranunculus phalenopsis Sweet Diamond",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸福が飛んでくる"],
       "純粋": ["清純", "純粋な愛"],
@@ -882,7 +918,7 @@
       "hex": "#D9529E",
       "rgb": [217, 82, 158]
     },
-    "events": []
+    "events": ["プロポーズ", "お見舞い"]
   },
   "エースピンク.jpeg": {
     "name": "エースピンク",
@@ -891,6 +927,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose Standard Ace Pink+', colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美", "上品"],
@@ -908,7 +945,7 @@
       "hex": "#E55B64",
       "rgb": [229, 91, 100]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ファルファリーナ.jpeg": {
     "name": "ファルファリーナ",
@@ -917,6 +954,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Farfarina'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["無垢で深い愛"],
       "感謝": ["感謝"]
@@ -932,7 +970,7 @@
       "hex": "#CF5A59",
       "rgb": [207, 90, 89]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "ソルボンヌ.jpeg": {
     "name": "ソルボンヌ",
@@ -941,6 +979,7 @@
     "colors_en": ["pink"],
     "prompt": "Yuri Oriental Sorbonne, Liliaceae Lilium, colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢", "純潔", "純粋"],
       "高貴": ["威厳", "高貴"],
@@ -967,6 +1006,7 @@
     "colors_en": ["pink"],
     "prompt": "Dianthus 'Sonnet Phrase'",
     "bloom_season": [4, 5, 6],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純愛"],
       "優しさ": ["温かい心"],
@@ -983,7 +1023,7 @@
       "hex": "#BC3960",
       "rgb": [188, 57, 96]
     },
-    "events": []
+    "events": ["プロポーズ", "お見舞い"]
   },
   "ピンクレディブル！.jpeg": {
     "name": "ピンクレディブル",
@@ -992,6 +1032,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Pink Ladybull'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["気品", "上品"],
       "謙虚": ["しとやか"]
@@ -1016,6 +1057,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Fiesta'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -1031,7 +1073,7 @@
       "hex": "#E5BFBC",
       "rgb": [229, 191, 188]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "シャララピコ.jpeg": {
     "name": "シャララピコ",
@@ -1040,6 +1082,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Carnation 'Sharara Pico', color pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛"]
     },
@@ -1054,7 +1097,7 @@
       "hex": "#F7DDF5",
       "rgb": [247, 221, 245]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ボヌール.jpeg": {
     "name": "ボヌール",
@@ -1063,6 +1106,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Bonheur' , magenta pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -1078,7 +1122,7 @@
       "hex": "#E23C7D",
       "rgb": [226, 60, 125]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ムーンワルツ.jpeg": {
     "name": "ムーンワルツ",
@@ -1087,6 +1131,7 @@
     "colors_en": ["pink"],
     "prompt": "Dahlia Moon Waltz'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優雅", "気品", "華麗"]
     },
@@ -1110,6 +1155,7 @@
     "colors_en": ["pink"],
     "prompt": "Double Lisianthus 'Rosina Pink Picotee'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -1133,6 +1179,7 @@
     "colors_en": ["pink"],
     "prompt": "Starchis Shandy Pink, colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["永久不変", "変わらぬ心"],
       "途絶えない記憶": ["途絶えない記憶"],
@@ -1154,7 +1201,7 @@
       "hex": "#D1B6DD",
       "rgb": [209, 182, 221]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "セレブクイーン.jpeg": {
     "name": "セレブクイーン",
@@ -1163,6 +1210,7 @@
     "colors_en": ["pink"],
     "prompt": "Double Lisianthus 'Celeb Queen'",
     "bloom_season": [6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美"],
       "希望": ["希望"],
@@ -1180,7 +1228,7 @@
       "hex": "#CC96A5",
       "rgb": [204, 150, 165]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ", "お見舞い", "入学祝い"]
   },
   "スーパーセンセーション.jpeg": {
     "name": "スーパーセンセーション",
@@ -1189,6 +1237,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose Spray Super Sensation'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -1204,7 +1253,7 @@
       "hex": "#EFA0D0",
       "rgb": [239, 160, 208]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "キノシフォン.jpeg": {
     "name": "キノシフォン",
@@ -1213,6 +1262,7 @@
     "colors_en": ["pink"],
     "prompt": "Limonium sinense 'Kinoshiphon', color pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["変わらぬ心", "永遠に変わらない", "途絶えぬ記憶"],
       "記憶": ["記憶"],
@@ -1231,7 +1281,7 @@
       "hex": "#E4A3D0",
       "rgb": [228, 163, 208]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "スプラッシュセンセーション.jpeg": {
     "name": "スプラッシュセンセーション",
@@ -1240,6 +1290,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Rose 'Splash Sensation'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "優しさ": ["温かい心", "包容力"],
       "感謝": ["感謝"],
@@ -1265,6 +1316,7 @@
     "colors_en": ["red"],
     "prompt": "Spray Carnation 'Cherry Tessino'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["あなたを熱愛しています", "愛情"],
       "幸福": ["幸福"],
@@ -1281,7 +1333,7 @@
       "hex": "#BC275C",
       "rgb": [188, 39, 92]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "マリポサ.jpeg": {
     "name": "マリポサ",
@@ -1290,6 +1342,7 @@
     "colors_en": ["pink"],
     "prompt": "Carnation Standard Mariposa",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛"],
       "高貴": ["誇り"],
@@ -1306,7 +1359,7 @@
       "hex": "#D7B0B8",
       "rgb": [215, 176, 184]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ピンクラナンキュラ.jpeg": {
     "name": "ピンクラナンキュラ",
@@ -1315,6 +1368,7 @@
     "colors_en": ["pink"],
     "prompt": "Rose Standard Pink Ranunculus', Ranunculaceae Ranunculus, colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美", "上品"],
@@ -1332,7 +1386,7 @@
       "hex": "#D4605E",
       "rgb": [212, 96, 94]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ピンクワルツ.jpeg": {
     "name": "ピンクワルツ",
@@ -1341,6 +1395,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Rose 'Pink Waltz', colors pink",
     "bloom_season": [5, 6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["上品"],
       "愛情": ["愛らしさ"],
@@ -1366,6 +1421,7 @@
     "colors_en": ["pink"],
     "prompt": "Carnation Spray Skyline', colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛"]
     },
@@ -1380,7 +1436,7 @@
       "hex": "#EF8FBA",
       "rgb": [239, 143, 186]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "マリーサイモン.jpeg": {
     "name": "マリーサイモン",
@@ -1389,6 +1445,7 @@
     "colors_en": ["pink"],
     "prompt": "Marie Simon Ceanothus",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "努力": ["努力"],
       "無駄なことはない": ["無駄なことはない"],
@@ -1405,7 +1462,7 @@
       "hex": "#DAC1D1",
       "rgb": [218, 193, 209]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "セレブピンク.jpeg": {
     "name": "セレブピンク",
@@ -1414,6 +1471,7 @@
     "colors_en": ["pink"],
     "prompt": "Double Lisianthus 'Celeb Pink'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -1437,6 +1495,7 @@
     "colors_en": ["pink"],
     "prompt": "Dianthus 'Sonnet Hearty', color pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純愛"],
       "感動": ["思慕"]
@@ -1452,7 +1511,7 @@
       "hex": "#E5BFEF",
       "rgb": [229, 191, 239]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ジュミリア.jpeg": {
     "name": "ジュミリア",
@@ -1461,6 +1520,7 @@
     "colors_en": ["pink"],
     "prompt": "",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["大きな愛"],
       "誠実": ["誠実"],
@@ -1478,7 +1538,7 @@
       "hex": "#EE95B3",
       "rgb": [238, 149, 179]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ピンクパフェ.jpeg": {
     "name": "ピンクパフェ",
@@ -1487,6 +1547,7 @@
     "colors_en": ["pink"],
     "prompt": "Alstroemeria Pink Parfait', colors pink fluffy",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸福"],
       "凛々しさ": ["凛々しさ"]
@@ -1502,7 +1563,7 @@
       "hex": "#DFAACB",
       "rgb": [223, 170, 203]
     },
-    "events": []
+    "events": ["お見舞い ", "プロポーズ", "入学祝い"]
   },
   "サブリナ.jpeg": {
     "name": "サブリナ",
@@ -1511,6 +1572,7 @@
     "colors_en": ["pink"],
     "prompt": "Guzmania 'Sabrina', colors pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱"],
       "理想の夫婦": ["理想の夫婦"],
@@ -1527,7 +1589,7 @@
       "hex": "#994969",
       "rgb": [153, 73, 105]
     },
-    "events": []
+    "events": ["お見舞い", "プロポーズ"]
   },
   "ドンセル.jpeg": {
     "name": "ドンセル",
@@ -1536,6 +1598,7 @@
     "colors_en": ["pink"],
     "prompt": "Carnation Standard Donsel",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛"],
       "魅力": ["魅惑"],
@@ -1555,7 +1618,7 @@
       "hex": "#F3CAC9",
       "rgb": [243, 202, 201]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "プロポーズ"]
   },
   "ブレンダ.jpeg": {
     "name": "ブレンダ",
@@ -1564,6 +1627,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Brenda', color pink",
     "bloom_season": [10, 11, 12, 1, 2, 3],
+    "available_season": "",
     "flower_language": {
       "自由": ["自由"],
       "大胆": ["大胆"],
@@ -1590,6 +1654,7 @@
     "colors_en": ["white"],
     "prompt": "Alstroemeria 'White Heart'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸福"],
       "凛々しさ": ["凛々しさ"]
@@ -1605,7 +1670,7 @@
       "hex": "#E9E7E3",
       "rgb": [233, 231, 227]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "彩雪.jpeg": {
     "name": "彩雪",
@@ -1614,6 +1679,7 @@
     "colors_en": ["white"],
     "prompt": "Dahlia 'Saisetsu', color white",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優雅", "気品", "華麗"]
     },
@@ -1637,6 +1703,7 @@
     "colors_en": ["white"],
     "prompt": "Standard Rose 'Tineke'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"],
@@ -1654,7 +1721,7 @@
       "hex": "#F3F3EB",
       "rgb": [243, 243, 235]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "コンスタンタ.jpeg": {
     "name": "コンスタンタ",
@@ -1663,6 +1730,7 @@
     "colors_en": ["white"],
     "prompt": "Oriental Lily 'Constanta'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "高貴": ["威厳"],
       "純粋": ["純潔", "無垢"]
@@ -1687,6 +1755,7 @@
     "colors_en": ["white"],
     "prompt": "Gypsophila 'Altair'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["清い心"],
       "幸福": ["切なる喜び"],
@@ -1704,7 +1773,7 @@
       "hex": "#DBDEDF",
       "rgb": [219, 222, 223]
     },
-    "events": []
+    "events": ["お見舞い"]
   },
   "ホワイトリリアン.jpeg": {
     "name": "ホワイトリリアン",
@@ -1713,6 +1782,7 @@
     "colors_en": ["white"],
     "prompt": "Spray Carnation 'White Lilian'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "高貴": ["気持ちの高まり"],
@@ -1731,7 +1801,7 @@
       "hex": "#F5F2E7",
       "rgb": [245, 242, 231]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ"]
   },
   "コロンホワイト.jpeg": {
     "name": "コロンホワイト",
@@ -1740,6 +1810,7 @@
     "colors_en": ["white"],
     "prompt": "Double Lisianthus 'Colon White'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"],
       "優しさ": ["思いやり"]
@@ -1755,7 +1826,7 @@
       "hex": "#E0E3E7",
       "rgb": [224, 227, 231]
     },
-    "events": []
+    "events": ["お見舞い"]
   },
   "テラカリナ.jpeg": {
     "name": "テラカリナ",
@@ -1764,6 +1835,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Gerbera 'Terra Carina', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望", "前進"]
     },
@@ -1778,7 +1850,7 @@
       "hex": "#DB3035",
       "rgb": [219, 48, 53]
     },
-    "events": []
+    "events": ["送別・退職祝い", "入学祝い"]
   },
   "ミッキーマウス.jpeg": {
     "name": "ミッキーマウス",
@@ -1787,6 +1859,7 @@
     "colors_en": ["red"],
     "prompt": "Anthurium 'Mickey Mouse'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱"]
     },
@@ -1810,6 +1883,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Canzone', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛情", "情熱"]
     },
@@ -1833,6 +1907,7 @@
     "colors_en": ["orange"],
     "prompt": "Anthurium 'Charan', color orange",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "煩悩": ["恋に悶える心", "煩悩"]
     },
@@ -1856,6 +1931,7 @@
     "colors_en": ["red"],
     "prompt": "Anthurium 'Calisto'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "煩悩": ["恋に悶える心", "煩悩"],
       "愛情": ["情熱"]
@@ -1880,6 +1956,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Furu Furu', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -1895,7 +1972,7 @@
       "hex": "#A42120",
       "rgb": [164, 33, 32]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "よそおい.jpeg": {
     "name": "よそおい",
@@ -1904,6 +1981,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Yosooi', color pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "高貴": ["気持ちの高まり"],
@@ -1929,6 +2007,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Ranunculus', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["華やかな魅力", "とても魅力的"],
       "合格": ["合格"]
@@ -1953,6 +2032,7 @@
     "colors_en": ["red"],
     "prompt": "Gerbera 'Suri', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "限りなき挑戦": ["限りなき挑戦"],
       "前向き": ["前向き"]
@@ -1968,7 +2048,7 @@
       "hex": "#CD2C34",
       "rgb": [205, 44, 52]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "サムライ.jpeg": {
     "name": "サムライ",
@@ -1977,6 +2057,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Samurai', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛情", "情熱"],
       "美しさ": ["美"]
@@ -2001,6 +2082,7 @@
     "colors_en": ["red"],
     "prompt": "Dahlia 'Asahi Temari', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["華麗"],
       "成功": ["栄華"]
@@ -2025,6 +2107,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Eros', color red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -2040,7 +2123,7 @@
       "hex": "#892325",
       "rgb": [137, 35, 37]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ラララ.jpeg": {
     "name": "ラララ",
@@ -2049,6 +2132,7 @@
     "colors_en": ["red"],
     "prompt": "Dahlia 'LaLaLa'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"]
     },
@@ -2063,7 +2147,7 @@
       "hex": "#E7545B",
       "rgb": [231, 84, 91]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "レモン.jpeg": {
     "name": "レモン",
@@ -2072,6 +2156,7 @@
     "colors_en": ["yellow"],
     "prompt": "Alstroemeria 'Lemon'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["持続"],
       "希望": ["未来への憧れ", "希望"],
@@ -2092,7 +2177,7 @@
       "hex": "#E2DB6D",
       "rgb": [226, 219, 109]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "エターナルビューティー.jpeg": {
     "name": "エターナルビューティー",
@@ -2101,6 +2186,7 @@
     "colors_en": ["yellow"],
     "prompt": "Standard Rose 'Eternal Beauty', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["永遠の愛"],
       "愛情": ["真実の愛"]
@@ -2116,7 +2202,7 @@
       "hex": "#F2EFCB",
       "rgb": [242, 239, 203]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ルミナス.jpeg": {
     "name": "ルミナス",
@@ -2125,6 +2211,7 @@
     "colors_en": ["yellow"],
     "prompt": "Spray Rose 'Luminus', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "優しさ": ["温かい心", "包容力"]
     },
@@ -2148,6 +2235,7 @@
     "colors_en": ["yellow"],
     "prompt": "",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "太陽": ["太陽"],
       "友情": ["信頼", "絆"]
@@ -2172,6 +2260,7 @@
     "colors_en": ["yellow"],
     "prompt": "Mimetes hirtus",
     "bloom_season": [9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "個性": ["独創性", "個性"],
       "変化": ["変化を楽しむ"]
@@ -2196,6 +2285,7 @@
     "colors_en": ["orange"],
     "prompt": "Spray Rose 'Felik', color orange",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "優しさ": ["温かい心", "包容力"],
       "感謝": ["感謝"],
@@ -2213,7 +2303,7 @@
       "hex": "#ED9540",
       "rgb": [237, 149, 64]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "シャインオン.jpeg": {
     "name": "シャインオン",
@@ -2222,6 +2312,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Shine On'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["光であたりを照らす", "輝き続ける"]
     },
@@ -2245,6 +2336,7 @@
     "colors_en": ["yellow"],
     "prompt": "Alstroemeria 'Tarantino', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["持続"],
       "希望": ["未来への憧れ"],
@@ -2264,7 +2356,7 @@
       "hex": "#F4EEC9",
       "rgb": [244, 238, 201]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "サンリッチライチ.jpeg": {
     "name": "サンリッチライチ",
@@ -2273,6 +2365,7 @@
     "colors_en": ["yellow"],
     "prompt": "Sunflower 'Sunrich Lychee'",
     "bloom_season": [6, 7, 8],
+    "available_season": "",
     "flower_language": {
       "あなただけを見つめる": ["あなただけを見つめる"],
       "尊敬": ["憧れ"],
@@ -2289,7 +2382,7 @@
       "hex": "#E9CA69",
       "rgb": [233, 202, 105]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "サレア.jpeg": {
     "name": "サレア",
@@ -2298,6 +2391,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Carnation 'Sarea'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛"]
     },
@@ -2312,7 +2406,7 @@
       "hex": "#D85957",
       "rgb": [216, 89, 87]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "旭.jpeg": {
     "name": "旭",
@@ -2321,6 +2415,7 @@
     "colors_en": ["yellow"],
     "prompt": "Heliopsis helianthoides 'Asahi'",
     "bloom_season": [6, 7, 8, 9],
+    "available_season": "",
     "flower_language": {
       "尊敬": ["憧れ"],
       "崇拝": ["崇拝"],
@@ -2346,6 +2441,7 @@
     "colors_en": ["yellow"],
     "prompt": "Standard Rose 'Ilios', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["美"],
       "友情": ["友情"],
@@ -2373,6 +2469,7 @@
     "colors_en": ["yellow"],
     "prompt": "Double Lisianthus 'NF Mango'",
     "bloom_season": [6, 7, 8, 9],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"],
       "希望": ["希望"],
@@ -2390,7 +2487,7 @@
       "hex": "#EAD2BB",
       "rgb": [234, 210, 187]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "アヴニール.jpeg": {
     "name": "アヴニール",
@@ -2399,6 +2496,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Avenir', color pink",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["上品"],
       "かわいい人": ["かわいい人"]
@@ -2423,6 +2521,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Amada+'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["最愛"]
     },
@@ -2446,6 +2545,7 @@
     "colors_en": ["yellow"],
     "prompt": "Alstroemeria 'Gold'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["持続"],
       "希望": ["未来への憧れ"],
@@ -2462,7 +2562,7 @@
       "hex": "#F7D949",
       "rgb": [247, 217, 73]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "イエローシャンプー.jpeg": {
     "name": "イエローシャンプー",
@@ -2471,6 +2571,7 @@
     "colors_en": ["yellow"],
     "prompt": "Shampoo Ginger 'Yellow Shampoo'",
     "bloom_season": [7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "豊かな心": ["豊かな心"],
       "友情": ["信頼"]
@@ -2495,6 +2596,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Victorian Secret'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"],
       "愛情": ["情熱", "愛"],
@@ -2511,7 +2613,7 @@
       "hex": "#DC7888",
       "rgb": [220, 120, 136]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "エグゼラべンダー.jpeg": {
     "name": "エグゼラベンダー",
@@ -2520,6 +2622,7 @@
     "colors_en": ["purple"],
     "prompt": "Double Lisianthus 'Exe Lavender'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望"],
       "美しさ": ["優美", "清々しい美しさ"]
@@ -2535,7 +2638,7 @@
       "hex": "#C69BD7",
       "rgb": [198, 155, 215]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "えくぼ.jpeg": {
     "name": "えくぼ",
@@ -2544,6 +2647,7 @@
     "colors_en": ["orange"],
     "prompt": "Spray Carnation 'Ekubo', color orange",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "高貴": ["気持ちの高まり"],
@@ -2569,6 +2673,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Carnation 'Hermes Orange'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["無垢で深い愛", "女性の愛情", "純粋な愛"],
       "感動": ["感動"],
@@ -2586,7 +2691,7 @@
       "hex": "#ED8C61",
       "rgb": [237, 140, 97]
     },
-    "events": []
+    "events": ["送別・退職祝い", "プロポーズ"]
   },
   "オーロラブルー.jpeg": {
     "name": "オーロラブルー",
@@ -2595,6 +2700,7 @@
     "colors_en": ["blue"],
     "prompt": "Delphinium 'Aurora Blue'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["清明"],
       "幸福": ["幸福を振りまく人"]
@@ -2619,6 +2725,7 @@
     "colors_en": ["orange"],
     "prompt": "Spray Carnation 'Orange Wave'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純粋な愛", "素朴"],
       "愛情": ["あなたを愛します", "熱愛"],
@@ -2635,7 +2742,7 @@
       "hex": "#F0936D",
       "rgb": [240, 147, 109]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "オレンジクイーン.jpeg": {
     "name": "オレンジクイーン",
@@ -2644,6 +2751,7 @@
     "colors_en": ["orange"],
     "prompt": "Alstroemeria 'Orange Queen'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "おしゃれ": ["おしゃれ"],
       "勇気": ["気取り屋"],
@@ -2662,7 +2770,7 @@
       "hex": "#BA6025",
       "rgb": [186, 96, 37]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "オレンジロマンチカ.jpeg": {
     "name": "オレンジロマンチカ",
@@ -2671,6 +2779,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Orange Romantica'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱", "愛"],
       "美しさ": ["美"],
@@ -2692,7 +2801,7 @@
       "hex": "#E1782F",
       "rgb": [225, 120, 47]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "カルピデューム.jpeg": {
     "name": "カルピデューム",
@@ -2701,6 +2810,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Carpe Diem+'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱", "愛"],
       "美しさ": ["美"],
@@ -2717,7 +2827,7 @@
       "hex": "#EF9437",
       "rgb": [239, 148, 55]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "カンパネラホットピンク.jpeg": {
     "name": "カンパネラホットピンク",
@@ -2726,6 +2836,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Campanella Hot Pink'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"],
       "愛情": ["可愛らしさ", "愛"],
@@ -2743,7 +2854,7 @@
       "hex": "#622e25",
       "rgb": [98, 46, 37]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "キャプテンソロ.jpeg": {
     "name": "キャプテンソロ",
@@ -2752,6 +2863,7 @@
     "colors_en": ["yellow"],
     "prompt": "Calla Lily 'Captain Solo'",
     "bloom_season": [4, 5, 6, 7],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["華麗なる美"],
       "謙虚": ["乙女のしとやかさ"],
@@ -2777,6 +2889,7 @@
     "colors_en": ["blue"],
     "prompt": "Scabious 'Quiz Dark Blue'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "煩悩": ["私はすべてを失った", "不幸な恋", "叶わぬ恋"],
       "未亡人": ["未亡人"]
@@ -2801,6 +2914,7 @@
     "colors_en": ["white"],
     "prompt": "Standard Rose 'Grand Hommage'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"],
@@ -2819,7 +2933,7 @@
       "hex": "#F8F5EE",
       "rgb": [248, 245, 238]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "クリームフレグランス.jpeg": {
     "name": "クリームフレグランス",
@@ -2828,6 +2942,7 @@
     "colors_en": ["white"],
     "prompt": "Standard Rose 'Cream Fragrance'",
     "bloom_season": [5, 6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "敬意": ["敬意"],
       "優しさ": ["思いやり"],
@@ -2853,6 +2968,7 @@
     "colors_en": ["red"],
     "prompt": "Standard Rose 'Christ Rose +' , color dark red",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "永遠": ["永遠の愛"]
     },
@@ -2867,7 +2983,7 @@
       "hex": "#A32E4A",
       "rgb": [163, 46, 74]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "クレスブルー.jpeg": {
     "name": "クレスブルー",
@@ -2876,6 +2992,7 @@
     "colors_en": ["blue"],
     "prompt": "Delphinium 'Cress Blue'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["あなたを幸せにします"]
     },
@@ -2890,7 +3007,7 @@
       "hex": "#1638C5",
       "rgb": [22, 56, 197]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ケンジントンガーデン.jpeg": {
     "name": "ケンジントンガーデン",
@@ -2899,6 +3016,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Kensington Garden'",
     "bloom_season": [5, 6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["上品", "優美"],
       "感謝": ["感謝"]
@@ -2923,6 +3041,7 @@
     "colors_en": ["yellow"],
     "prompt": "Spray Rose 'Gold Dust' color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"],
@@ -2939,7 +3058,7 @@
       "hex": "#F9E358",
       "rgb": [249, 227, 88]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ゴールドナゲット.jpeg": {
     "name": "ゴールドナゲット",
@@ -2948,6 +3067,7 @@
     "colors_en": ["yellow"],
     "prompt": "Mokara orchid 'Gold Nugget'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "優雅", "気品"]
     },
@@ -2971,6 +3091,7 @@
     "colors_en": ["white"],
     "prompt": "Spiraea cantoniensis",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "友情": ["友情"],
       "努力": ["努力"],
@@ -2987,7 +3108,7 @@
       "hex": "#DEE0D7",
       "rgb": [222, 224, 215]
     },
-    "events": []
+    "events": ["送別・退職祝い", "入学祝い"]
   },
   "サザンウィンド.jpeg": {
     "name": "サザンウィンド",
@@ -2996,6 +3117,7 @@
     "colors_en": ["red"],
     "prompt": "Gloriosa superba 'Southern Wind'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "成功": ["栄光"],
       "勇気": ["勇敢"]
@@ -3020,6 +3142,7 @@
     "colors_en": ["yellow"],
     "prompt": "helianthus annuus 'sunrich mango'",
     "bloom_season": [6, 7, 8, 9],
+    "available_season": "",
     "flower_language": {
       "尊敬": ["憧れ"],
       "あなただけを見つめる": ["あなただけを見つめる"]
@@ -3044,6 +3167,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Jester'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "純粋": ["素朴"],
@@ -3069,6 +3193,7 @@
     "colors_en": ["blue"],
     "prompt": "Single Lisianthus 'Charle Dark Blue'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "清々しい美しさ"],
       "希望": ["希望"]
@@ -3084,7 +3209,7 @@
       "hex": "#7350CD",
       "rgb": [115, 80, 205]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "ジュリアスラベンダー.jpeg": {
     "name": "ジュリアスラベンダー",
@@ -3093,6 +3218,7 @@
     "colors_en": ["purple"],
     "prompt": "Double Lisianthus 'Julius Lavender'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["すがすがしい美しさ", "優美"],
       "希望": ["希望"]
@@ -3108,7 +3234,7 @@
       "hex": "#CBB5D7",
       "rgb": [203, 181, 215]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "ジロンド.jpeg": {
     "name": "ジロンド",
@@ -3117,6 +3243,7 @@
     "colors_en": ["yellow"],
     "prompt": "Ranunculus 'Gironde', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["華やかな魅力", "とても魅力的"],
       "合格": ["合格"]
@@ -3141,6 +3268,7 @@
     "colors_en": ["blue"],
     "prompt": "Delphinium 'Super Gran Blue'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["あなたを幸せにします"]
     },
@@ -3155,7 +3283,7 @@
       "hex": "#4F7AE0",
       "rgb": [79, 122, 224]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "スノーボール.jpeg": {
     "name": "スノーボール",
@@ -3164,6 +3292,7 @@
     "colors_en": ["white"],
     "prompt": "Snowball Viburnum",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "勇気": ["茶目っ気"],
       "誓い": ["誓い"]
@@ -3188,6 +3317,7 @@
     "colors_en": ["red"],
     "prompt": "Anthurium andraeanum 'Spice'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "煩悩": ["恋に悶える心", "煩悩"]
     },
@@ -3211,6 +3341,7 @@
     "colors_en": ["white"],
     "prompt": "Double Lisianthus 'Celeb Crystal'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"],
       "優しさ": ["思いやり"]
@@ -3226,7 +3357,7 @@
       "hex": "#EEEEEE",
       "rgb": [238, 238, 238]
     },
-    "events": []
+    "events": ["お見舞い"]
   },
   "セレブグレープ.jpeg": {
     "name": "セレブグレープ",
@@ -3235,6 +3366,7 @@
     "colors_en": ["purple"],
     "prompt": "Double Lisianthus 'Celeb Grape'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["すがすがしい美しさ", "優美"],
       "希望": ["希望"]
@@ -3250,7 +3382,7 @@
       "hex": "#C4AAE3",
       "rgb": [196, 170, 227]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "ソーラーパワー.jpeg": {
     "name": "ソーラーパワー",
@@ -3259,6 +3391,7 @@
     "colors_en": ["yellow"],
     "prompt": "Sunflower 'Solar Power'",
     "bloom_season": [6, 7, 8, 9],
+    "available_season": "",
     "flower_language": {
       "尊敬": ["憧れ"],
       "あなただけを見つめる": ["あなただけを見つめる"]
@@ -3283,6 +3416,7 @@
     "colors_en": ["red"],
     "prompt": "Bouvardia 'Diamond Bordeaux'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸福な愛"],
       "希望": ["夢"],
@@ -3299,7 +3433,7 @@
       "hex": "#D03D38",
       "rgb": [208, 61, 56]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "タンゴ.jpeg": {
     "name": "タンゴ",
@@ -3308,6 +3442,7 @@
     "colors_en": ["red"],
     "prompt": "Leucospermum 'Tango'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "成功": ["どこでも成功を", "共栄"],
       "幸福": ["陽気"]
@@ -3332,6 +3467,7 @@
     "colors_en": ["pink"],
     "prompt": "Standard Rose 'Delilah'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "尊敬": ["尊敬される人になる"]
     },
@@ -3355,6 +3491,7 @@
     "colors_en": ["blue"],
     "prompt": "Ageratum 'Top Blue'",
     "bloom_season": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "available_season": "",
     "flower_language": {
       "友情": ["信頼"],
       "平和": ["安泰", "安楽"]
@@ -3379,6 +3516,7 @@
     "colors_en": ["pink"],
     "prompt": "Spray Carnation 'Trendy Tessino'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["集団美"],
       "純粋": ["素朴", "純粋な愛情"]
@@ -3394,7 +3532,7 @@
       "hex": "#C151B0",
       "rgb": [193, 81, 176]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "トロピカル.jpeg": {
     "name": "トロピカル",
@@ -3403,6 +3541,7 @@
     "colors_en": ["red"],
     "prompt": "Anthurium 'Tropical'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱"],
       "煩悩": ["恋に悶える心", "煩悩"]
@@ -3427,6 +3566,7 @@
     "colors_en": ["yellow"],
     "prompt": "Standard Gerbera 'Palm Beach'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望", "常に前進"],
       "前向き": ["前向き"]
@@ -3442,7 +3582,7 @@
       "hex": "#e5bb08",
       "rgb": [229, 187, 8]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "パスティーニシエナ.jpeg": {
     "name": "パスティーニシエナ",
@@ -3451,6 +3591,7 @@
     "colors_en": ["yellow"],
     "prompt": "Gerbera 'Pastini Siena', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望", "常に前進"],
       "前向き": ["前向き"]
@@ -3466,7 +3607,7 @@
       "hex": "#d6b020",
       "rgb": [214, 176, 32]
     },
-    "events": []
+    "events": ["送別・退職祝い", "お見舞い", "入学祝い"]
   },
   "パッションミナミ.jpeg": {
     "name": "パッションミナミ",
@@ -3475,6 +3616,7 @@
     "colors_en": ["pink"],
     "prompt": "Carnation 'Passion Minami'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["無垢で深い愛", "純粋な愛"],
       "愛情": ["女性の愛"],
@@ -3493,7 +3635,7 @@
       "hex": "#E591A1",
       "rgb": [229, 145, 161]
     },
-    "events": []
+    "events": ["プロポーズ", "送別・退職祝い"]
   },
   "ハピネスホワイト.jpeg": {
     "name": "ハピネスホワイト",
@@ -3502,6 +3644,7 @@
     "colors_en": ["white"],
     "prompt": "Double Lisianthus 'Happiness White'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"]
     },
@@ -3525,6 +3668,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Gerbera 'Baroque', color orange",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "希望": ["希望", "前進"]
     },
@@ -3539,7 +3683,7 @@
       "hex": "#d94908",
       "rgb": [217, 73, 8]
     },
-    "events": []
+    "events": ["お見舞い", "送別・退職祝い", "入学祝い"]
   },
   "ピスカップ.jpeg": {
     "name": "ピスカップ",
@@ -3548,6 +3692,7 @@
     "colors_en": ["yellow"],
     "prompt": "Spray Rose 'Piscup', color yellow",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "友情": ["友情"],
       "はげまし": ["はげまし"],
@@ -3573,6 +3718,7 @@
     "colors_en": ["white"],
     "prompt": "Double Lisianthus 'Piccolosa Snow', color white",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["すがすがしい美しさ", "優美"],
       "愛情": ["永遠の愛"],
@@ -3589,7 +3735,7 @@
       "hex": "#F8F6EC",
       "rgb": [248, 246, 236]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "コンパクタ.jpeg": {
     "name": "コンパクタ",
@@ -3598,6 +3744,7 @@
     "colors_en": ["white"],
     "prompt": "Viburnum opulus 'Compactum', color red",
     "bloom_season": [5, 6],
+    "available_season": "",
     "flower_language": {
       "幸福": ["幸せが飛んでくる", "幸福"]
     },
@@ -3612,7 +3759,7 @@
       "hex": "#A14722",
       "rgb": [161, 71, 34]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "ビンセントポメロ.jpeg": {
     "name": "ビンセントポメロ",
@@ -3621,6 +3768,7 @@
     "colors_en": ["yellow"],
     "prompt": "Sunflower 'Vincent Pomelo'",
     "bloom_season": [6, 7, 8],
+    "available_season": "",
     "flower_language": {
       "あなただけを見つめる": ["あなただけを見つめる"],
       "尊敬": ["憧れ"],
@@ -3646,6 +3794,7 @@
     "colors_en": ["blue"],
     "prompt": "Scabiosa 'Fama Deep Blue'",
     "bloom_season": [5, 6, 7, 8, 9, 10],
+    "available_season": "",
     "flower_language": {
       "煩悩": ["悲しむ花嫁"],
       "朝の花嫁": ["朝の花嫁"]
@@ -3670,6 +3819,7 @@
     "colors_en": ["blue"],
     "prompt": "Cornflower 'Blue Fantastic'",
     "bloom_season": [4, 5, 6, 7],
+    "available_season": "",
     "flower_language": {
       "繊細": ["繊細"],
       "美しさ": ["優美"]
@@ -3694,6 +3844,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Festivo', color orange",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "友情": ["絆", "信頼"],
       "幸福": ["幸多かれ"],
@@ -3719,6 +3870,7 @@
     "colors_en": ["white"],
     "prompt": "Double Lisianthus 'Prime White'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"],
       "優しさ": ["思いやり"]
@@ -3734,7 +3886,7 @@
       "hex": "#DFDFDE",
       "rgb": [223, 223, 222]
     },
-    "events": []
+    "events": ["お見舞い"]
   },
   "プリンセスブルー.jpeg": {
     "name": "プリンセスブルー",
@@ -3743,6 +3895,7 @@
     "colors_en": ["purple"],
     "prompt": "Standard Carnation 'Moondust Princess Blue'",
     "bloom_season": [4, 5, 6],
+    "available_season": "",
     "flower_language": {
       "永遠": ["永遠の幸福"],
       "尊敬": ["尊敬"],
@@ -3759,7 +3912,7 @@
       "hex": "#7C2D8B",
       "rgb": [124, 45, 139]
     },
-    "events": []
+    "events": ["入学祝い", "送別・退職祝い"]
   },
   "ブルーミルフィーユ.jpeg": {
     "name": "ブルーミルフィーユ",
@@ -3768,6 +3921,7 @@
     "colors_en": ["purple"],
     "prompt": "Standard Rose 'Blue Mille-feuille'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "高貴": ["尊ぶ"],
       "愛情": ["精神的な愛"],
@@ -3794,6 +3948,7 @@
     "colors_en": ["orange"],
     "prompt": "Dahlia 'Port Light Pair Beauty'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["気品", "優美", "華麗", "優雅", "栄華"],
       "不誠実": ["移り気", "裏切り"],
@@ -3819,6 +3974,7 @@
     "colors_en": ["white"],
     "prompt": "Baby's Breath 'Veil Star', color white",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "純粋": ["清らかな心"],
       "勇気": ["無邪気"],
@@ -3836,7 +3992,7 @@
       "hex": "#DEE0E4",
       "rgb": [222, 224, 228]
     },
-    "events": []
+    "events": ["入学祝い"]
   },
   "ホワイトベル.jpeg": {
     "name": "ホワイトベル",
@@ -3845,6 +4001,7 @@
     "colors_en": ["white"],
     "prompt": "Alstroemeria 'White Bell'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛らしい"],
       "個性": ["固有の価値"],
@@ -3870,6 +4027,7 @@
     "colors_en": ["white"],
     "prompt": "Ranunculus 'Ponpon Igloo'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["晴れやかな魅力", "あなたは魅力的"]
     },
@@ -3893,6 +4051,7 @@
     "colors_en": ["pink"],
     "prompt": "Ranunculus 'Ponpon Mignon'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["とても魅力的", "華やかな魅力"]
     },
@@ -3916,6 +4075,7 @@
     "colors_en": ["orange"],
     "prompt": "Ranunculus 'Ponpon Merlino'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "魅力": ["華やかな魅力", "晴れやかな魅力", "とても魅力的"]
     },
@@ -3939,6 +4099,7 @@
     "colors_en": ["yellow"],
     "prompt": "Guzmania 'Marjan'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["情熱"],
       "完璧": ["あなたは完璧"],
@@ -3964,6 +4125,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Rose 'Mango Reeva'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "勇気": ["無邪気"],
       "魅力": ["魅惑"],
@@ -3989,6 +4151,7 @@
     "colors_en": ["orange"],
     "prompt": "Standard Carnation 'Mambo'",
     "bloom_season": [7],
+    "available_season": "",
     "flower_language": {
       "純粋": ["純粋", "無垢"],
       "祝福": ["祝福"]
@@ -4013,6 +4176,7 @@
     "colors_en": ["purple"],
     "prompt": "Parrot Tulip 'Mysterious Parrot'",
     "bloom_season": [12, 1, 2, 3],
+    "available_season": "",
     "flower_language": {
       "愛情": ["不滅の愛", "真実の愛"]
     },
@@ -4027,7 +4191,7 @@
       "hex": "#91547C",
       "rgb": [145, 84, 124]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "メディウムホワイト.jpeg": {
     "name": "メディウムホワイト",
@@ -4036,6 +4200,7 @@
     "colors_en": ["white"],
     "prompt": "Campanula 'Medium White'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "感謝": ["感謝"],
       "誠実": ["誠実"]
@@ -4051,7 +4216,7 @@
       "hex": "#F4F2F3",
       "rgb": [244, 242, 243]
     },
-    "events": []
+    "events": ["送別・退職祝い"]
   },
   "ラベンダーレース.jpeg": {
     "name": "ラベンダーレース",
@@ -4060,6 +4225,7 @@
     "colors_en": ["purple"],
     "prompt": "Spray Rose 'Lavender Lace'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["気品", "美"],
@@ -4077,7 +4243,7 @@
       "hex": "#CD9FC3",
       "rgb": [205, 159, 195]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "レッドエナジー.jpeg": {
     "name": "レッドエナジー",
@@ -4086,6 +4252,7 @@
     "colors_en": ["red"],
     "prompt": "Spray Rose 'Red Energy'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["愛"],
       "美しさ": ["美"]
@@ -4101,7 +4268,7 @@
       "hex": "#A4271E",
       "rgb": [164, 39, 30]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "レッドスター.jpeg": {
     "name": "レッドスター",
@@ -4110,6 +4277,7 @@
     "colors_en": ["red"],
     "prompt": "Dahlia 'Red Star'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "愛情": ["熱烈な恋", "愛情", "情熱"]
     },
@@ -4124,7 +4292,7 @@
       "hex": "#8A1A1C",
       "rgb": [138, 26, 28]
     },
-    "events": []
+    "events": ["プロポーズ"]
   },
   "ロジーナラベンダー.jpeg": {
     "name": "ロジーナラベンダー",
@@ -4133,6 +4301,7 @@
     "colors_en": ["purple"],
     "prompt": "Double Lisianthus 'Rosina Lavender'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美"],
       "希望": ["希望"],
@@ -4150,7 +4319,7 @@
       "hex": "#DACCE0",
       "rgb": [218, 204, 224]
     },
-    "events": []
+    "events": ["送別・退職祝い", "入学祝い", "お見舞い"]
   },
   "ロベライエロー.jpeg": {
     "name": "ロベライエロー",
@@ -4159,6 +4328,7 @@
     "colors_en": ["yellow"],
     "prompt": "Double Lisianthus 'Robelai Yellow'",
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
     "flower_language": {
       "美しさ": ["優美", "すがすがしい美しさ"],
       "優しさ": ["思いやり"]
@@ -4174,6 +4344,6 @@
       "hex": "#D9D280",
       "rgb": [217, 210, 128]
     },
-    "events": []
+    "events": ["お見舞い"]
   }
 }
