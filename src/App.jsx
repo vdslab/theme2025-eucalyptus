@@ -3,8 +3,7 @@ import Header from "./components/Header";
 import ColorViz from "./components/ColorViz";
 import ExpandableDetail from "./components/ExpandableDetail";
 import SelectedNodesPanel from "./components/SelectedNodesPanel";
-import GenerationPanel from "./components/GenerationPanel";
-import ColorSearch from "./components/ColorSearch";
+import GeminiApi from "./components/GeminiApi";
 import { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
@@ -23,9 +22,12 @@ function App() {
 
   // 画像生成
   const [generatedImage, setGeneratedImage] = useState("");
-  const [imageError, setImageError] = useState("");
   const [isImageLoading, setIsImageLoading] = useState(false);
   const prevSelectedNodesRef = useRef();
+  // モバイルパネル
+  const geminiApiMobileRef = useRef();
+  const geminiApiDesktopRef = useRef();
+  const prevIsGenerationOpenRef = useRef(false);
 
   // モバイル版の画面制御
   const handleDragStart = (e) => {
@@ -61,6 +63,45 @@ function App() {
     };
     fetchMetadata();
   }, []);
+
+  useEffect(() => {
+    if (isGenerationOpen && !prevIsGenerationOpenRef.current) {
+      const timer = setTimeout(() => {
+        if (
+          !generatedImage &&
+          selectedNodes.length > 0 &&
+          !isImageLoading &&
+          geminiApiMobileRef.current
+        ) {
+          geminiApiMobileRef.current.handleGenerate();
+        }
+      }, 150);
+
+      prevIsGenerationOpenRef.current = isGenerationOpen;
+      return () => clearTimeout(timer);
+    }
+    prevIsGenerationOpenRef.current = isGenerationOpen;
+  }, [isGenerationOpen, generatedImage, selectedNodes.length, isImageLoading]);
+
+  // パネルが開いている状態で花の選択が変わったら自動生成
+  useEffect(() => {
+    if (isGenerationOpen && selectedNodes.length > 0 && !isImageLoading) {
+      const timer = setTimeout(() => {
+        if (geminiApiMobileRef.current) {
+          geminiApiMobileRef.current.handleGenerate();
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [selectedNodes, isGenerationOpen, isImageLoading]);
+
+  // 再生成ハンドラー
+  const handleRegenerate = () => {
+    if (geminiApiMobileRef.current) {
+      geminiApiMobileRef.current.handleGenerate();
+    }
+  };
 
   const handleNodeRemove = (nodeToRemove) => {
     setSelectedNodes((prev) =>
@@ -132,16 +173,16 @@ function App() {
               onNodeRemove={handleNodeRemove}
               onClearAll={handleClearAll}
             />
-            <GenerationPanel
+            <GeminiApi
+              ref={geminiApiDesktopRef}
               selectedNodes={selectedNodes}
               flowerMetadata={flowerMetadata}
               generatedImage={generatedImage}
               setGeneratedImage={setGeneratedImage}
-              error={imageError}
-              setError={setImageError}
-              loading={isImageLoading}
-              setLoading={setIsImageLoading}
+              isImageLoading={isImageLoading}
+              setIsImageLoading={setIsImageLoading}
               prevSelectedNodesRef={prevSelectedNodesRef}
+              isMobile={false}
             />
           </div>
           // </div>
@@ -231,29 +272,56 @@ function App() {
           </div>
 
           <div className="border-t bg-white flex-shrink-0">
-            <button
-              onClick={() => setIsGenerationOpen(!isGenerationOpen)}
-              className="w-full px-4 py-3 flex items-center justify-between text-left font-medium"
-            >
-              <span className="text-sm">花束イメージを生成</span>
-              <span className="text-xl">
-                {isGenerationOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}
-              </span>
-            </button>
+            <div className="w-full px-4 py-3 flex items-center justify-between">
+              <button
+                onClick={() => setIsGenerationOpen(!isGenerationOpen)}
+                className="flex items-center gap-2 text-left font-medium flex-1"
+                onTouchStart={(e) => e.stopPropagation()}
+                onMouseDown={(e) => e.stopPropagation()}
+              >
+                <span className="text-sm">花束イメージを生成</span>
+              </button>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleRegenerate();
+                  }}
+                  className="btn disabled:bg-gray-400"
+                  disabled={isImageLoading || !isGenerationOpen}
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onMouseDown={(e) => e.stopPropagation()}
+                >
+                  {isImageLoading
+                    ? "生成中..."
+                    : generatedImage
+                    ? "再生成"
+                    : "作成"}
+                </button>
+
+                <button
+                  onClick={() => setIsGenerationOpen(!isGenerationOpen)}
+                  className="text-xl flex items-center"
+                >
+                  {isGenerationOpen ? <IoIosArrowDown /> : <IoIosArrowUp />}
+                </button>
+              </div>
+            </div>
 
             {/* 画像生成 */}
             {isGenerationOpen && (
-              <div className="px-4 pb-4 border-t max-h-40 overflow-y-auto">
-                <GenerationPanel
+              <div className="px-4 pb-4 border-t max-h-96 overflow-y-auto">
+                <GeminiApi
+                  ref={geminiApiMobileRef}
                   selectedNodes={selectedNodes}
                   flowerMetadata={flowerMetadata}
                   generatedImage={generatedImage}
                   setGeneratedImage={setGeneratedImage}
-                  error={imageError}
-                  setError={setImageError}
-                  loading={isImageLoading}
-                  setLoading={setIsImageLoading}
+                  isImageLoading={isImageLoading}
+                  setIsImageLoading={setIsImageLoading}
                   prevSelectedNodesRef={prevSelectedNodesRef}
+                  isMobile={true}
                 />
               </div>
             )}
