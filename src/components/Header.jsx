@@ -4,12 +4,14 @@ import EventSearch from "./EventSearch";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
+import WordSearch from "./WordSearch";
 
 const Header = ({
   onColorSelect,
   onClearSearch,
   onEventSelect,
   onClearEventSearch,
+  flowerMetadata,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
@@ -31,6 +33,7 @@ const Header = ({
           alt="BooPick"
           className="h-9 md:h-10 leading-none m-0"
         />
+        <WordSearch flowerMetadata={flowerMetadata} />
         <div className="search-content hidden md:flex">
           <div className="relative">
             <button

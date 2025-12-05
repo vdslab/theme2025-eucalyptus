@@ -165,6 +165,7 @@ function App() {
         // イベント検索
         onEventSelect={handleEventSearch}
         onClearEventSearch={handleClearEventSearch}
+        flowerMetadata={flowerMetadata}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz
