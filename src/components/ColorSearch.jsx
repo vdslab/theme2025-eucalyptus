@@ -1,8 +1,6 @@
-import "../styles/colorSearch.css";
-import { useState } from "react";
-
 const ColorSearch = ({
-  onClose,
+  selectedColor,
+  setSelectedColor,
   onColorSelect,
   onClearSearch,
   isMobile = false,
@@ -17,28 +15,23 @@ const ColorSearch = ({
     { name: "青", hex: "#0000FF" },
   ];
 
-  const [colorCode, setColorCode] = useState("");
-  const [colorName, setColorName] = useState("");
-
   if (isMobile) {
-    // モバイル版: シンプルなレイアウト
+    // モバイル版
     return (
       <div className="p-4">
-        {/* 選択中の色 */}
-        {colorName && (
+        {selectedColor.name && (
           <div className="mb-4 p-3 bg-white rounded-lg flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div
                 className="w-8 h-8 rounded border-2 border-gray-200"
-                style={{ backgroundColor: colorCode }}
+                style={{ backgroundColor: selectedColor.code }}
               />
-              <span className="text-sm">{colorName}</span>
+              <span className="text-sm">{selectedColor.name}</span>
             </div>
             <button
               className="text-xs px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded transition-colors"
               onClick={() => {
-                setColorCode("");
-                setColorName("");
+                setSelectedColor({ code: "", name: "" });
                 onClearSearch();
               }}
             >
@@ -47,15 +40,13 @@ const ColorSearch = ({
           </div>
         )}
 
-        {/* プリセットカラー - 2列表示 */}
         <div className="grid grid-cols-2 gap-2">
           {presetColors.map((color) => (
             <button
               key={color.name}
               className="flex items-center gap-2.5 p-2 hover:bg-white rounded-lg transition-colors"
               onClick={() => {
-                setColorCode(color.hex);
-                setColorName(color.name);
+                setSelectedColor({ code: color.hex, name: color.name });
                 onColorSelect(color.name);
               }}
             >
@@ -70,80 +61,50 @@ const ColorSearch = ({
       </div>
     );
   }
+
+  // PC版（Tailwind CSSで書き直し）
   return (
-    <>
-      <div className="color-search-overlay" onClick={onClose} />
-      <div className="color-search-panel" onClick={(e) => e.stopPropagation()}>
-        {/* 選択中の色*/}
-        <div className="selected-color-display">
-          <div className="display-flex">
+    <div className="bg-white shadow-lg rounded-lg p-4 min-w-max">
+      {/* 選択中の色表示 */}
+      {selectedColor.name && (
+        <div className="mb-3 flex items-center gap-2 text-sm">
+          <div
+            className="w-6 h-6 rounded border-2 border-gray-200"
+            style={{ backgroundColor: selectedColor.code }}
+          />
+          <span>選択中: {selectedColor.name}</span>
+          <button
+            className="text-xs px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
+            onClick={() => {
+              setSelectedColor({ code: "", name: "" });
+              onClearSearch();
+            }}
+          >
+            解除
+          </button>
+        </div>
+      )}
+
+      {/* 色の選択 - 横並び */}
+      <div className="flex gap-3">
+        {presetColors.map((color) => (
+          <div
+            key={color.name}
+            className="flex flex-col items-center gap-1 cursor-pointer"
+            onClick={() => {
+              setSelectedColor({ code: color.hex, name: color.name });
+              onColorSelect(color.name);
+            }}
+          >
             <div
-              className="color-preview-box"
-              style={{ backgroundColor: colorCode || "#CCCCCC" }}
+              className="w-10 h-10 rounded-full border-2 border-gray-200 hover:border-gray-400 hover:scale-110 transition-all"
+              style={{ backgroundColor: color.hex }}
             />
-            <span className="selected-text">
-              選択中の色： {colorName || colorCode || "未選択"}
-            </span>
+            <span className="text-xs text-gray-600">{color.name}</span>
           </div>
-          {colorName && (
-            <button
-              className="search-button"
-              onClick={() => {
-                setColorCode("");
-                setColorName("");
-                onClearSearch();
-              }}
-            >
-              絞り込みを解除
-            </button>
-          )}
-        </div>
-
-        {/* プリセットカラー */}
-        <div className="preset-colors">
-          {presetColors.map((color) => (
-            <div key={color.name} className="color-item">
-              <button
-                className="color-chip"
-                style={{ backgroundColor: color.hex }}
-                onClick={() => {
-                  setColorCode(color.hex);
-                  setColorName(color.name);
-                  onColorSelect(color.name);
-                }}
-                title={color.name}
-              />
-              <span className="color-name">{color.name}</span>
-            </div>
-          ))}
-        </div>
-
-        {/* todo: 配置を整える */}
-        {/* <div className="color-code-picker"> */}
-        {/* カラーコード入力 */}
-        {/* <div className="color-input">
-          <span className="input-label"></span>
-          <input
-            type="text"
-            placeholder="#FF0000"
-            className="color-code-input"
-            value={colorCode}
-            onChange={(e) => setColorCode(e.target.value)}
-          />
-        </div> */}
-
-        {/* カラーピッカー */}
-        {/* <div className="color-picker-wrapper">
-          <input
-            type="color"
-            className="color-picker"
-            onChange={(e) => setColorCode(e.target.value)}
-          />
-          <span className="picker-label">カラーピッカー</span>
-        </div>
-      </div> */}
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -11,7 +11,6 @@ function App() {
   const [selectedNodes, setSelectedNodes] = useState([]);
   const [selectedData, setSelectedData] = useState(null);
   // 色検索パネル
-  const [isColorSearchOpen, setIsColorSearchOpen] = useState(false);
   const [colorMatchedNodes, setColorMatchedNodes] = useState([]);
 
   // イベント検索
@@ -161,9 +160,6 @@ function App() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Header
-        onColorSearchClick={() => setIsColorSearchOpen(true)}
-        isColorSearchOpen={isColorSearchOpen}
-        onColorSearchClose={() => setIsColorSearchOpen(false)}
         onColorSelect={handleColorSearch}
         onClearSearch={handleClearSearch}
         // イベント検索

@@ -6,9 +6,6 @@ import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 
 const Header = ({
-  onColorSearchClick,
-  isColorSearchOpen,
-  onColorSearchClose,
   onColorSelect,
   onClearSearch,
   onEventSelect,
@@ -16,9 +13,12 @@ const Header = ({
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
+  const [isColorSearchHovered, setIsColorSearchHovered] = useState(false);
   const [isMobileEventOpen, setIsMobileEventOpen] = useState(false);
   const [isEventSearchHovered, setIsEventSearchHovered] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
+
+  const [selectedColor, setSelectedColor] = useState({ code: "", name: "" });
   return (
     <>
       {/* todo:今は仮の画像なので、BooPickの画像を新しく入れる必要がある */}
@@ -32,14 +32,36 @@ const Header = ({
           className="h-9 md:h-10 leading-none m-0"
         />
         <div className="search-content hidden md:flex">
-          <button className="search-button" onClick={onColorSearchClick}>
-            色から探す
-          </button>
+          <div className="relative">
+            <button
+              className="search-button underline"
+              onMouseEnter={() => setIsColorSearchHovered(true)}
+              onMouseLeave={() => setIsColorSearchHovered(false)}
+            >
+              色から探す
+            </button>
+
+            {isColorSearchHovered && (
+              <div
+                className="absolute top-full right-0  mt-1 z-50"
+                onMouseEnter={() => setIsColorSearchHovered(true)}
+                onMouseLeave={() => setIsColorSearchHovered(false)}
+              >
+                <ColorSearch
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                  onColorSelect={onColorSelect}
+                  onClearSearch={onClearSearch}
+                  isMobile={false}
+                />
+              </div>
+            )}
+          </div>
           {/* <button className="search-button">開花時期から探す</button> */}
           {/* イベント検索ボタン（相対位置の基準にする） */}
           <div className="relative">
             <button
-              className="search-button"
+              className="search-button underline"
               onMouseEnter={() => setIsEventSearchHovered(true)}
               onMouseLeave={() => setIsEventSearchHovered(false)}
             >
@@ -73,17 +95,6 @@ const Header = ({
           <RxHamburgerMenu />
         </button>
       </header>
-
-      {isColorSearchOpen && (
-        <div className="hidden md:block">
-          <ColorSearch
-            onClose={onColorSearchClose}
-            onColorSelect={onColorSelect}
-            onClearSearch={onClearSearch}
-            isMobile={false}
-          />
-        </div>
-      )}
 
       {/* モバイル版 */}
       {isMobileMenuOpen && (
