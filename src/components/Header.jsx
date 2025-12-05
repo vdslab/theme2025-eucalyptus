@@ -1,18 +1,24 @@
 import "../styles/header.css";
 import ColorSearch from "./ColorSearch";
+import EventSearch from "./EventSearch";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
 
 const Header = ({
-  onColorSearchClick,
-  isColorSearchOpen,
-  onColorSearchClose,
   onColorSelect,
   onClearSearch,
+  onEventSelect,
+  onClearEventSearch,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
+  const [isColorSearchHovered, setIsColorSearchHovered] = useState(false);
+  const [isMobileEventOpen, setIsMobileEventOpen] = useState(false);
+  const [isEventSearchHovered, setIsEventSearchHovered] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState("");
+
+  const [selectedColor, setSelectedColor] = useState({ code: "", name: "" });
   return (
     <>
       {/* todo:今は仮の画像なので、BooPickの画像を新しく入れる必要がある */}
@@ -26,11 +32,59 @@ const Header = ({
           className="h-9 md:h-10 leading-none m-0"
         />
         <div className="search-content hidden md:flex">
-          <button className="search-button" onClick={onColorSearchClick}>
-            色から探す
-          </button>
-          <button className="search-button">開花時期から探す</button>
-          <button className="search-button">イベントから探す</button>
+          <div className="relative">
+            <button
+              className="search-button underline"
+              onMouseEnter={() => setIsColorSearchHovered(true)}
+              onMouseLeave={() => setIsColorSearchHovered(false)}
+            >
+              色から探す
+            </button>
+
+            {isColorSearchHovered && (
+              <div
+                className="absolute top-full right-0  mt-1 z-50"
+                onMouseEnter={() => setIsColorSearchHovered(true)}
+                onMouseLeave={() => setIsColorSearchHovered(false)}
+              >
+                <ColorSearch
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
+                  onColorSelect={onColorSelect}
+                  onClearSearch={onClearSearch}
+                  isMobile={false}
+                />
+              </div>
+            )}
+          </div>
+          {/* <button className="search-button">開花時期から探す</button> */}
+          {/* イベント検索ボタン（相対位置の基準にする） */}
+          <div className="relative">
+            <button
+              className="search-button underline"
+              onMouseEnter={() => setIsEventSearchHovered(true)}
+              onMouseLeave={() => setIsEventSearchHovered(false)}
+            >
+              イベントから探す
+            </button>
+
+            {/* ホバー時に表示されるパネル */}
+            {isEventSearchHovered && (
+              <div
+                className="absolute top-full right-0 mt-1 z-50"
+                onMouseEnter={() => setIsEventSearchHovered(true)}
+                onMouseLeave={() => setIsEventSearchHovered(false)}
+              >
+                <EventSearch
+                  selectedEvent={selectedEvent}
+                  setSelectedEvent={setSelectedEvent}
+                  onEventSelect={onEventSelect}
+                  onClearEventSearch={onClearEventSearch}
+                  isMobile={false}
+                />
+              </div>
+            )}
+          </div>
         </div>
         {/* モバイル版：ハンバーガーメニュー */}
         <button
@@ -41,17 +95,6 @@ const Header = ({
           <RxHamburgerMenu />
         </button>
       </header>
-
-      {isColorSearchOpen && (
-        <div className="hidden md:block">
-          <ColorSearch
-            onClose={onColorSearchClose}
-            onColorSelect={onColorSelect}
-            onClearSearch={onClearSearch}
-            isMobile={false}
-          />
-        </div>
-      )}
 
       {/* モバイル版 */}
       {isMobileMenuOpen && (
@@ -107,21 +150,38 @@ const Header = ({
             )}
           </div>
 
-          <button
+          {/* <button
             className="w-full text-left px-4 py-3 hover:bg-gray-50 rounded-lg flex items-center justify-between transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <span>開花時期から探す</span>
             <IoIosArrowDown />
-          </button>
+          </button> */}
 
           <button
-            className="w-full text-left px-4 py-3 hover:bg-gray-50 rounded-lg flex items-center justify-between transition-colors"
-            onClick={() => setIsMobileMenuOpen(false)}
+            onClick={() => setIsMobileEventOpen(!isMobileEventOpen)}
+            className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center justify-between transition-colors bg-white"
           >
             <span>イベントから探す</span>
-            <IoIosArrowDown />
+            <IoIosArrowDown
+              className={`transition-transform duration-200 ${
+                isMobileEventOpen ? "rotate-180" : "" // ← 修正
+              }`}
+            />
           </button>
+
+          {/* 展開エリア */}
+          {isMobileEventOpen && (
+            <div className="border-t bg-gray-50">
+              <EventSearch
+                selectedEvent={selectedEvent}
+                setSelectedEvent={setSelectedEvent}
+                onEventSelect={onEventSelect}
+                onClearEventSearch={onClearEventSearch}
+                isMobile={true}
+              />
+            </div>
+          )}
         </nav>
         {/* 下に「使い方」を入れるのはどうか */}
       </div>
