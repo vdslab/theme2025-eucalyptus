@@ -1757,9 +1757,8 @@
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "available_season": "",
     "flower_language": {
-      "純粋": ["清い心"],
+      "純粋": ["清い心", "無邪気"],
       "幸福": ["切なる喜び"],
-      "勇気": ["無邪気"],
       "優しさ": ["親切"]
     },
     "price_range": {
@@ -2784,7 +2783,7 @@
       "愛情": ["情熱", "愛"],
       "美しさ": ["美"],
       "尊敬": ["尊敬"],
-      "勇気": ["無邪気"],
+      "純粋": ["無邪気"],
       "魅力": ["魅惑"],
       "友情": ["絆", "信頼"],
       "さわやか": ["さわやか"],
@@ -3976,8 +3975,7 @@
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "available_season": "",
     "flower_language": {
-      "純粋": ["清らかな心"],
-      "勇気": ["無邪気"],
+      "純粋": ["清らかな心", "無邪気"],
       "優しさ": ["親切"],
       "幸福": ["幸福"]
     },
@@ -4127,7 +4125,7 @@
     "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "available_season": "",
     "flower_language": {
-      "勇気": ["無邪気"],
+      "純粋": ["無邪気"],
       "魅力": ["魅惑"],
       "友情": ["信頼"]
     },
@@ -4345,5 +4343,427 @@
       "rgb": [217, 210, 128]
     },
     "events": ["お見舞い"]
+  },
+  "クリスタルグリーン.jpeg": {
+    "name": "クリスタルグリーン",
+    "family_ja": "葉物　ドラセナ・コルディリネ",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Cordyline 'Crystal Green'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "幸福": ["幸福", "幸せな恋", "幸せな交際"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#5C9D3B",
+      "rgb": [92, 157, 59]
+    },
+    "events": []
+  },
+  "エメラルドウェーブ.jpeg": {
+    "name": "エメラルドウェーブ",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Asplenium 'Emerald Wave'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "勇気": ["雄々しい", "勇ましい"],
+      "幸福": ["あなたは私の喜び"],
+      "友情": ["信頼"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#5B7921",
+      "rgb": [91, 121, 33]
+    },
+    "events": []
+  },
+  "エミューファン.jpeg": {
+    "name": "エミューファン",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Grevillea 'Emu Fan'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "優しさ": ["円満な人柄", "優しい"],
+      "前向き": ["正しい主張", "不屈の心"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#455C22",
+      "rgb": [69, 92, 34]
+    },
+    "events": []
+  },
+  "スマイラックス.jpeg": {
+    "name": "スマイラックス",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Bridal Creeper",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "前向き": ["勝利"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#467522",
+      "rgb": [70, 117, 34]
+    },
+    "events": []
+  },
+  "バックホージア.jpeg": {
+    "name": "バックホージア",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Backhousia",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "愛情": ["勇気ある恋"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#87A157",
+      "rgb": [135, 161, 87]
+    },
+    "events": []
+  },
+  "ソングオブジャマイカ.jpeg": {
+    "name": "ソングオブジャマイカ",
+    "family_ja": "葉物　ドラセナ・コルディリネ",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Dracaena reflexa 'Song of Jamaica'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "幸福": ["幸福", "幸せな恋"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#355F18",
+      "rgb": [53, 95, 24]
+    },
+    "events": []
+  },
+  "グリフィティー.jpeg": {
+    "name": "グリフィティー",
+    "family_ja": "葉物　ブプレリウム",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Bupleurum griffithii",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "美しさ": ["繊細な美しさ"],
+      "愛情": ["初めてのキス", "真心"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#5B8348",
+      "rgb": [91, 131, 72]
+    },
+    "events": []
+  },
+  "シャムロック.jpeg": {
+    "name": "シャムロック",
+    "family_ja": "葉物　アイビー",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Ivy 'Shamrock'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "友情": ["友情"],
+      "愛情": ["永遠の愛", "結婚"],
+      "永遠": ["不滅"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#455A49",
+      "rgb": [69, 90, 73]
+    },
+    "events": []
+  },
+  "ポリシャス フルティコーサ.jpeg": {
+    "name": "ポリシャス フルティコーサ",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Ming Aralia",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "記憶": ["大切な思い出"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#729331",
+      "rgb": [114, 147, 49]
+    },
+    "events": []
+  },
+  "キウイグリーン.jpeg": {
+    "name": "キウイグリーン",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Cordyline 'Kiwi Green'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "健やか": ["生命力", "健康"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#536A44",
+      "rgb": [83, 106, 68]
+    },
+    "events": []
+  },
+  "ヒサカキ.jpeg": {
+    "name": "ヒサカキ",
+    "family_ja": "葉物　サカキ",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Eurya japonica",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "尊敬": ["神を尊ぶ"],
+      "美しさ": ["控えめな美"],
+      "愛情": ["内気な恋"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#365715",
+      "rgb": [54, 87, 21]
+    },
+    "events": []
+  },
+  "シルバークイーン.jpeg": {
+    "name": "シルバークイーン",
+    "family_ja": "葉物　ピットスポラム",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Pittosporum tenuifolium 'Silver Queen'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "愛情": ["偏愛", "慈しみ"],
+      "努力": ["飛躍"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#53603F",
+      "rgb": [83, 96, 63]
+    },
+    "events": []
+  },
+  "ライムスター.jpeg": {
+    "name": "ライムスター",
+    "family_ja": "葉物　ブプレリウム",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Bupleurum 'Lime Star'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "愛情": ["初めてのキス"],
+      "美しさ": ["繊細な美しさ"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#536E51",
+      "rgb": [83, 110, 81]
+    },
+    "events": []
+  },
+  "プミラ.jpeg": {
+    "name": "プミラ",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Ficus pumila",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "希望": ["あなたは私を元気づける"],
+      "魅力": ["知識"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#7BA042",
+      "rgb": [123, 160, 66]
+    },
+    "events": []
+  },
+  "ピッツバーグ.jpeg": {
+    "name": "ピッツバーグ",
+    "family_ja": "葉物　アイビー",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Ivy 'Pittsburgh'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "友情": ["友情"],
+      "愛情": ["永遠の愛", "結婚"],
+      "永遠": ["不滅"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#305721",
+      "rgb": [48, 87, 33]
+    },
+    "events": []
+  },
+  "レモンリーフ.jpeg": {
+    "name": "レモンリーフ",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Gaultheria shallon",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "純粋": ["純粋な愛", "無邪気"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#435F3A",
+      "rgb": [67, 95, 58]
+    },
+    "events": []
+  },
+  "サニーファンタジー.jpeg": {
+    "name": "サニーファンタジー",
+    "family_ja": "葉物",
+    "colors_ja": ["緑"],
+    "colors_en": ["green"],
+    "prompt": "Pittosporum 'Sunny Fantasy'",
+    "bloom_season": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "available_season": "",
+    "flower_language": {
+      "愛情": ["偏愛", "慈しみ"],
+      "努力": ["飛躍"]
+    },
+    "price_range": {
+      "min": "",
+      "max": ""
+    },
+    "size": {
+      "height": ""
+    },
+    "main_color": {
+      "hex": "#619D3C",
+      "rgb": [97, 157, 60]
+    },
+    "events": []
   }
 }
