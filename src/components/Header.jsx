@@ -141,7 +141,8 @@ const Header = ({
             {isMobileColorOpen && (
               <div className="border-t bg-gray-50">
                 <ColorSearch
-                  onClose={() => {}}
+                  selectedColor={selectedColor}
+                  setSelectedColor={setSelectedColor}
                   onColorSelect={onColorSelect}
                   onClearSearch={onClearSearch}
                   isMobile={true}
