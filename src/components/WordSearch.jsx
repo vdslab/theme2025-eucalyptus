@@ -1,20 +1,35 @@
 import { useState, useMemo } from "react";
 
-const WordSearch = ({ flowerMetadata }) => {
-  const [showItem, setShowItem] = useState([]);
+const WordSearch = ({ flowerMetadata, onNameSearch }) => {
   const [inputValue, setInputValue] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-  const allFamilies = useMemo(() => {
+  const allName = useMemo(() => {
     if (!flowerMetadata) return [];
-    const families = new Set();
+    const names = new Set();
     Object.values(flowerMetadata).forEach((flower) => {
       if (flower.family_ja) {
-        families.add(flower.family_ja);
+        names.add(flower.family_ja);
       }
     });
-    return Array.from(families).sort();
+    return Array.from(names).sort();
   }, [flowerMetadata]);
+
+  // const handleWordSearch = (flowerName) => {
+  //   if (!flowerMetadata) return;
+
+  //   const matches = Object.entries(flowerMetadata)
+  //     .filter(
+  //       ([filename, data]) =>
+  //         data.family_ja && data.family_ja.includes(flowerName)
+  //     )
+  //     .map(([filename, data]) => ({
+  //       filename: filename,
+  //     }));
+
+  //   onNameSearch(matches);
+  //   console.log("nameMatch:", matches);
+  // };
 
   const handleInputChange = (e) => {
     const value = e.target.value;
@@ -22,17 +37,18 @@ const WordSearch = ({ flowerMetadata }) => {
     setShowSuggestions(value !== "");
   };
 
-  const handleSuggestionClick = (family) => {
-    setInputValue(family);
+  const handleSuggestionClick = (flowerName) => {
+    setInputValue(flowerName);
+    onNameSearch(flowerName);
     setShowSuggestions(false);
   };
 
   const suggestions = useMemo(() => {
     if (!inputValue) return [];
-    return allFamilies.filter((family) =>
-      family.toUpperCase().includes(inputValue.toUpperCase())
+    return allName.filter((flowerName) =>
+      flowerName.toUpperCase().includes(inputValue.toUpperCase())
     );
-  }, [inputValue, allFamilies]);
+  }, [inputValue, allName]);
 
   return (
     <div>
@@ -44,6 +60,11 @@ const WordSearch = ({ flowerMetadata }) => {
           onChange={handleInputChange}
           onFocus={() => inputValue && setShowSuggestions(true)}
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onNameSearch(inputValue);
+            }
+          }}
           placeholder="花の品目で検索"
         />
         {showSuggestions && suggestions.length > 0 && (
@@ -63,10 +84,10 @@ const WordSearch = ({ flowerMetadata }) => {
               marginTop: "4px",
             }}
           >
-            {suggestions.map((family, index) => (
+            {suggestions.map((flowerName, index) => (
               <div
                 key={index}
-                onClick={() => handleSuggestionClick(family)}
+                onClick={() => handleSuggestionClick(flowerName)}
                 style={{
                   padding: "8px 12px",
                   cursor: "pointer",
@@ -80,7 +101,7 @@ const WordSearch = ({ flowerMetadata }) => {
                   (e.currentTarget.style.backgroundColor = "white")
                 }
               >
-                {family}
+                {flowerName}
               </div>
             ))}
           </div>

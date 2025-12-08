@@ -26,6 +26,10 @@ function App() {
   const [generatedImage, setGeneratedImage] = useState("");
   const [isImageLoading, setIsImageLoading] = useState(false);
   const prevSelectedNodesRef = useRef();
+
+  //ワード検索
+  const [nameMatchedNode, setNameMatchedNode] = useState([]);
+
   // モバイルパネル
   const geminiApiMobileRef = useRef();
   const geminiApiDesktopRef = useRef();
@@ -143,6 +147,21 @@ function App() {
     console.log(`${eventName}で${matches.length}件見つかりました`);
   };
 
+  const handleWordSearch = (flowerName) => {
+    if (!flowerMetadata) return;
+
+    const matches = Object.entries(flowerMetadata)
+      .filter(
+        ([filename, data]) =>
+          data.family_ja && data.family_ja.includes(flowerName)
+      )
+      .map(([filename, data]) => ({
+        filename: filename,
+      }));
+
+    setNameMatchedNode(matches);
+  };
+
   const handleClearSearch = () => {
     setColorMatchedNodes([]); // 検索結果をクリア
   };
@@ -166,6 +185,7 @@ function App() {
         onEventSelect={handleEventSearch}
         onClearEventSearch={handleClearEventSearch}
         flowerMetadata={flowerMetadata}
+        onNameSearch={handleWordSearch}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz
@@ -175,6 +195,7 @@ function App() {
           selectedNodes={selectedNodes}
           colorMatchedNodes={colorMatchedNodes}
           eventMatchedNodes={eventMatchedNodes}
+          nameMatchedNode={nameMatchedNode}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-2 text-center text-xs text-gray-600 z-10">
           Photo by{" "}

@@ -12,6 +12,7 @@ const Header = ({
   onEventSelect,
   onClearEventSearch,
   flowerMetadata,
+  onNameSearch,
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileColorOpen, setIsMobileColorOpen] = useState(false);
@@ -33,7 +34,10 @@ const Header = ({
           alt="BooPick"
           className="h-9 md:h-10 leading-none m-0"
         />
-        <WordSearch flowerMetadata={flowerMetadata} />
+        <WordSearch
+          flowerMetadata={flowerMetadata}
+          onNameSearch={onNameSearch}
+        />
         <div className="search-content hidden md:flex">
           <div className="relative">
             <button

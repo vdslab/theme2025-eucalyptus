@@ -11,6 +11,7 @@ const Sanpu = ({
   selectedNodes,
   colorMatchedNodes,
   eventMatchedNodes,
+  nameMatchedNode,
 }) => {
   const [bunsanData, setBunsanData] = useState([]);
   const size = width * 0.03 + height * 0.03;
@@ -131,13 +132,23 @@ const Sanpu = ({
           const eventMatch = eventMatchedNodes.find(
             (node) => node.filename === d.filename
           );
+
+          const nameMatch = nameMatchedNode.find(
+            (node) => node.filename === d.filename
+          );
+          console.log("nameMatch:", nameMatch);
+
           const isDimmed =
-            colorMatchedNodes.length > 0 && eventMatchedNodes.length > 0
-              ? !colorMatch || !eventMatch // 両方設定
+            colorMatchedNodes.length > 0 &&
+            eventMatchedNodes.length > 0 &&
+            nameMatchedNode.length > 0
+              ? !colorMatch || !eventMatch || !nameMatch // 両方設定
               : colorMatchedNodes.length > 0
               ? !colorMatch // 色のみ設定
               : eventMatchedNodes.length > 0
               ? !eventMatch // イベントのみ設定
+              : nameMatchedNode.length > 0
+              ? !nameMatch
               : false;
 
           return (
@@ -161,6 +172,16 @@ const Sanpu = ({
                   r={size / 2 + 3}
                   fill="none"
                   // stroke="#00ffc3ff"
+                  stroke="#FFB53E"
+                  strokeWidth="4"
+                />
+              )}
+              {nameMatchedNode.length > 0 && nameMatch && (
+                <circle
+                  cx={d.x}
+                  cy={d.y}
+                  r={size / 2 + 5}
+                  fill="none"
                   stroke="#FFB53E"
                   strokeWidth="4"
                 />
