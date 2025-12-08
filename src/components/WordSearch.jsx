@@ -51,10 +51,18 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
   }, [inputValue, allName]);
 
   return (
-    <div>
-      <div style={{ position: "relative" }}>
-        <label>検索</label>
+    <div className="ml-auto">
+      <div className="relative flex items-center gap-2 p-3 rounded-lg shadow-sm">
         <input
+          className="
+        flex-1
+        rounded-md
+        px-3 py-2
+        text-emerald-900
+        placeholder-emerald-900
+        focus:outline-none focus
+        shadow-sm
+      "
           type="text"
           value={inputValue}
           onChange={handleInputChange}
@@ -68,32 +76,12 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
           placeholder="花の品目で検索"
         />
         {showSuggestions && suggestions.length > 0 && (
-          <div
-            style={{
-              position: "absolute",
-              top: "100%",
-              left: 0,
-              right: 0,
-              backgroundColor: "white",
-              border: "1px solid #ccc",
-              borderRadius: "4px",
-              maxHeight: "200px",
-              overflowY: "auto",
-              zIndex: 1000,
-              boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-              marginTop: "4px",
-            }}
-          >
+          <div className="absolute top-full left-0 right-0 bg-white rounded-md max-h-52 overflow-y-auto z-[1000] shadow-md mt-1">
             {suggestions.map((flowerName, index) => (
               <div
+                className="py-2 px-3 cursor-pointer border-b border-gray-200"
                 key={index}
                 onClick={() => handleSuggestionClick(flowerName)}
-                style={{
-                  padding: "8px 12px",
-                  cursor: "pointer",
-                  borderBottom:
-                    index < suggestions.length - 1 ? "1px solid #eee" : "none",
-                }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.backgroundColor = "#f0f0f0")
                 }
