@@ -70,7 +70,11 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
           onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
-              onNameSearch(inputValue);
+              if (inputValue == "") {
+                onNameSearch();
+              } else {
+                onNameSearch(inputValue);
+              }
             }
           }}
           placeholder="花の品目で検索"

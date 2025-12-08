@@ -176,7 +176,7 @@ const Sanpu = ({
                   strokeWidth="4"
                 />
               )}
-              {nameMatchedNode.length > 0 && nameMatch && (
+              {nameMatchedNode.length === 0 && nameMatch && (
                 <circle
                   cx={d.x}
                   cy={d.y}
