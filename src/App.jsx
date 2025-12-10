@@ -11,8 +11,10 @@ function App() {
   const [selectedNodes, setSelectedNodes] = useState([]);
   const [selectedData, setSelectedData] = useState(null);
   // 色検索パネル
-  const [isColorSearchOpen, setIsColorSearchOpen] = useState(false);
   const [colorMatchedNodes, setColorMatchedNodes] = useState([]);
+
+  // イベント検索
+  const [eventMatchedNodes, setEventMatchedNodes] = useState([]);
 
   // モバイル版は画像生成の箇所を開閉する
   const [isGenerationOpen, setIsGenerationOpen] = useState(false);
@@ -126,8 +128,27 @@ function App() {
     console.log(`${colorName}で${matches.length}件見つかりました`);
   };
 
+  const handleEventSearch = (eventName) => {
+    if (!flowerMetadata) return;
+
+    const matches = Object.entries(flowerMetadata)
+      .filter(
+        ([filename, data]) => data.events && data.events.includes(eventName)
+      )
+      .map(([filename, data]) => ({
+        filename: filename,
+      }));
+
+    setEventMatchedNodes(matches);
+    console.log(`${eventName}で${matches.length}件見つかりました`);
+  };
+
   const handleClearSearch = () => {
     setColorMatchedNodes([]); // 検索結果をクリア
+  };
+
+  const handleClearEventSearch = () => {
+    setEventMatchedNodes([]);
   };
 
   const handleClearAll = () => {
@@ -139,11 +160,11 @@ function App() {
   return (
     <div className="h-screen flex flex-col overflow-hidden">
       <Header
-        onColorSearchClick={() => setIsColorSearchOpen(true)}
-        isColorSearchOpen={isColorSearchOpen}
-        onColorSearchClose={() => setIsColorSearchOpen(false)}
         onColorSelect={handleColorSearch}
         onClearSearch={handleClearSearch}
+        // イベント検索
+        onEventSelect={handleEventSearch}
+        onClearEventSearch={handleClearEventSearch}
       />
       <main className="flex-1 flex relative overflow-hidden">
         <ColorViz
@@ -152,6 +173,7 @@ function App() {
           hasSidebar={selectedNodes.length > 0}
           selectedNodes={selectedNodes}
           colorMatchedNodes={colorMatchedNodes}
+          eventMatchedNodes={eventMatchedNodes}
         />
         <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm py-2 text-center text-xs text-gray-600 z-10">
           Photo by{" "}
