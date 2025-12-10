@@ -136,7 +136,6 @@ const Sanpu = ({
           const nameMatch = nameMatchedNode.find(
             (node) => node.filename === d.filename
           );
-          console.log("nameMatch:", nameMatch);
 
           const isDimmed =
             colorMatchedNodes.length > 0 &&
@@ -172,16 +171,6 @@ const Sanpu = ({
                   r={size / 2 + 3}
                   fill="none"
                   // stroke="#00ffc3ff"
-                  stroke="#FFB53E"
-                  strokeWidth="4"
-                />
-              )}
-              {nameMatchedNode.length === 0 && nameMatch && (
-                <circle
-                  cx={d.x}
-                  cy={d.y}
-                  r={size / 2 + 5}
-                  fill="none"
                   stroke="#FFB53E"
                   strokeWidth="4"
                 />

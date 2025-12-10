@@ -52,16 +52,17 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
 
   return (
     <div className="ml-auto">
-      <div className="relative flex items-center gap-2 p-3 rounded-lg shadow-sm">
+      <div className="relative flex items-center gap-2 rounded-lg shadow-sm">
         <input
           className="
         flex-1
         rounded-md
         px-3 py-2
-        text-emerald-900
-        placeholder-emerald-900
+        text-[#8DA39F]
+        placeholder-[#8DA39F]
         focus:outline-none focus
         shadow-sm
+        text-sm
       "
           type="text"
           value={inputValue}

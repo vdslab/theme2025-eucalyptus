@@ -34,11 +34,11 @@ const Header = ({
           alt="BooPick"
           className="h-9 md:h-10 leading-none m-0"
         />
-        <WordSearch
-          flowerMetadata={flowerMetadata}
-          onNameSearch={onNameSearch}
-        />
         <div className="search-content hidden md:flex">
+          <WordSearch
+            flowerMetadata={flowerMetadata}
+            onNameSearch={onNameSearch}
+          />
           <div className="relative">
             <button
               className="search-button underline"
