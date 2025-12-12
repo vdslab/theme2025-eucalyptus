@@ -9,6 +9,7 @@ const ColorViz = ({
   selectedNodes,
   colorMatchedNodes,
   eventMatchedNodes,
+  nameMatchedNode,
 }) => {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -38,6 +39,7 @@ const ColorViz = ({
         selectedNodes={selectedNodes}
         colorMatchedNodes={colorMatchedNodes}
         eventMatchedNodes={eventMatchedNodes}
+        nameMatchedNode={nameMatchedNode}
       />
     </section>
   );
