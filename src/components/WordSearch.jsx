@@ -20,22 +20,6 @@ const WordSearch = ({
     return Array.from(names).sort();
   }, [flowerMetadata]);
 
-  // const handleWordSearch = (flowerName) => {
-  //   if (!flowerMetadata) return;
-
-  //   const matches = Object.entries(flowerMetadata)
-  //     .filter(
-  //       ([filename, data]) =>
-  //         data.family_ja && data.family_ja.includes(flowerName)
-  //     )
-  //     .map(([filename, data]) => ({
-  //       filename: filename,
-  //     }));
-
-  //   onNameSearch(matches);
-  //   console.log("nameMatch:", matches);
-  // };
-
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInputValue(value);
@@ -82,6 +66,7 @@ const WordSearch = ({
                   onNameSearch();
                 } else {
                   onNameSearch(inputValue);
+                  setShowSuggestions(false);
                 }
               }
             }}
