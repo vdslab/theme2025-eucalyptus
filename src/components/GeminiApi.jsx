@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import "../styles/generationPanel.css";
 
 const GeminiApi = forwardRef(
   (
@@ -146,7 +147,7 @@ const GeminiApi = forwardRef(
     }));
 
     return (
-      <div className={isMobile ? "space-y-3" : "space-y-4"}>
+      <div className={isMobile ? "space-y-3" : "generation p-6 space-y-4"}>
         {/* todo:PC版の画像生成もろもろ要修正 */}
         {!isMobile &&
           selectedNodes.length > 0 &&
