@@ -1,3 +1,5 @@
+import { IoMdClose } from "react-icons/io";
+
 const EventSearch = ({
   selectedEvent,
   setSelectedEvent,
@@ -18,16 +20,16 @@ const EventSearch = ({
       <div className="p-4">
         {/* 選択中のイベント表示（後で実装） */}
         {selectedEvent && (
-          <div className="mb-4 p-3 bg-white rounded-lg flex items-center justify-between">
+          <div className="mb-4 inline-flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-full">
             <span className="text-sm">{selectedEvent}</span>
             <button
-              className="text-xs px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded transition-colors"
               onClick={() => {
                 setSelectedEvent("");
                 onClearEventSearch();
               }}
+              className="ml-1 text-[#8DA39F] hover:text-[#0e4037]"
             >
-              解除
+              <IoMdClose className="w-4 h-4" />
             </button>
           </div>
         )}
@@ -55,16 +57,16 @@ const EventSearch = ({
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 min-w-max">
       {selectedEvent && (
-        <div className="mb-3 flex items-center gap-2 text-sm">
-          <span>選択中: {selectedEvent}</span>
+        <div className="mb-3 inline-flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-full">
+          <span className="text-sm">{selectedEvent}</span>
           <button
-            className="text-xs px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
             onClick={() => {
               setSelectedEvent("");
               onClearEventSearch();
             }}
+            className="ml-1 text-[#8DA39F] hover:text-[#0e4037]"
           >
-            解除
+            <IoMdClose className="w-4 h-4" />
           </button>
         </div>
       )}
