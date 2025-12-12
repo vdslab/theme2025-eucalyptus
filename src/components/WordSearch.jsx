@@ -43,6 +43,12 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
     setShowSuggestions(false);
   };
 
+  const handleClear = () => {
+    setInputValue("");
+    setShowSuggestions(false);
+    onNameSearch();
+  };
+
   const suggestions = useMemo(() => {
     if (!inputValue) return [];
     return allName.filter((flowerName) =>
@@ -53,35 +59,58 @@ const WordSearch = ({ flowerMetadata, onNameSearch }) => {
   return (
     <div className="ml-auto">
       <div className="relative flex items-center gap-2 rounded-lg shadow-sm">
-        <input
-          className="
-        flex-1
-        rounded-md
-        px-3 py-2
-        text-[#8DA39F]
-        placeholder-[#8DA39F]
+        <div className="relative flex-1">
+          <input
+            className="
+        flex-1 rounded-md  px-3 py-2 text-[#0e4037] placeholder-[#8DA39F]
         focus:outline-none focus
-        shadow-sm
-        text-sm
+        text-sm border-2 border-[#faf9f7] focus:border-[#8DA39F]
       "
-          type="text"
-          value={inputValue}
-          onChange={handleInputChange}
-          onFocus={() => inputValue && setShowSuggestions(true)}
-          onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              if (inputValue == "") {
-                onNameSearch();
-              } else {
-                onNameSearch(inputValue);
+            type="text"
+            value={inputValue}
+            onChange={handleInputChange}
+            onFocus={() => inputValue && setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                if (inputValue == "") {
+                  onNameSearch();
+                } else {
+                  onNameSearch(inputValue);
+                }
               }
-            }
-          }}
-          placeholder="花の品目で検索"
-        />
+            }}
+            placeholder="花の種類から探す"
+          />
+          {inputValue && (
+            <button
+              className="
+                absolute right-2 top-1/2 -translate-y-1/2
+                text-[#8DA39F] hover:text-[#0e4037]
+                transition-colors duration-150
+                p-1 rounded-full hover:bg-gray-100
+              "
+              onClick={handleClear}
+              type="button"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
         {showSuggestions && suggestions.length > 0 && (
-          <div className="absolute top-full left-0 right-0 bg-white rounded-md max-h-52 overflow-y-auto z-[1000] shadow-md mt-1">
+          <div className="absolute top-full text-xs left-0 right-0 bg-white rounded-md max-h-52 overflow-y-auto z-[1000] shadow-md mt-1">
             {suggestions.map((flowerName, index) => (
               <div
                 className="py-2 px-3 cursor-pointer border-b border-gray-200"

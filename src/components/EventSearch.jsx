@@ -73,7 +73,7 @@ const EventSearch = ({
         {presetEvents.map((event) => (
           <button
             key={event.name}
-            className="px-4 py-2 hover:bg-gray-100 rounded transition-colors whitespace-nowrap"
+            className="px-4 py-2 hover:bg-gray-100 rounded transition-colors  text-sm whitespace-nowrap"
             onClick={() => {
               setSelectedEvent(event.name);
               onEventSelect(event.name);
