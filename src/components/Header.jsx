@@ -1,6 +1,7 @@
 import "../styles/header.css";
 import ColorSearch from "./ColorSearch";
 import EventSearch from "./EventSearch";
+import SearchBreadcrumb from "./SearchBreadcrumb";
 import { useState } from "react";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { IoIosArrowDown } from "react-icons/io";
@@ -21,14 +22,80 @@ const Header = ({
   const [isEventSearchHovered, setIsEventSearchHovered] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState("");
 
+  const [inputValue, setInputValue] = useState("");
+
   const [selectedColor, setSelectedColor] = useState({ code: "", name: "" });
+
+  const [searchHistory, setSearchHistory] = useState([]);
+
+  const reapplyFilters = (history) => {
+    // まず全部クリア
+    onClearSearch();
+    onClearEventSearch();
+    onNameSearch();
+
+    setSelectedColor({ code: "", name: "" });
+    setSelectedEvent("");
+    setInputValue("");
+
+    // 履歴にある条件だけ再適用
+    history.forEach((filter) => {
+      if (filter.type === "color") {
+        onColorSelect(filter.value);
+        setSelectedColor({ code: "", name: filter.value });
+      } else if (filter.type === "event") {
+        onEventSelect(filter.value);
+        setSelectedEvent(filter.value);
+      } else if (filter.type === "name") {
+        onNameSearch(filter.value);
+        setInputValue(filter.value);
+      }
+    });
+  };
+
+  const handleFilterClick = (index) => {
+    console.log(searchHistory);
+    if (index === -1) {
+      // 「全て」をクリック
+      setSearchHistory([]);
+      onClearSearch();
+      onClearEventSearch();
+      onNameSearch();
+      setSelectedColor({ code: "", name: "" });
+      setSelectedEvent("");
+      setInputValue("");
+    } else {
+      const newHistory = searchHistory.slice(0, index + 1);
+      setSearchHistory(newHistory);
+      reapplyFilters(newHistory);
+    }
+  };
+
+  // 色検索をラップ
+  const handleColorSearchWithHistory = (colorName) => {
+    setSearchHistory((prev) => [...prev, { type: "color", value: colorName }]);
+    onColorSelect(colorName);
+  };
+
+  // イベント検索をラップ
+  const handleEventSearchWithHistory = (eventName) => {
+    setSearchHistory((prev) => [...prev, { type: "event", value: eventName }]);
+    onEventSelect(eventName);
+  };
+
+  const handleNameSearchWithHistory = (flowerName) => {
+    if (!flowerName) {
+      onNameSearch();
+      return;
+    }
+    setSearchHistory((prev) => [...prev, { type: "name", value: flowerName }]);
+
+    onNameSearch(flowerName);
+  };
+
   return (
     <>
-      {/* todo:今は仮の画像なので、BooPickの画像を新しく入れる必要がある */}
-      <header className="flex justify-between items-center bg-[#fff4cc] px-3 md:px-8 md:py-3">
-        {/* <h1 className=" font-dancing text-2xl md:text-3xl leading-none m-0">
-          BooPick
-        </h1> */}
+      <header className="flex justify-between items-center bg-[#fff4cc] px-3 md:px-8 md:py-3 relative">
         <img
           src="/images/image0.png"
           alt="BooPick"
@@ -37,7 +104,9 @@ const Header = ({
         <div className="search-content hidden md:flex">
           <WordSearch
             flowerMetadata={flowerMetadata}
-            onNameSearch={onNameSearch}
+            onNameSearch={handleNameSearchWithHistory}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
           />
           <div className="relative">
             <button
@@ -57,7 +126,7 @@ const Header = ({
                 <ColorSearch
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
-                  onColorSelect={onColorSelect}
+                  onColorSelect={handleColorSearchWithHistory}
                   onClearSearch={onClearSearch}
                   isMobile={false}
                 />
@@ -85,7 +154,7 @@ const Header = ({
                 <EventSearch
                   selectedEvent={selectedEvent}
                   setSelectedEvent={setSelectedEvent}
-                  onEventSelect={onEventSelect}
+                  onEventSelect={handleEventSearchWithHistory}
                   onClearEventSearch={onClearEventSearch}
                   isMobile={false}
                 />
@@ -101,6 +170,11 @@ const Header = ({
         >
           <RxHamburgerMenu />
         </button>
+
+        <SearchBreadcrumb
+          history={searchHistory}
+          onFilterClick={handleFilterClick}
+        />
       </header>
 
       {/* モバイル版 */}

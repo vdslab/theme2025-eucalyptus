@@ -1,7 +1,11 @@
 import { useState, useMemo } from "react";
 
-const WordSearch = ({ flowerMetadata, onNameSearch }) => {
-  const [inputValue, setInputValue] = useState("");
+const WordSearch = ({
+  flowerMetadata,
+  onNameSearch,
+  inputValue,
+  setInputValue,
+}) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   const allName = useMemo(() => {
