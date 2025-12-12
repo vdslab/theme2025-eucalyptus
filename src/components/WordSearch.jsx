@@ -5,6 +5,7 @@ const WordSearch = ({
   onNameSearch,
   inputValue,
   setInputValue,
+  isMobile = false,
 }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
@@ -61,15 +62,15 @@ const WordSearch = ({
   }, [inputValue, allName]);
 
   return (
-    <div className="ml-auto">
+    <div className={isMobile ? "flex-1" : "ml-auto"}>
       <div className="relative flex items-center gap-2 rounded-lg shadow-sm">
         <div className="relative flex-1">
           <input
-            className="
-        flex-1 rounded-md  px-3 py-2 text-[#0e4037] placeholder-[#8DA39F]
-        focus:outline-none focus
-        text-sm border-2 border-[#faf9f7] focus:border-[#8DA39F]
-      "
+            className={`
+              flex-1 rounded-md px-3 text-[#0e4037] placeholder-[#8DA39F]
+              focus:outline-none text-sm border-2 border-[#faf9f7] focus:border-[#8DA39F]
+              ${isMobile ? "py-1.5 text-xs" : "py-2"}
+            `}
             type="text"
             value={inputValue}
             onChange={handleInputChange}

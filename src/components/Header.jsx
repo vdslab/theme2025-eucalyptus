@@ -163,13 +163,23 @@ const Header = ({
           </div>
         </div>
         {/* モバイル版：ハンバーガーメニュー */}
-        <button
-          className="md:hidden text-2xl p-3 hover:bg-gray-100 rounded transition-colors"
-          onClick={() => setIsMobileMenuOpen(true)}
-          aria-label="メニューを開く"
-        >
-          <RxHamburgerMenu />
-        </button>
+
+        <div className="md:hidden flex items-center gap-2">
+          <WordSearch
+            flowerMetadata={flowerMetadata}
+            onNameSearch={handleNameSearchWithHistory}
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            isMobile={true}
+          />
+          <button
+            className="text-2xl p-3 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="メニューを開く"
+          >
+            <RxHamburgerMenu />
+          </button>
+        </div>
 
         <SearchBreadcrumb
           history={searchHistory}
