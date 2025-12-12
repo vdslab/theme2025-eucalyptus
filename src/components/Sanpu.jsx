@@ -137,33 +137,34 @@ const Sanpu = ({
             (node) => node.filename === d.filename
           );
 
-          const isDimmed =
-            colorMatchedNodes.length > 0 &&
-            eventMatchedNodes.length > 0 &&
-            nameMatchedNode.length > 0
-              ? !colorMatch || !eventMatch || !nameMatch // 両方設定
-              : colorMatchedNodes.length > 0
-              ? !colorMatch // 色のみ設定
-              : eventMatchedNodes.length > 0
-              ? !eventMatch // イベントのみ設定
-              : nameMatchedNode.length > 0
-              ? !nameMatch
-              : false;
+          const useColor = colorMatchedNodes.length > 0;
+          const useEvent = eventMatchedNodes.length > 0;
+          const useName = nameMatchedNode.length > 0;
+
+          const activeFilterCount = [useColor, useEvent, useName].filter(
+            Boolean
+          ).length;
+
+          const highlight =
+            (useColor ? colorMatch : true) &&
+            (useEvent ? eventMatch : true) &&
+            (useName ? nameMatch : true) &&
+            activeFilterCount > 0;
+
+          const isDimmed = activeFilterCount > 0 && !highlight;
 
           return (
             <g key={i}>
-              {colorMatchedNodes.length > 0 &&
-                colorMatch &&
-                (eventMatchedNodes.length === 0 || eventMatch) && (
-                  <circle
-                    cx={d.x}
-                    cy={d.y}
-                    r={size / 2 + 5}
-                    fill="none"
-                    stroke={colorMatch.hex}
-                    strokeWidth="4"
-                  />
-                )}
+              {highlight && (
+                <circle
+                  cx={d.x}
+                  cy={d.y}
+                  r={size / 2 + 5}
+                  fill="none"
+                  stroke={colorMatch?.hex || "none"}
+                  strokeWidth="4"
+                />
+              )}
               {isSelected && (
                 <circle
                   cx={d.x}
