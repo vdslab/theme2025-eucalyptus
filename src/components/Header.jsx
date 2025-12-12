@@ -173,7 +173,7 @@ const Header = ({
             isMobile={true}
           />
           <button
-            className="text-2xl p-3 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
+            className="text-2xl py-3 pl-2 hover:bg-gray-100 rounded transition-colors flex-shrink-0"
             onClick={() => setIsMobileMenuOpen(true)}
             aria-label="メニューを開く"
           >
@@ -215,7 +215,7 @@ const Header = ({
 
         {/* メニュー項目 */}
         <nav className="p-4 flex flex-col gap-2">
-          <div className="border rounded-lg overflow-hidden">
+          <div>
             <button
               onClick={() => setIsMobileColorOpen(!isMobileColorOpen)}
               className="w-full text-left px-4 py-3 hover:bg-gray-50 flex items-center justify-between transition-colors bg-white"
@@ -257,7 +257,7 @@ const Header = ({
             <span>イベントから探す</span>
             <IoIosArrowDown
               className={`transition-transform duration-200 ${
-                isMobileEventOpen ? "rotate-180" : "" // ← 修正
+                isMobileEventOpen ? "rotate-180" : ""
               }`}
             />
           </button>

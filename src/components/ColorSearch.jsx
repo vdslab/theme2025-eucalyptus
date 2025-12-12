@@ -1,3 +1,5 @@
+import { IoMdClose } from "react-icons/io";
+
 const ColorSearch = ({
   selectedColor,
   setSelectedColor,
@@ -20,22 +22,20 @@ const ColorSearch = ({
     return (
       <div className="p-4">
         {selectedColor.name && (
-          <div className="mb-4 p-3 bg-white rounded-lg flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded border-2 border-gray-200"
-                style={{ backgroundColor: selectedColor.code }}
-              />
-              <span className="text-sm">{selectedColor.name}</span>
-            </div>
+          <div className="mb-4 inline-flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-full">
+            <div
+              className="w-5 h-5 rounded-full border-2 border-gray-200"
+              style={{ backgroundColor: selectedColor.code }}
+            />
+            <span className="text-sm">{selectedColor.name}</span>
             <button
-              className="text-xs px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded transition-colors"
               onClick={() => {
                 setSelectedColor({ code: "", name: "" });
                 onClearSearch();
               }}
+              className="ml-1 text-[#8DA39F] hover:text-[#0e4037]"
             >
-              解除
+              <IoMdClose className="w-4 h-4" />
             </button>
           </div>
         )}
@@ -62,25 +62,25 @@ const ColorSearch = ({
     );
   }
 
-  // PC版（Tailwind CSSで書き直し）
+  // PC版
   return (
     <div className="bg-white shadow-lg rounded-lg p-4 min-w-max">
       {/* 選択中の色表示 */}
       {selectedColor.name && (
-        <div className="mb-3 flex items-center gap-2 text-sm">
+        <div className="mb-4 inline-flex items-center gap-2 px-3 py-2 bg-gray-100 rounded-full">
           <div
-            className="w-6 h-6 rounded border-2 border-gray-200"
+            className="w-5 h-5 rounded-full border-2 border-gray-200"
             style={{ backgroundColor: selectedColor.code }}
           />
-          <span>選択中: {selectedColor.name}</span>
+          <span className="text-sm">{selectedColor.name}</span>
           <button
-            className="text-xs px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded"
             onClick={() => {
               setSelectedColor({ code: "", name: "" });
               onClearSearch();
             }}
+            className="ml-1  text-[#8DA39F] hover:text-[#0e4037]"
           >
-            解除
+            <IoMdClose className="w-4 h-4" />
           </button>
         </div>
       )}

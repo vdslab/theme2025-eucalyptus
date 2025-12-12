@@ -217,6 +217,7 @@ function App() {
               onNodeRemove={handleNodeRemove}
               onClearAll={handleClearAll}
             />
+
             <GeminiApi
               ref={geminiApiDesktopRef}
               selectedNodes={selectedNodes}
