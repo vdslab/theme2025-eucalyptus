@@ -73,22 +73,47 @@ const Header = ({
 
   // 色検索をラップ
   const handleColorSearchWithHistory = (colorName) => {
-    setSearchHistory((prev) => [...prev, { type: "color", value: colorName }]);
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "color"),
+      { type: "color", value: colorName },
+    ]);
+
     onColorSelect(colorName);
+  };
+
+  const handleClearSearchWithHistory = () => {
+    setSearchHistory((prev) => prev.filter((item) => item.type !== "color"));
+
+    onClearSearch();
   };
 
   // イベント検索をラップ
   const handleEventSearchWithHistory = (eventName) => {
-    setSearchHistory((prev) => [...prev, { type: "event", value: eventName }]);
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "event"),
+      { type: "event", value: eventName },
+    ]);
+
     onEventSelect(eventName);
+  };
+
+  const handleClearEventSearchWithHistory = () => {
+    setSearchHistory((prev) => prev.filter((item) => item.type !== "event"));
+
+    onClearEventSearch();
   };
 
   const handleNameSearchWithHistory = (flowerName) => {
     if (!flowerName) {
+      setSearchHistory((prev) => prev.filter((item) => item.type !== "name"));
       onNameSearch();
       return;
     }
-    setSearchHistory((prev) => [...prev, { type: "name", value: flowerName }]);
+
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "name"),
+      { type: "name", value: flowerName },
+    ]);
 
     onNameSearch(flowerName);
   };
@@ -119,7 +144,7 @@ const Header = ({
 
             {isColorSearchHovered && (
               <div
-                className="absolute top-full right-0  mt-1 z-50"
+                className="absolute top-full right-0   z-50"
                 onMouseEnter={() => setIsColorSearchHovered(true)}
                 onMouseLeave={() => setIsColorSearchHovered(false)}
               >
@@ -127,7 +152,7 @@ const Header = ({
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
                   onColorSelect={handleColorSearchWithHistory}
-                  onClearSearch={onClearSearch}
+                  onClearSearch={handleClearSearchWithHistory}
                   isMobile={false}
                 />
               </div>
@@ -147,7 +172,7 @@ const Header = ({
             {/* ホバー時に表示されるパネル */}
             {isEventSearchHovered && (
               <div
-                className="absolute top-full right-0 mt-1 z-50"
+                className="absolute top-full right-0 z-50"
                 onMouseEnter={() => setIsEventSearchHovered(true)}
                 onMouseLeave={() => setIsEventSearchHovered(false)}
               >
@@ -155,7 +180,7 @@ const Header = ({
                   selectedEvent={selectedEvent}
                   setSelectedEvent={setSelectedEvent}
                   onEventSelect={handleEventSearchWithHistory}
-                  onClearEventSearch={onClearEventSearch}
+                  onClearEventSearch={handleClearEventSearchWithHistory}
                   isMobile={false}
                 />
               </div>
@@ -234,8 +259,8 @@ const Header = ({
                 <ColorSearch
                   selectedColor={selectedColor}
                   setSelectedColor={setSelectedColor}
-                  onColorSelect={onColorSelect}
-                  onClearSearch={onClearSearch}
+                  onColorSelect={handleColorSearchWithHistory}
+                  onClearSearch={handleClearSearchWithHistory}
                   isMobile={true}
                 />
               </div>
@@ -268,8 +293,8 @@ const Header = ({
               <EventSearch
                 selectedEvent={selectedEvent}
                 setSelectedEvent={setSelectedEvent}
-                onEventSelect={onEventSelect}
-                onClearEventSearch={onClearEventSearch}
+                onEventSelect={handleEventSearchWithHistory}
+                onClearEventSearch={handleClearEventSearchWithHistory}
                 isMobile={true}
               />
             </div>
