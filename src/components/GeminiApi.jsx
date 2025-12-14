@@ -36,7 +36,7 @@ const GeminiApi = forwardRef(
       }
     }, [selectedNodes]);
 
-    const handleGenerate = async () => {
+    const handleGenerate = async (skipConfirm = false) => {
       if (!selectedNodes || selectedNodes.length === 0) {
         setError("花を選択してください");
         return;
@@ -56,13 +56,12 @@ const GeminiApi = forwardRef(
         );
 
       // 同じ花で既に画像がある場合は確認
-      if (isSameSelection && generatedImage) {
+      if (!skipConfirm && isSameSelection && generatedImage) {
         const shouldRegenerate = window.confirm(
           "同じ花の組み合わせで再生成しますか？\n（新しい画像が生成されます）"
         );
         if (!shouldRegenerate) return;
       }
-
       // 生成開始
       setGeneratedImage("");
       setIsImageLoading(true);
@@ -147,26 +146,22 @@ const GeminiApi = forwardRef(
     }));
 
     return (
-      <div className={isMobile ? "space-y-3" : "generation p-6 space-y-4"}>
-        {/* todo:PC版の画像生成もろもろ要修正 */}
-        {!isMobile &&
-          selectedNodes.length > 0 &&
-          !isImageLoading &&
-          !generatedImage && (
-            <div className="text-sm text-gray-700 text-center">
-              {selectedNodes.length}種類の花が選択されています
-            </div>
-          )}
-
-        {/* PC版のみ：生成ボタン */}
-        {!isMobile && (
-          <button
-            onClick={handleGenerate}
-            disabled={isImageLoading || selectedNodes.length === 0}
-            className="btn w-full py-3 disabled:bg-gray-300 disabled:cursor-not-allowed"
-          >
-            {isImageLoading ? "生成中..." : "花束イメージを生成"}
-          </button>
+      <div
+        className={
+          isMobile ? "space-y-3" : "generation p-4 flex flex-col h-full"
+        }
+      >
+        {/* PC版 */}
+        {!isMobile && !generatedImage && !isImageLoading && (
+          <div className="flex-1 flex items-center justify-center">
+            <button
+              onClick={handleGenerate}
+              disabled={selectedNodes.length === 0}
+              className="btn px-8 py-3 disabled:bg-gray-300 disabled:cursor-not-allowed"
+            >
+              花束イメージを生成
+            </button>
+          </div>
         )}
 
         {/* エラー表示 */}
@@ -182,72 +177,89 @@ const GeminiApi = forwardRef(
           </div>
         )}
 
-        {/* PC版のみ：ローディング表示 */}
-        {!isMobile && isImageLoading && (
-          <div className="py-4 text-center space-y-2">
+        {isImageLoading && (
+          <div
+            className={
+              isMobile
+                ? "py-3 text-center space-y-1"
+                : "flex-1 flex flex-col items-center justify-center space-y-2"
+            }
+          >
             <div className="flex justify-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 bg-yellow-500"></div>
             </div>
-            <p className="text-sm font-medium">花束画像を生成中...</p>
-            <p className="text-sm text-gray-600">数秒かかる場合があります</p>
-          </div>
-        )}
-
-        {/* モバイル版：ローディング表示 */}
-        {isMobile && isImageLoading && (
-          <div className="py-3 text-center space-y-1">
-            <div className="flex justify-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 bg-yellow-500"></div>
-            </div>
-            <p className="text-xs font-medium">花束画像を生成中...</p>
-            <p className="text-xs text-gray-500">数秒かかる場合があります</p>
+            <p
+              className={
+                isMobile ? "text-xs font-medium" : "text-sm font-medium"
+              }
+            >
+              花束画像を生成中...
+            </p>
+            <p
+              className={
+                isMobile ? "text-xs text-gray-500" : "text-sm text-gray-600"
+              }
+            >
+              数秒かかる場合があります
+            </p>
           </div>
         )}
 
         {/* 生成された画像 */}
-        {generatedImage && (
+
+        {generatedImage && !isImageLoading && (
           <div
             className={
-              isMobile
-                ? "p-3 border border-gray-200 rounded-lg bg-gray-50"
-                : "p-4 border border-gray-300 rounded-lg bg-gray-50 shadow-sm"
+              isMobile ? "space-y-3" : "flex flex-col space-y-3 flex-1 min-h-0"
             }
           >
-            <div className="flex items-center justify-between mb-2">
-              <h3
-                className={
-                  isMobile
-                    ? "text-xs font-medium text-green-800"
-                    : "text-sm font-medium text-green-900"
-                }
-              >
-                生成された花束
-              </h3>
-              <button
-                onClick={handleDownload}
-                className={
-                  isMobile
-                    ? "text-xs text-green-600 hover:text-green-800 underline"
-                    : "text-sm text-green-600 hover:text-green-800 underline transition-colors"
-                }
-              >
-                ダウンロード
-              </button>
-            </div>
-            <img
-              src={generatedImage}
-              alt="生成された花束"
-              className={
-                isMobile
-                  ? "w-full h-auto rounded shadow-sm"
-                  : "w-full h-auto rounded-lg shadow-md"
-              }
-            />
-            {/* PC版のみ：再生成ボタン */}
-            {!isMobile && !isImageLoading && (
-              <button onClick={handleGenerate} className="btn w-full mt-3 py-2">
-                再生成
-              </button>
+            {/* PC版 */}
+            {!isMobile && (
+              <>
+                {/* ボタンは上部に固定 */}
+                <div className="flex flex-shrink-0 justify-between items-center">
+                  イメージ図
+                  <div className="flex gap-2">
+                    <button onClick={handleGenerate} className="btn  py-2">
+                      再生成
+                    </button>
+                    <button
+                      onClick={handleDownload}
+                      className="btn  py-2 bg-green-600 hover:bg-green-700"
+                    >
+                      ダウンロード
+                    </button>
+                  </div>
+                </div>
+
+                {/* 画像は中央配置、スクロール可能 */}
+                <div className="flex-1 flex items-center justify-center overflow-y-auto">
+                  <img
+                    src={generatedImage}
+                    alt="生成された花束"
+                    className="max-w-full max-h-full object-contain rounded-lg shadow-md"
+                  />
+                </div>
+              </>
+            )}
+
+            {/* モバイル版 */}
+            {isMobile && (
+              <div className="p-3 ">
+                <div className="flex items-center  justify-end mb-2">
+                  <button
+                    onClick={handleDownload}
+                    className="text-xs text-green-600 hover:text-green-800 underline"
+                  >
+                    ダウンロード
+                  </button>
+                </div>
+                <img
+                  src={generatedImage}
+                  alt="生成された花束"
+                  className="w-full h-auto rounded shadow-sm"
+                />
+              </div>
             )}
           </div>
         )}

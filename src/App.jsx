@@ -79,7 +79,7 @@ function App() {
           !isImageLoading &&
           geminiApiMobileRef.current
         ) {
-          geminiApiMobileRef.current.handleGenerate();
+          geminiApiMobileRef.current.handleGenerate(true);
         }
       }, 150);
 
@@ -91,16 +91,18 @@ function App() {
 
   // パネルが開いている状態で花の選択が変わったら自動生成
   useEffect(() => {
+    if (generatedImage) return;
+
     if (isGenerationOpen && selectedNodes.length > 0 && !isImageLoading) {
       const timer = setTimeout(() => {
         if (geminiApiMobileRef.current) {
-          geminiApiMobileRef.current.handleGenerate();
+          geminiApiMobileRef.current.handleGenerate(true);
         }
       }, 300);
 
       return () => clearTimeout(timer);
     }
-  }, [selectedNodes, isGenerationOpen, isImageLoading]);
+  }, [selectedNodes, isGenerationOpen, isImageLoading, generatedImage]);
 
   // 再生成ハンドラー
   const handleRegenerate = () => {
