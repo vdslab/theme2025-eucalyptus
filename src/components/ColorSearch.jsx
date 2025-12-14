@@ -15,6 +15,7 @@ const ColorSearch = ({
     { name: "オレンジ", hex: "#FFA500" },
     { name: "紫", hex: "#8114b8ff" },
     { name: "青", hex: "#0000FF" },
+    { name: "緑", hex: "#13AF17" },
   ];
 
   if (isMobile) {

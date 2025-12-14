@@ -73,13 +73,21 @@ const Header = ({
 
   // 色検索をラップ
   const handleColorSearchWithHistory = (colorName) => {
-    setSearchHistory((prev) => [...prev, { type: "color", value: colorName }]);
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "color"),
+      { type: "color", value: colorName },
+    ]);
+
     onColorSelect(colorName);
   };
 
   // イベント検索をラップ
   const handleEventSearchWithHistory = (eventName) => {
-    setSearchHistory((prev) => [...prev, { type: "event", value: eventName }]);
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "event"),
+      { type: "event", value: eventName },
+    ]);
+
     onEventSelect(eventName);
   };
 
@@ -88,8 +96,10 @@ const Header = ({
       onNameSearch();
       return;
     }
-    setSearchHistory((prev) => [...prev, { type: "name", value: flowerName }]);
-
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "name"),
+      { type: "name", value: flowerName },
+    ]);
     onNameSearch(flowerName);
   };
 
