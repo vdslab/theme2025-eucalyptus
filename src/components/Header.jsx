@@ -78,6 +78,11 @@ const Header = ({
       { type: "color", value: colorName },
     ]);
 
+    setSearchHistory((prev) => [
+      ...prev.filter((item) => item.type !== "color"),
+      { type: "color", value: colorName },
+    ]);
+
     onColorSelect(colorName);
   };
 
