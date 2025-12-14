@@ -59,7 +59,7 @@ function ExpandableDetail({ data, onClose, isMobile = false, flowerMetadata }) {
         品種：{metadata?.name || data.filename.replace(".jpeg", "")}
       </p>
       <p className="text-sm">品目名：{metadata?.family_ja || "情報なし"}</p>
-      <p className="text-sm">サイズ：</p>
+      {/* <p className="text-sm">サイズ：</p> */}
       <p className="text-sm">
         開花時期：{getBloomSeasonText(metadata?.bloom_season)}
       </p>
