@@ -39,7 +39,7 @@ function ExpandableDetail({ data, onClose, isMobile = false, flowerMetadata }) {
           </p>
           <p className="text-xs">品目名：{metadata?.family_ja || "情報なし"}</p>
           <p className=" text-xs">
-            開花時期：{getBloomSeasonText(metadata?.bloom_season)}
+            入手可能時期：{getBloomSeasonText(metadata?.bloom_season)}
           </p>
         </div>
       </div>
@@ -61,7 +61,7 @@ function ExpandableDetail({ data, onClose, isMobile = false, flowerMetadata }) {
       <p className="text-sm">品目名：{metadata?.family_ja || "情報なし"}</p>
       {/* <p className="text-sm">サイズ：</p> */}
       <p className="text-sm">
-        開花時期：{getBloomSeasonText(metadata?.bloom_season)}
+        入手可能時期：{getBloomSeasonText(metadata?.bloom_season)}
       </p>
     </div>
   );
